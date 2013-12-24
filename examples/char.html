@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>基础文本字符</title>
+    <meta charset="utf-8">
+    <script src="../lib/kitygraph.all.js"></script>
+    <script src="../lib/sea-debug.js"></script>
+    <script>
+        seajs.config( {
+            base: "../src"
+        } );
+
+        define( "start", function ( require ) {
+
+            var Formula = require( "formula" ),
+                TextExpression = require( "expression/text" );
+
+            var formula = new Formula( document.body ),
+                textExp1 = new TextExpression( "abcdefghijklmnopqrstuvwxyz" ),
+                textExp2 = new TextExpression( "0123456789" ),
+                textExp3 = new TextExpression( "+-/|()![]:'<>" );
+
+
+            formula.appendExpression( textExp1 );
+            formula.appendExpression( textExp2 );
+            formula.appendExpression( textExp3 );
+
+        } );
+
+        seajs.use( "start" );
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
