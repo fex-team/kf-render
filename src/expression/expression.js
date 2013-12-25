@@ -10,12 +10,6 @@ define( function ( require, exports, module ) {
 
         base: require( "signgroup" ),
 
-        constructor: function () {
-
-            this.callBase();
-
-        },
-
         getBaseWidth: function () {
 
             return this.getWidth();

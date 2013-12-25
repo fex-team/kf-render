@@ -1,5 +1,5 @@
 /**
- * Created by hn on 13-12-4.
+ * 字符类
  */
 
 define( function ( require, exports, module ) {

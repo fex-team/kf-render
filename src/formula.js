@@ -1,5 +1,5 @@
 /**
- * 表达式容器
+ * 公式对象，表达式容器
  */
 
 define( function ( require, exports, module ) {

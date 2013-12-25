@@ -1,6 +1,5 @@
 /**
  * 加法表达式
- * @abstract
  */
 
 define( function ( require, exports, modules ) {

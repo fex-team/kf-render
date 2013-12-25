@@ -59,7 +59,9 @@ define( function ( require, exports, module ) {
         ":": require( "char/data/symbol/colon" ),
         "'": require( "char/data/symbol/quotation" ),
         "<": require( "char/data/symbol/lt" ),
-        ">": require( "char/data/symbol/gt" )
+        ">": require( "char/data/symbol/gt" ),
+        ".": require( "char/data/symbol/point" )
+
     };
 
 } );
