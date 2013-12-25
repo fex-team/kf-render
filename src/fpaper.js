@@ -14,13 +14,28 @@ define( function ( require, exports, module ) {
 
             this.callBase( container );
 
-            this.baseZoom = 1;
+            this.container = new kity.Group();
+            this.baseZoom = 2;
+
+            this.base( 'addShape', this.container );
 
         },
 
         getBaseZoom: function () {
 
             return this.baseZoom;
+
+        },
+
+        addShape: function ( shape, pos ) {
+
+            return this.container.addShape( shape, pos );
+
+        },
+
+        removeShape: function ( pos ) {
+
+            return this.container.removeShape( pos );
 
         }
 

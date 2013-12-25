@@ -24,7 +24,14 @@ define( function ( require, exports, module ) {
 
         insertExpression: function ( expression, index ) {
 
+            for ( var i = this.expressions.length; i > index; i-- ) {
+
+                this.expressions[ i ] = this.expressions[ i-1 ];
+
+            }
+
             this.expressions[ index ] = expression;
+
             this.addShape( expression );
 
             notifyExpression.call( this, expression );
@@ -44,10 +51,10 @@ define( function ( require, exports, module ) {
 
         var zoomLevel = this.zoom - this.getBaseZoom();
 
-        if ( zoomLevel > 1 ) {
+        if ( zoomLevel !== 0 ) {
 
-            this.setAnchor( 0, 0 );
-            this.scale( zoomLevel );
+            this.container.setAnchor( 0, 0 );
+            this.container.scale( Math.pow( 2, zoomLevel ) );
 
         }
 
@@ -62,9 +69,13 @@ define( function ( require, exports, module ) {
 
             var box = null;
 
+            if ( !expr ) {
+                return;
+            }
+
             expr.setTransform( new kity.Matrix( 1, 0, 0, 1, 0, 0 ) );
             box = expr.getRenderBox();
-            expr.setTransform( new kity.Matrix( 1, 0, 0, 1, 0 - box.x, exprOffset ) );
+            expr.translate( 0 - box.x, exprOffset );
 
             exprOffset += box.height + EXPRESSION_INTERVAL;
 
