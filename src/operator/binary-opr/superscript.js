@@ -18,8 +18,7 @@ define( function ( require, exports, modules ) {
 
         applyOperand: function ( operand, superscript ) {
 
-            var operandBox = operand.getRenderBox(),
-                supBox = superscript.getRenderBox();
+            var operandBox = operand.getRenderBox();
 
             superscript.setAnchor( 0, 0 );
             superscript.scale( 0.5 );
