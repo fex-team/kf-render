@@ -17,13 +17,15 @@
 
             var formula = new Formula( document.body ),
                 textExp1 = new TextExpression( "abcdefghijklmnopqrstuvwxyz" ),
-                textExp2 = new TextExpression( "012345678942" ),
-                textExp3 = new TextExpression( "+-/|()![]:'<>." );
+                textExp2 = new TextExpression( "ABCDEFGHIJKLMNOPQRSTUVWXYZ" ),
+                textExp3 = new TextExpression( "0123456789" ),
+                textExp4 = new TextExpression( "+-/|()![]:'<>." );
 
 
             formula.appendExpression( textExp1 );
             formula.appendExpression( textExp2 );
             formula.appendExpression( textExp3 );
+            formula.appendExpression( textExp4 );
 
         } );
 

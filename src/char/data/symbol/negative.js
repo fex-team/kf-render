@@ -1,10 +1,10 @@
 /**
- * 数字data: -
+ * 字符data: -
  */
 
 define( {
 
-    path: "M0,6.328V0h19.301v6.328H0z",
+    path: "M0,4.248V0h19.152v4.248H0z",
 
     offset: {
         x: 1,
