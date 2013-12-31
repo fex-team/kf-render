@@ -61,7 +61,7 @@ define( function ( require, exports, module ) {
 
                 charShape.translate( offset, 0 );
 
-                offset += charShape.getBoxWidth() + 1;
+                offset += charShape.getBoxWidth();
 
             }, this );
 

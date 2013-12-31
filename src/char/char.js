@@ -25,7 +25,7 @@ define( function ( require, exports, module ) {
 
             this.contentShape = new kity.Group();
 
-            this.box = new kity.Path( currentData.box ).fill( "red" );
+            this.box = new kity.Path( currentData.box ).fill( "transparent" );
             this.char = new kity.Path( currentData.path ).fill( "black" );
 
             this.char.translate( currentData.offset.x, currentData.offset.y );
