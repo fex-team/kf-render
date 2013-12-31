@@ -5,6 +5,7 @@
 define( function ( require, exports, module ) {
 
     var kity = require( "kity" ),
+        CHAR_DATA = require( 'char/data' ),
         Char = require( "char/char" );
 
 
@@ -16,8 +17,8 @@ define( function ( require, exports, module ) {
 
             this.callBase();
 
+            this.chars = null;
             this.contentText = content || "";
-
             this.contentShape = new kity.Group();
 
             initContentShape.call( this );
@@ -54,13 +55,13 @@ define( function ( require, exports, module ) {
 
             var offset = 0;
 
-            kity.Utils.each( this.contentText.split( "" ), function ( charData, index ) {
+            kity.Utils.each( this.chars, function ( charData, index ) {
 
                 var charShape = this.contentShape.getItem( index );
 
                 charShape.translate( offset, 0 );
 
-                offset += charShape.getBoxWidth();
+                offset += charShape.getBoxWidth() + 1;
 
             }, this );
 
@@ -71,7 +72,24 @@ define( function ( require, exports, module ) {
 
     function initContentShape () {
 
-        kity.Utils.each( this.contentText.split( "" ), function ( charData, index ) {
+        var match = null,
+            content = this.contentText,
+            chars = [];
+
+        while ( match = /^([^\\]*)(\\[^\\]+\\)([\s\S]*)/.exec( content ) ) {
+
+            content = match[3];
+            chars = chars.concat( match[1].split( "" ) );
+            chars.push( match[2] );
+
+        }
+
+        chars = chars.concat( content.split( "" ) );
+
+        // 字符数组
+        this.chars = chars;
+
+        kity.Utils.each( chars, function ( charData, index ) {
 
             var charShape = new Char( charData );
 

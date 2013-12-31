@@ -87,7 +87,113 @@ define( function ( require, exports, module ) {
         "'": require( "char/data/symbol/quotation" ),
         "<": require( "char/data/symbol/lt" ),
         ">": require( "char/data/symbol/gt" ),
-        ".": require( "char/data/symbol/point" )
+        ".": require( "char/data/symbol/point" ),
+
+        // greek
+        "\u03B1": require( "char/data/greek/alpha" ),
+        "\\alpha\\": require( "char/data/greek/alpha" ),
+
+        "\u03B2": require( "char/data/greek/alpha" ),
+        "\\beta\\": require( "char/data/greek/beta" ),
+
+        "\u03B3": require( "char/data/greek/gamma" ),
+        "\\gamma\\": require( "char/data/greek/gamma" ),
+
+        "\u03B4": require( "char/data/greek/delta" ),
+        "\\delta\\": require( "char/data/greek/delta" ),
+
+        "\u03B5": require( "char/data/greek/varepsilon" ),
+        "\\varepsilon\\": require( "char/data/greek/varepsilon" ),
+
+        "\u03B6": require( "char/data/greek/zeta" ),
+        "\\zeta\\": require( "char/data/greek/zeta" ),
+
+        "\u03B7": require( "char/data/greek/eta" ),
+        "\\eta\\": require( "char/data/greek/eta" ),
+
+        "\u03B8": require( "char/data/greek/theta" ),
+        "\\theta\\": require( "char/data/greek/theta" ),
+
+        "\u03B9": require( "char/data/greek/iota" ),
+        "\\iota\\": require( "char/data/greek/iota" ),
+
+        "\u03BA": require( "char/data/greek/kappa" ),
+        "\\kappa\\": require( "char/data/greek/kappa" ),
+
+        "\u03BB": require( "char/data/greek/lambda" ),
+        "\\lambda\\": require( "char/data/greek/lambda" ),
+
+        "\u03BC": require( "char/data/greek/mu" ),
+        "\\mu\\": require( "char/data/greek/mu" ),
+
+        "\u03BD": require( "char/data/greek/nu" ),
+        "\\nu\\": require( "char/data/greek/nu" ),
+
+        "\u03BE": require( "char/data/greek/xi" ),
+        "\\xi\\": require( "char/data/greek/xi" ),
+
+        "\u03C0": require( "char/data/greek/pi" ),
+        "\\pi\\": require( "char/data/greek/pi" ),
+
+        "\u03C1": require( "char/data/greek/rho" ),
+        "\\rho\\": require( "char/data/greek/rho" ),
+
+        "\u03C3": require( "char/data/greek/sigma" ),
+        "\\sigma\\": require( "char/data/greek/sigma" ),
+
+        "\u03C4": require( "char/data/greek/tau" ),
+        "\\tau\\": require( "char/data/greek/tau" ),
+
+        "\u03C5": require( "char/data/greek/upsilon" ),
+        "\\upsilon\\": require( "char/data/greek/upsilon" ),
+
+        "\u03C6": require( "char/data/greek/phi" ),
+        "\\phi\\": require( "char/data/greek/phi" ),
+
+        "\u03C7": require( "char/data/greek/chi" ),
+        "\\chi\\": require( "char/data/greek/chi" ),
+
+        "\u03C8": require( "char/data/greek/psi" ),
+        "\\psi\\": require( "char/data/greek/psi" ),
+
+        "\u03C9": require( "char/data/greek/omega" ),
+        "\\omega\\": require( "char/data/greek/omega" ),
+
+        "\u0393": require( "char/data/greek/u-gamma" ),
+        "\\Gamma\\": require( "char/data/greek/u-gamma" ),
+
+        "\u0394": require( "char/data/greek/u-delta" ),
+        "\\Delta\\": require( "char/data/greek/u-delta" ),
+
+        "\u0398": require( "char/data/greek/u-theta" ),
+        "\\Theta\\": require( "char/data/greek/u-theta" ),
+
+        "\u039B": require( "char/data/greek/u-lambda" ),
+        "\\Lambda\\": require( "char/data/greek/u-lambda" ),
+
+        "\u039E": require( "char/data/greek/u-xi" ),
+        "\\Xi\\": require( "char/data/greek/u-xi" ),
+
+        "\u03A0": require( "char/data/greek/u-pi" ),
+        "\\Pi\\": require( "char/data/greek/u-pi" ),
+
+        "\u03A0": require( "char/data/greek/u-sigma" ),
+        "\\Sigma\\": require( "char/data/greek/u-sigma" ),
+
+        "\u03A5": require( "char/data/greek/u-upsilon" ),
+        "\\Upsilon\\": require( "char/data/greek/u-upsilon" ),
+
+        "\u03A6": require( "char/data/greek/u-phi" ),
+        "\\Phi\\": require( "char/data/greek/u-phi" ),
+
+        "\u03A8": require( "char/data/greek/u-psi" ),
+        "\\Psi\\": require( "char/data/greek/u-psi" ),
+
+        "\u03A8": require( "char/data/greek/u-psi" ),
+        "\\Psi\\": require( "char/data/greek/u-psi" ),
+
+        "\u03A8": require( "char/data/greek/u-omega" ),
+        "\\Omega\\": require( "char/data/greek/u-omega" )
 
     };
 
