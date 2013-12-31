@@ -19,13 +19,16 @@
                 SubtractionExpression = require( "expression/compound-exp/binary-exp/subtraction" ),
                 DivisionExpression = require( "expression/compound-exp/binary-exp/division" ),
                 MultiplicationExpression = require( "expression/compound-exp/binary-exp/multiplication" ),
+                IntersectionExpression = require( "expression/compound-exp/binary-exp/intersection" ),
                 EqualExpression = require( "expression/compound-exp/binary-exp/equal" ),
+                UnionExpression = require( "expression/compound-exp/binary-exp/union" ),
                 FractionExpression = require( "expression/compound-exp/binary-exp/fraction" ),
                 AsteriskExpression = require( "expression/compound-exp/binary-exp/asterisk" ),
+                LogicAndExpression = require( "expression/compound-exp/binary-exp/logic-and" ),
                 RadicalExpression = require( "expression/compound-exp/binary-exp/radical" );
 
             var formula = new Formula( document.body ),
-                astExp = new AsteriskExpression( "a", "b" );
+                astExp = new LogicAndExpression( "a", "b" );
 
             formula.appendExpression( astExp );
 

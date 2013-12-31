@@ -1,13 +1,13 @@
 /**
- * 点积表达式
+ * 逻辑与（交运算）表达式
  */
 
 define( function ( require, exports, modules ) {
 
     var kity = require( "kity" ),
-        DotOperator = require( "operator/binary-opr/dot" );
+        LogicAndOperator = require( "operator/binary-opr/logic-and" );
 
-    return kity.createClass( 'DotExpression', {
+    return kity.createClass( 'LogicAndExpression', {
 
         base: require( "expression/compound-exp/binary-exp/left-right" ),
 
@@ -15,7 +15,7 @@ define( function ( require, exports, modules ) {
 
             this.callBase( leftOperand, rightOperand );
 
-            this.setOperator( new DotOperator() );
+            this.setOperator( new LogicAndOperator() );
 
         }
 

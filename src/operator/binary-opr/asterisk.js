@@ -20,7 +20,7 @@ define( function ( require, exports, modules ) {
 
             shape = new kity.Path( pathData ).fill( "black" );
             shape.translate( 4, 6 );
-            
+
             this.setBoxSize( 33, 43 );
             this.addOperatorShape( shape );
 

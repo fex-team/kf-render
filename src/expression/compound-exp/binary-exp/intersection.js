@@ -1,13 +1,13 @@
 /**
- * 点积表达式
+ * 交集表达式
  */
 
 define( function ( require, exports, modules ) {
 
     var kity = require( "kity" ),
-        DotOperator = require( "operator/binary-opr/dot" );
+        IntersectionOperator = require( "operator/binary-opr/intersection" );
 
-    return kity.createClass( 'DotExpression', {
+    return kity.createClass( 'AdditionExpression', {
 
         base: require( "expression/compound-exp/binary-exp/left-right" ),
 
@@ -15,7 +15,7 @@ define( function ( require, exports, modules ) {
 
             this.callBase( leftOperand, rightOperand );
 
-            this.setOperator( new DotOperator() );
+            this.setOperator( new IntersectionOperator() );
 
         }
 

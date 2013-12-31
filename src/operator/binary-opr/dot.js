@@ -1,5 +1,5 @@
 /**
- * 点乘操作符
+ * 点积操作符
  */
 
 define( function ( require, exports, modules ) {
