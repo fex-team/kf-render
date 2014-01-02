@@ -1,5 +1,5 @@
 /**
- * 求和操作符
+ * 求和操作符：∑
  */
 
 define( function ( require, exports, modules ) {

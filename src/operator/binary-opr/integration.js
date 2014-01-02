@@ -1,5 +1,5 @@
 /**
- * 积分操作符
+ * 积分操作符：∫
  */
 
 define( function ( require, exports, modules ) {
