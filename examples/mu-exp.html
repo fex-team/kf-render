@@ -15,21 +15,15 @@
             var Formula = require( "formula" ),
                 AdditionExpression = require( "expression/compound-exp/binary-exp/addition" ),
                 Fraction = require( "expression/compound-exp/binary-exp/fraction" ),
-                EqualExpression = require( "expression/compound-exp/binary-exp/equal"),
-                SummationExpression = require( "expression/compound-exp/binary-exp/summation" ),
-                IntegrationExpression = require( "expression/compound-exp/binary-exp/integration");
+                EqualExpression = require( "expression/compound-exp/binary-exp/equal" );
 
             var formula = new Formula( document.body );
 
             var exp1 = new EqualExpression( 'f(x)', new AdditionExpression( "a", "b" ) ),
-                exp2 = new EqualExpression( 'f(x)', new Fraction( "34x", "5a" )),
-                exp3 = new EqualExpression( 'f(x)', new IntegrationExpression( new EqualExpression( "x", "1" ), new EqualExpression( "x", "0" ) )),
-                exp4 = new EqualExpression( 'f(x)', new SummationExpression( "n", new EqualExpression( "i", "1" ) ) );
+                exp2 = new EqualExpression( 'f(x)', new Fraction( "34x", "5a" ));
 
             formula.appendExpression( exp1 );
             formula.appendExpression( exp2 );
-            formula.appendExpression( exp3 );
-            formula.appendExpression( exp4 );
 
         } );
 
