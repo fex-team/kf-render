@@ -27,14 +27,13 @@ define( function ( require, exports, modules ) {
                 downHeight = downOperand.getHeight(),
                 operandWidth = Math.max( upWidth, downWidth ),
                 operandHeight = Math.max( upHeight, downHeight),
-                operatorShape = generateOperator(),
-                boxShape = generateBox( operandWidth, operandHeight * 2 + operatorHeight );
+                operatorShape = generateOperator();
 
-            this.addOperatorShape( boxShape );
             this.addOperatorShape( operatorShape );
-
             var operatorWidth = operatorShape.getWidth(),
                 operatorHeight = operatorShape.getHeight();
+
+            this.addOperatorShape( generateBox( operandWidth, operandHeight * 2 + operatorHeight ) );
 
             upOperand.translate( ( operandWidth - upWidth ) / 2, 0 );
             operatorShape.translate( ( operandWidth - operatorWidth ) / 2 , operandHeight );

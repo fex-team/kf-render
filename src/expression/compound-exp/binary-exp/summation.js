@@ -14,12 +14,12 @@ define( function ( require, exports, modules ) {
 
         /**
          * 构造求和表达式
-         * @param radicand 被开方数
-         * @param exponent 指数
+         * @param upOperand 上标
+         * @param downOperand 下标
          */
-        constructor: function ( topOperand, bottomOperand ) {
+        constructor: function ( upOperand, downOperand ) {
 
-            this.callBase( topOperand, bottomOperand );
+            this.callBase( upOperand, downOperand );
 
             this.setOperator( new SummationOperator() );
 
