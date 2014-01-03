@@ -17,6 +17,18 @@ define( function ( require, exports, modules ) {
 
             this.setOperator( new SubscriptExpression() );
 
+        },
+
+        getBaseHeight: function () {
+
+            return this.getFirstOperand().getBaseHeight();
+
+        },
+
+        getBaseWidth: function () {
+
+            return this.getFirstOperand().getBaseWidth();
+
         }
 
     } );

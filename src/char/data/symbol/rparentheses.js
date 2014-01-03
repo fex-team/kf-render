@@ -8,7 +8,7 @@ define( {
 
     offset: {
         x: 0,
-        y: 13
+        y: 10
     },
 
     box: "M 0 0 L 23 0 L 23 86 L 0 86 Z"

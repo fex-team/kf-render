@@ -49,7 +49,9 @@ define( function ( require, exports, modules ) {
         this.addOperatorShape( vLine );
         this.addOperatorShape( hLine );
 
-        adjustmentPosition( mergeShape( decoration, vLine, hLine ), this.operator, radicand, exponent );
+        adjustmentPosition( mergeShape( decoration, vLine, hLine ), this.operatorShape, radicand, exponent );
+
+        adjustmentBox.call( this );
 
     }
 
@@ -126,7 +128,7 @@ define( function ( require, exports, modules ) {
 
     }
 
-    // 调整整个根号表达式的各个部分： 根号、被开方数、指数
+    // 调整整个根号表达式的各个部分： 位置、操作符、被开方数、指数
     function adjustmentPosition ( position, operator, radicand, exponent ) {
 
         var radicandBox = radicand.getRenderBox(),
@@ -135,7 +137,8 @@ define( function ( require, exports, modules ) {
             exponentBox = null;
 
         // 调整被开方数和根号的相对位置
-        radicand.translate( position.x + SHAPE_DATA_WIDTH - radicandBox.x, position.y + 2 * SHAPE_DATA_WIDTH );
+        radicand.translate( position.x + SHAPE_DATA_WIDTH - radicandBox.x + 5, position.y + 2 * SHAPE_DATA_WIDTH + 5 );
+        operator.translate( 5, 5 );
 
         if ( !exponent ) {
 
@@ -154,15 +157,22 @@ define( function ( require, exports, modules ) {
 
             diff = width - position.x;
 
-            operator.translate( diff, 0 );
-            radicand.translate( diff, 0 );
+            operator.translate( diff + 5, 5 );
+            radicand.translate( diff + 5, 5 );
 
         // 否则， 移动指数
         } else {
 
-            exponent.translate( position.x - width, 0 );
+            exponent.translate( position.x - width + 5, +5 );
 
         }
+
+    }
+
+    // 调整整个边框的大小
+    function adjustmentBox () {
+
+        this.setBoxSize( this.operatorShape.getWidth() + 10, this.operatorShape.getHeight() + 10 );
 
     }
 
