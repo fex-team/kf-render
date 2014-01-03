@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>下标表达式</title>
+    <meta charset="utf-8">
+    <script src="../lib/kitygraph.all.js"></script>
+    <script src="../lib/sea-debug.js"></script>
+    <script>
+        seajs.config( {
+            base: "../src"
+        } );
+
+        define( "start", function ( require ) {
+
+            var Formula = require( "formula" ),
+                PmExpression = require( "expression/compound-exp/binary-exp/pm"),
+                MpExpression = require( "expression/compound-exp/binary-exp/mp" ),
+                TimesExpression = require( "expression/compound-exp/binary-exp/times" ),
+                DivisionExpression = require( "expression/compound-exp/binary-exp/division" ),
+                CdotExpression = require( "expression/compound-exp/binary-exp/cdot" ),
+                AstExpression = require( "expression/compound-exp/binary-exp/ast" ),
+                StarExpression = require( "expression/compound-exp/binary-exp/star" );
+
+            var formula = new Formula( document.body ),
+                exps = [
+                    new PmExpression( 'a', 'b' ),
+                    new MpExpression( 'a', 'b' ),
+                    new TimesExpression( 'a', 'b' ),
+                    new DivisionExpression( 'a', 'b' ),
+                    new CdotExpression( 'a', 'b' ),
+                    new AstExpression( 'a', 'b' ),
+                    new StarExpression( 'a', 'b' )
+                ]
+
+            for ( var i in exps ) {
+                formula.appendExpression( exps[i] );
+            }
+
+        } );
+
+        seajs.use( "start" );
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
