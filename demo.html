@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="chrome=1"/>
         <meta name="description" content="Formula : HTML(SVG) Formula display solutions"/>
 
-        <title>首页 - Kity Formula  HTML(SVG)数学公式呈现库</title>
+        <title>DEMO - Kity Formula  HTML(SVG)数学公式呈现库</title>
 
         <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
         <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/main.css">
@@ -34,9 +34,9 @@
             </header>
             <div class="nav">
                 <ul>
-                    <li class="selected"><a href="index.html">首页</a></li>
+                    <li ><a href="index.html">首页</a></li>
                     <li ><a href="getting-started.html">Getting started</a></li>
-                    <li ><a href="demo.html">Demo</a></li>
+                    <li class="selected"><a href="demo.html">Demo</a></li>
                 </ul>
             </div>
         </div>
@@ -44,7 +44,21 @@
         <!-- MAIN CONTENT -->
         <div id="main_content_wrap" class="outer">
             <section id="main_content" class="inner">
-                <p><img src="images/1.png"/></p>
+                <div class="demo-list">
+    <a href="demo/char.html" target="demo-iframe">基本字符集</a><br/>
+    <a href="demo/ext-char.html" target="demo-iframe">希腊字符集</a><br/>
+    <a href="demo/base-exp.html" target="demo-iframe">基础表达式</a><br/>
+    <a href="demo/mu-exp.html" target="demo-iframe">多表达式</a><br/>
+    <a href="demo/subscript.html" target="demo-iframe">上下标表达式</a><br/>
+    <a href="demo/summation.html" target="demo-iframe">求和表达式</a><br/>
+    <a href="demo/integration.html" target="demo-iframe">积分表达式</a><br/>
+    <a href="demo/extract-a-root.html" target="demo-iframe">方根表达式</a><br/>
+</div>
+
+<div class="demo-frame">
+    <iframe src="demo/char.html" name="demo-iframe"></iframe>
+</div>
+<div class="demo-clear"></div>
 
             </section>
         </div>

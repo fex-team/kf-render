@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>上下标表达式</title>
+    <meta charset="utf-8">
+
+    <style type="text/css">
+        html, body {
+            overflow: hidden;
+        }
+    </style>
+
+    <script src="../lib/kitygraph.all.js"></script>
+    <script src="../lib/sea-debug.js"></script>
+    <script>
+        seajs.config( {
+            base: "../src"
+        } );
+
+        define( "start", function ( require ) {
+
+            var Formula = require( "formula" ),
+                    SubscriptExpression = require( "expression/compound-exp/binary-exp/subscript" ),
+                    SuperscriptExpression = require( "expression/compound-exp/binary-exp/superscript" ),
+                    SubtractionExpression = require( "expression/compound-exp/binary-exp/subtraction" );
+
+
+            var formula = new Formula( document.body ),
+                    subExp = new SubtractionExpression( "(a", "b)" ),
+                    subscriptExp = new SubscriptExpression( subExp, 3 ),
+                    supscriptExp = new SuperscriptExpression( "xyz", 3 );
+
+            formula.appendExpression( subscriptExp );
+            formula.appendExpression( supscriptExp );
+
+        } );
+
+        seajs.use( "start" );
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
