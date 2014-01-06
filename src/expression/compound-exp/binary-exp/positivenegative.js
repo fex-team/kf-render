@@ -1,13 +1,13 @@
 /**
- * 乘法表达式
+ * 上加下减表达式：±
  */
 
 define( function ( require, exports, modules ) {
 
     var kity = require( "kity" ),
-        MpOperator = require( "operator/binary-opr/times" );
+        PositiveNegativeOperator = require( "operator/binary-opr/positivenegative" );
 
-    return kity.createClass( 'TimesExpression', {
+    return kity.createClass( 'PositiveNegativeExpression', {
 
         base: require( "expression/compound-exp/binary-exp/left-right" ),
 
@@ -15,7 +15,7 @@ define( function ( require, exports, modules ) {
 
             this.callBase( leftOperand, rightOperand );
 
-            this.setOperator( new MpOperator() );
+            this.setOperator( new PositiveNegativeOperator() );
 
         }
 
