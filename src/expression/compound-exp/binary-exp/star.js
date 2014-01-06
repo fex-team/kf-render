@@ -1,5 +1,5 @@
 /**
- * 型号表达式
+ * 星号表达式
  */
 
 define( function ( require, exports, modules ) {

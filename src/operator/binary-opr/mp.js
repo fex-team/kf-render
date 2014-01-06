@@ -1,5 +1,5 @@
 /**
- * 上减下加操作符
+ * 上减下加操作符：∓
  */
 
 define( function ( require, exports, modules ) {
