@@ -3,28 +3,20 @@
 <head>
     <title>扩展字符集</title>
     <meta charset="utf-8">
-    <script src="../lib/kitygraph.all.js"></script>
-    <script src="../lib/sea-debug.js"></script>
+    <script src="../dev-lib/kitygraph.all.js"></script>
+    <script src="../dist/kity-formula.all.min.js"></script>
     <script>
-        seajs.config( {
-            base: "../src"
-        } );
 
-        define( "start", function ( require ) {
+        window.onload = function () {
 
-            var Formula = require( "formula" ),
-                TextExpression = require( "expression/text" );
-
-            var formula = new Formula( "test" ),
-                textExp1 = new TextExpression( "a\\alpha\\\\beta\\\\gamma\\\\delta\\\\varepsilon\\\\zeta\\\\eta\\\\theta\\\\iota\\\\kappa\\\\lambda\\\\mu\\\\nu\\\\xi\\\\pi\\\\rho\\\\sigma\\\\tau\\\\upsilon\\\\phi\\\\chi\\\\psi\\\\omega\\" ),
-                textExp2 = new TextExpression( "A\\Gamma\\\\Delta\\\\Theta\\\\Lambda\\\\Xi\\\\Pi\\\\Sigma\\\\Upsilon\\\\Phi\\\\Psi\\\\Omega\\" );
+            var formula = new kf.Formula( "test" ),
+                    textExp1 = new kf.TextExpression( "\\alpha\\\\beta\\\\gamma\\\\delta\\\\varepsilon\\\\zeta\\\\eta\\\\theta\\\\iota\\\\kappa\\\\lambda\\\\mu\\\\nu\\\\xi\\\\pi\\\\rho\\\\sigma\\\\tau\\\\upsilon\\\\phi\\\\chi\\\\psi\\\\omega\\" ),
+                    textExp2 = new kf.TextExpression( "\\Gamma\\\\Delta\\\\Theta\\\\Lambda\\\\Xi\\\\Pi\\\\Sigma\\\\Upsilon\\\\Phi\\\\Psi\\\\Omega\\" );
 
             formula.appendExpression( textExp1 );
             formula.appendExpression( textExp2 );
 
-        } );
-
-        seajs.use( "start" );
+        };
 
     </script>
 </head>

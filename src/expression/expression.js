@@ -1,5 +1,6 @@
 /**
  * 基础表达式， 该类是表达式和操作数的高层抽象
+ * @abstract
  */
 
 define( function ( require, exports, module ) {

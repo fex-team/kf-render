@@ -3,27 +3,17 @@
 <head>
     <title>下标表达式</title>
     <meta charset="utf-8">
-    <script src="../lib/kitygraph.all.js"></script>
-    <script src="../lib/sea-debug.js"></script>
+    <script src="../dev-lib/kitygraph.all.js"></script>
+    <script src="../dist/kity-formula.all.min.js"></script>
     <script>
-        seajs.config( {
-            base: "../src"
-        } );
+        window.onload = function () {
 
-        define( "start", function ( require ) {
-
-            var Formula = require( "formula" ),
-                EqualExpression = require( "expression/compound-exp/binary-exp/equal"),
-                IntegrationExpression = require( "expression/compound-exp/binary-exp/integration" );
-
-            var formula = new Formula( document.body ),
-                integrationExp = new IntegrationExpression( new EqualExpression( "x", "1" ), new EqualExpression( "x", "0" ) );
+            var formula = new kf.Formula( document.body ),
+                integrationExp = new kf.IntegrationExpression( new kf.EqualExpression( "x", "1" ), new kf.EqualExpression( "x", "0" ) );
 
             formula.appendExpression( integrationExp );
 
-        } );
-
-        seajs.use( "start" );
+        };
 
     </script>
 </head>

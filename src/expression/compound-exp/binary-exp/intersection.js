@@ -7,7 +7,7 @@ define( function ( require, exports, modules ) {
     var kity = require( "kity" ),
         IntersectionOperator = require( "operator/binary-opr/intersection" );
 
-    return kity.createClass( 'AdditionExpression', {
+    return kity.createClass( 'IntersectionExpression', {
 
         base: require( "expression/compound-exp/binary-exp/left-right" ),
 

@@ -1,5 +1,5 @@
 /**
- * 开方表达式
+ * 方根表达式
  */
 
 define( function ( require, exports, modules ) {

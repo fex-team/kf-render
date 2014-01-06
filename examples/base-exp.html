@@ -3,39 +3,24 @@
 <head>
     <title>基础表达式</title>
     <meta charset="utf-8">
-    <script src="../lib/kitygraph.all.js"></script>
-    <script src="../lib/sea-debug.js"></script>
+    <script src="../dev-lib/kitygraph.all.js"></script>
+    <script src="../dist/kity-formula.all.min.js"></script>
     <script>
-        seajs.config( {
-            base: "../src"
-        } );
 
-        define( "start", function ( require ) {
+        window.onload = function () {
 
-            var Formula = require( "formula" ),
-                TextExpression = require( "expression/text" ),
-                AdditionExpression = require( "expression/compound-exp/binary-exp/addition" ),
-                SubtractionExpression = require( "expression/compound-exp/binary-exp/subtraction" ),
-                DivisionExpression = require( "expression/compound-exp/binary-exp/division" ),
-                MultiplicationExpression = require( "expression/compound-exp/binary-exp/multiplication" ),
-                EqualExpression = require( "expression/compound-exp/binary-exp/equal" ),
-                FractionExpression = require( "expression/compound-exp/binary-exp/fraction" ),
-                RadicalExpression = require( "expression/compound-exp/binary-exp/radical" );
-
-            var formula = new Formula( document.body ),
-                addExp = new AdditionExpression( new TextExpression("a"), "b" ),
-                subExp = new SubtractionExpression( addExp, "c" ),
-                divExp = new DivisionExpression( subExp, "43" ),
-                mulExp = new MultiplicationExpression( divExp, "t" ),
-                fraExp = new FractionExpression( "3xy", mulExp ),
-                radExp = new RadicalExpression( fraExp, 3 ),
-                equalExp = new EqualExpression( "f(x)", radExp );
+            var formula = new kf.Formula( document.body ),
+                addExp = new kf.AdditionExpression( new kf.TextExpression("a"), "b" ),
+                subExp = new kf.SubtractionExpression( addExp, "c" ),
+                divExp = new kf.DivisionExpression( subExp, "43" ),
+                mulExp = new kf.MultiplicationExpression( divExp, "t" ),
+                fraExp = new kf.FractionExpression( "3xy", mulExp ),
+                radExp = new kf.RadicalExpression( fraExp, 3 ),
+                equalExp = new kf.EqualExpression( "f(x)", radExp );
 
             formula.appendExpression( equalExp );
 
-        } );
-
-        seajs.use( "start" );
+        };
 
     </script>
 </head>

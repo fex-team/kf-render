@@ -1,5 +1,6 @@
 /**
  * 复合表达式
+ * @abstract
  */
 
 define( function ( require, exports, modules ) {
