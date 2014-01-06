@@ -6,13 +6,13 @@ define( function ( require, exports, modules ) {
 
     var kity = require( "kity" );
 
-    return kity.createClass( 'MpOperator', {
+    return kity.createClass( 'NegativePositive Operator', {
 
         base: require( "operator/binary-opr/left-right" ),
 
         constructor: function () {
 
-            this.callBase( "Mp" );
+            this.callBase( "NegativePositive " );
 
             // 绘制符号图形
             this.addOperatorShape( new kity.Rect( 0, 0, 43, 3, 3 ).fill( "black" ) );
