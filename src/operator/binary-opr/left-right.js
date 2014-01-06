@@ -33,11 +33,11 @@ define( function ( require, exports, modules ) {
             leftOperand.translate( offset, ( maxHeight - leftOperandBox.height ) / 2 );
 
             // 操作符
-            offset += leftOperandBox.width + leftOperandBox.x + operatorBox.width/2;
+            offset += leftOperandBox.width + leftOperandBox.x;
             operator.translate( offset, ( maxHeight - operatorBox.height ) / 2 );
 
             // 右操作数
-            offset += operatorBox.width * 3 / 2 + operatorBox.x;
+            offset += operatorBox.width + operatorBox.x;
             rightOperand.translate( offset, ( maxHeight - rightOperandBox.height ) / 2 );
 
         }

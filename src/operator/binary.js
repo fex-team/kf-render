@@ -16,7 +16,8 @@ define( function ( require, exports, modules ) {
             this.callBase( operatorName );
 
             // box
-            this.setBoxSize( 43, 43 );
+            this.setBoxSize( 63, 63 );
+            this.operatorShape.translate( 10, 10 );
 
         }
 
