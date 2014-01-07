@@ -1,13 +1,13 @@
 /**
- * 乘法表达式
+ * 上减下加表达式：∓
  */
 
 define( function ( require, exports, modules ) {
 
     var kity = require( "kity" ),
-        MpOperator = require( "operator/binary-opr/cdot" );
+        NegativePositiveOperator = require( "operator/binary-opr/negativepositive" );
 
-    return kity.createClass( 'CdotExpression', {
+    return kity.createClass( 'NegativePositiveExpression', {
 
         base: require( "expression/compound-exp/binary-exp/left-right" ),
 
@@ -15,7 +15,7 @@ define( function ( require, exports, modules ) {
 
             this.callBase( leftOperand, rightOperand );
 
-            this.setOperator( new MpOperator() );
+            this.setOperator( new NegativePositiveOperator() );
 
         }
 
