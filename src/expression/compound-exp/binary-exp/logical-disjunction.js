@@ -1,13 +1,13 @@
 /**
- * 并集表达式
+ * 逻辑或表达式
  */
 
 define( function ( require, exports, modules ) {
 
     var kity = require( "kity" ),
-        UnionOperator = require( "operator/binary-opr/union" );
+        LogicalDisjunctionOperator = require( "operator/binary-opr/logical-disjunction" );
 
-    return kity.createClass( 'UnionExpression', {
+    return kity.createClass( 'LogicalDisjunctionExpression', {
 
         base: require( "expression/compound-exp/binary-exp/left-right" ),
 
@@ -15,7 +15,7 @@ define( function ( require, exports, modules ) {
 
             this.callBase( leftOperand, rightOperand );
 
-            this.setOperator( new UnionOperator() );
+            this.setOperator( new LogicalDisjunctionOperator() );
 
         }
 

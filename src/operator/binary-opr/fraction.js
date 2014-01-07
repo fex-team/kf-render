@@ -24,11 +24,12 @@ define( function ( require, exports, modules ) {
                 downHeight = downOperand.getHeight(),
                 width = Math.max( upWidth, downWidth ),
                 height = Math.max( upHeight, downHeight ),
-                boxShape = generateBox( width, height ),
                 operatorShape = generateOperator( width );
 
-            this.addOperatorShape( boxShape );
             this.addOperatorShape( operatorShape );
+            // 重置操作符的偏移， 使得该操作符回归到0,0的位置
+            this.operatorShape.translate( -10, -10 );
+            this.setBoxSize( 0, 0 );
 
             upOperand.translate( ( width - upWidth ) / 2, height - upHeight );
             operatorShape.translate( 0, height );
@@ -45,10 +46,5 @@ define( function ( require, exports, modules ) {
 
     }
 
-    function generateBox ( width, height ) {
-
-        return new kity.Rect( 0, 0, width, height * 2 + 3 ).fill( "transparent" );
-
-    }
 
 } );

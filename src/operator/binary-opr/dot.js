@@ -16,7 +16,7 @@ define( function ( require, exports, modules ) {
 
             // 绘制符号图形
             this.addOperatorShape( new kity.Circle( 10, 21.5, 3 ).fill( "black" ) );
-            this.setBoxSize( 20, 43 );
+            this.setBoxSize( 38, 63 );
 
         }
 

@@ -18,9 +18,6 @@ define( function ( require, exports, modules ) {
             this.callBase( "Union" );
 
             shape = new kity.Path( pathData ).fill( "black" );
-            shape.translate( 10, 8 );
-
-            this.setBoxSize( 60, 60 );
 
             this.addOperatorShape( shape );
 

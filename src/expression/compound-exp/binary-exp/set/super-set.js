@@ -1,13 +1,13 @@
 /**
- * 上加下减表达式
+ * 超集表达式
  */
 
 define( function ( require, exports, modules ) {
 
     var kity = require( "kity" ),
-        PmOperator = require( "operator/binary-opr/pm" );
+        SuperSetOperator = require( "operator/binary-opr/set/super-set" );
 
-    return kity.createClass( 'PmExpression', {
+    return kity.createClass( 'SuperSetExpression', {
 
         base: require( "expression/compound-exp/binary-exp/left-right" ),
 
@@ -15,7 +15,7 @@ define( function ( require, exports, modules ) {
 
             this.callBase( leftOperand, rightOperand );
 
-            this.setOperator( new PmOperator() );
+            this.setOperator( new SuperSetOperator() );
 
         }
 

@@ -37,14 +37,26 @@ define( function ( require, exports, modules ) {
 
         setBoxSize: function ( w, h ) {
 
-            this.box.setSize( w, h );
+            return this.box.setSize( w, h );
+
+        },
+
+        setBoxWidth: function ( w ) {
+
+            return this.box.setWidth( w );
+
+        },
+
+        setBoxHeight: function ( h ) {
+
+            return this.box.setHeight( h );
 
         },
 
         // 提供给具体实现类附加其绘制的操作符图形的接口
         addOperatorShape: function ( shpae ) {
 
-            this.operatorShape.addShape( shpae );
+            return this.operatorShape.addShape( shpae );
 
         }
 

@@ -14,22 +14,31 @@
             // expression
             TextExpression: require( "expression/text" ),
             CombinationExpression: require( "expression/compound-exp/combination" ),
+
             AdditionExpression: require( "expression/compound-exp/binary-exp/addition" ),
             AsteriskExpression: require( "expression/compound-exp/binary-exp/asterisk" ),
             DivisionExpression: require( "expression/compound-exp/binary-exp/division" ),
             DotExpression: require( "expression/compound-exp/binary-exp/dot" ),
             EqualExpression: require( "expression/compound-exp/binary-exp/equal" ),
             FractionExpression: require( "expression/compound-exp/binary-exp/fraction" ),
-            IntersectionExpression: require( "expression/compound-exp/binary-exp/intersection" ),
-            LogicAndExpression: require( "expression/compound-exp/binary-exp/logic-and" ),
+            IntegrationExpression: require( "expression/compound-exp/binary-exp/integration" ),
+            LogicalConjunctionExpression: require( "expression/compound-exp/binary-exp/logical-conjunction" ),
+            LogicalDisjunctionExpression: require( "expression/compound-exp/binary-exp/logical-disjunction" ),
             MultiplicationExpression: require( "expression/compound-exp/binary-exp/multiplication" ),
             RadicalExpression: require( "expression/compound-exp/binary-exp/radical" ),
-            SubExpression: require( "expression/compound-exp/binary-exp/subscript" ),
             SuperscriptExpression: require( "expression/compound-exp/binary-exp/superscript" ),
+            SubscriptExpression: require( "expression/compound-exp/binary-exp/subscript" ),
             SubtractionExpression: require( "expression/compound-exp/binary-exp/subtraction" ),
             SummationExpression: require( "expression/compound-exp/binary-exp/summation" ),
-            UnionExpression: require( "expression/compound-exp/binary-exp/union" ),
-            IntegrationExpression: require( "expression/compound-exp/binary-exp/integration" )
+            PlusMinusExpression: require( "expression/compound-exp/binary-exp/plus-minus" ),
+            MinusPlusExpression: require( "expression/compound-exp/binary-exp/minus-plus"),
+
+            // set expression
+            IntersectionExpression: require( "expression/compound-exp/binary-exp/set/intersection" ),
+            UnionExpression: require( "expression/compound-exp/binary-exp/set/union" ),
+            SubSetExpression: require( "expression/compound-exp/binary-exp/set/sub-set" ),
+            SuperSetExpression: require( "expression/compound-exp/binary-exp/set/super-set" ),
+            InSetExpression: require( "expression/compound-exp/binary-exp/set/in-set" )
 
         };
 

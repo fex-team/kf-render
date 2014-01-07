@@ -172,7 +172,7 @@ define( function ( require, exports, modules ) {
     // 调整整个边框的大小
     function adjustmentBox () {
 
-        this.setBoxSize( this.operatorShape.getWidth() + 10, this.operatorShape.getHeight() + 10 );
+        this.setBoxSize( this.operatorShape.getWidth(), this.operatorShape.getHeight() + 10 );
 
     }
 

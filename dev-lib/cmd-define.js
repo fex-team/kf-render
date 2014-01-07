@@ -55,7 +55,6 @@ function require ( id ) {
 
     }
 
-
     exports = module.factory.call( null, require, module.exports, module );
 
     // return 值不为空， 则以return值为最终值

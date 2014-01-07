@@ -1,13 +1,13 @@
 /**
- * 交集表达式
+ * 并集表达式
  */
 
 define( function ( require, exports, modules ) {
 
     var kity = require( "kity" ),
-        IntersectionOperator = require( "operator/binary-opr/intersection" );
+        UnionOperator = require( "operator/binary-opr/set/union" );
 
-    return kity.createClass( 'IntersectionExpression', {
+    return kity.createClass( 'UnionExpression', {
 
         base: require( "expression/compound-exp/binary-exp/left-right" ),
 
@@ -15,7 +15,7 @@ define( function ( require, exports, modules ) {
 
             this.callBase( leftOperand, rightOperand );
 
-            this.setOperator( new IntersectionOperator() );
+            this.setOperator( new UnionOperator() );
 
         }
 

@@ -1,13 +1,13 @@
 /**
- * 乘法表达式
+ * 属于（集合）表达式
  */
 
 define( function ( require, exports, modules ) {
 
     var kity = require( "kity" ),
-        MpOperator = require( "operator/binary-opr/times" );
+        InSetOperator = require( "operator/binary-opr/set/in-set" );
 
-    return kity.createClass( 'TimesExpression', {
+    return kity.createClass( 'InSetExpression', {
 
         base: require( "expression/compound-exp/binary-exp/left-right" ),
 
@@ -15,7 +15,7 @@ define( function ( require, exports, modules ) {
 
             this.callBase( leftOperand, rightOperand );
 
-            this.setOperator( new MpOperator() );
+            this.setOperator( new InSetOperator() );
 
         }
 

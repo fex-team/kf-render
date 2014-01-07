@@ -18,9 +18,6 @@ define( function ( require, exports, modules ) {
             this.callBase( "Intersection" );
 
             shape = new kity.Path( pathData ).fill( "black" );
-            shape.translate( 10, 6 );
-
-            this.setBoxSize( 60, 60 );
 
             this.addOperatorShape( shape );
 

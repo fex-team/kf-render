@@ -1,13 +1,13 @@
 /**
- * 逻辑与（交运算）表达式
+ * 正负表达式
  */
 
 define( function ( require, exports, modules ) {
 
     var kity = require( "kity" ),
-        LogicAndOperator = require( "operator/binary-opr/logic-and" );
+        PlusMinusOperator = require( "operator/binary-opr/plus-minus" );
 
-    return kity.createClass( 'LogicAndExpression', {
+    return kity.createClass( 'PlusMinusExpression', {
 
         base: require( "expression/compound-exp/binary-exp/left-right" ),
 
@@ -15,7 +15,7 @@ define( function ( require, exports, modules ) {
 
             this.callBase( leftOperand, rightOperand );
 
-            this.setOperator( new LogicAndOperator() );
+            this.setOperator( new PlusMinusOperator() );
 
         }
 

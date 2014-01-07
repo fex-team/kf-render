@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>上下标表达式</title>
+    <title>逻辑表达式</title>
     <meta charset="utf-8">
     <script src="../dev-lib/kitygraph.all.js"></script>
     <!--<script src="../dist/kity-formula.all.min.js"></script>-->
@@ -18,12 +18,11 @@
         window.onload = function () {
 
             var formula = new kf.Formula( document.body ),
-                subExp = new kf.SubtractionExpression( "(a", "b)" ),
-                subscriptExp = new kf.SubscriptExpression( subExp, 3 ),
-                superscriptExp = new kf.SuperscriptExpression( "abc", 3 );
+                exp1 = new kf.LogicalConjunctionExpression( "a", "b"),
+                exp2 = new kf.LogicalDisjunctionExpression( "a", "b" );
 
-            formula.appendExpression( subscriptExp );
-            formula.appendExpression( superscriptExp );
+            formula.appendExpression( exp1 );
+            formula.appendExpression( exp2 );
 
         };
 
