@@ -103,7 +103,7 @@ define( function ( require, exports, module ) {
         "\\delta\\": require( "char/data/greek/delta" ),
 
         "\u03B5": require( "char/data/greek/varepsilon" ),
-        "\\varepsilon\\": require( "char/data/greek/varepsilon" ),
+        "\\epsilon\\": require( "char/data/greek/varepsilon" ),
 
         "\u03B6": require( "char/data/greek/zeta" ),
         "\\zeta\\": require( "char/data/greek/zeta" ),
@@ -132,6 +132,9 @@ define( function ( require, exports, module ) {
         "\u03BE": require( "char/data/greek/xi" ),
         "\\xi\\": require( "char/data/greek/xi" ),
 
+        "\u03BF": require( "char/data/character/o" ),
+        "\\omicron\\": require( "char/data/character/o" ),
+
         "\u03C0": require( "char/data/greek/pi" ),
         "\\pi\\": require( "char/data/greek/pi" ),
 
@@ -159,26 +162,62 @@ define( function ( require, exports, module ) {
         "\u03C9": require( "char/data/greek/omega" ),
         "\\omega\\": require( "char/data/greek/omega" ),
 
+        "\u0391": require( "char/data/greek/u-alpha" ),
+        "\\Alpha\\": require( "char/data/greek/u-alpha" ),
+
+        "\u0392": require( "char/data/greek/u-beta" ),
+        "\\Beta\\": require( "char/data/greek/u-beta" ),
+
         "\u0393": require( "char/data/greek/u-gamma" ),
         "\\Gamma\\": require( "char/data/greek/u-gamma" ),
 
         "\u0394": require( "char/data/greek/u-delta" ),
         "\\Delta\\": require( "char/data/greek/u-delta" ),
 
+        "\u0395": require( "char/data/greek/u-epsilon" ),
+        "\\Epsilon\\": require( "char/data/greek/u-epsilon" ),
+
+        "\u0396": require( "char/data/greek/u-zeta" ),
+        "\\Zeta\\": require( "char/data/greek/u-zeta" ),
+
+        "\u0397": require( "char/data/greek/u-eta" ),
+        "\\Eta\\": require( "char/data/greek/u-eta" ),
+
         "\u0398": require( "char/data/greek/u-theta" ),
         "\\Theta\\": require( "char/data/greek/u-theta" ),
+
+        "\u0399": require( "char/data/greek/u-iota" ),
+        "\\Iota\\": require( "char/data/greek/u-iota" ),
+
+        "\u039A": require( "char/data/greek/u-kappa" ),
+        "\\Kappa\\": require( "char/data/greek/u-kappa" ),
 
         "\u039B": require( "char/data/greek/u-lambda" ),
         "\\Lambda\\": require( "char/data/greek/u-lambda" ),
 
+        "\u039C": require( "char/data/greek/u-mu" ),
+        "\\Mu\\": require( "char/data/greek/u-mu" ),
+
+        "\u039D": require( "char/data/greek/u-nu" ),
+        "\\Nu\\": require( "char/data/greek/u-nu" ),
+
         "\u039E": require( "char/data/greek/u-xi" ),
         "\\Xi\\": require( "char/data/greek/u-xi" ),
+
+        "\u039F": require( "char/data/greek/u-omicron" ),
+        "\\Omicron\\": require( "char/data/greek/u-omicron" ),
 
         "\u03A0": require( "char/data/greek/u-pi" ),
         "\\Pi\\": require( "char/data/greek/u-pi" ),
 
-        "\u03A0": require( "char/data/greek/u-sigma" ),
+        "\u03A1": require( "char/data/greek/u-rho" ),
+        "\\Rho\\": require( "char/data/greek/u-rho" ),
+
+        "\u03A3": require( "char/data/greek/u-sigma" ),
         "\\Sigma\\": require( "char/data/greek/u-sigma" ),
+
+        "\u03A4": require( "char/data/greek/u-tau" ),
+        "\\Tau\\": require( "char/data/greek/u-tau" ),
 
         "\u03A5": require( "char/data/greek/u-upsilon" ),
         "\\Upsilon\\": require( "char/data/greek/u-upsilon" ),
@@ -186,13 +225,13 @@ define( function ( require, exports, module ) {
         "\u03A6": require( "char/data/greek/u-phi" ),
         "\\Phi\\": require( "char/data/greek/u-phi" ),
 
-        "\u03A8": require( "char/data/greek/u-psi" ),
-        "\\Psi\\": require( "char/data/greek/u-psi" ),
+        "\u03A7": require( "char/data/greek/u-chi" ),
+        "\\Chi\\": require( "char/data/greek/u-chi" ),
 
         "\u03A8": require( "char/data/greek/u-psi" ),
         "\\Psi\\": require( "char/data/greek/u-psi" ),
 
-        "\u03A8": require( "char/data/greek/u-omega" ),
+        "\u03A9": require( "char/data/greek/u-omega" ),
         "\\Omega\\": require( "char/data/greek/u-omega" )
 
     };
