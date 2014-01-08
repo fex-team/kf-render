@@ -19,6 +19,11 @@ define( function ( require, exports, modules ) {
             this.setBoxSize( 67, 63 );
             this.operatorShape.translate( 10, 10 );
 
+        },
+
+        // 清理操作符的偏移
+        clearTransform: function () {
+            this.operatorShape.setTransform( new kity.Matrix( 1, 0, 0, 1, 0, 0 ) );
         }
 
     } );

@@ -25,6 +25,7 @@ define( function ( require, exports, modules ) {
         constructor: function () {
 
             this.callBase( "Radical" );
+            this.clearTransform();
 
         },
 
