@@ -158,13 +158,13 @@ define( function ( require, exports, modules ) {
 
             diff = width - position.x;
 
-            operator.translate( diff + 5, 5 );
-            radicand.translate( diff + 5, 5 );
+            operator.translate( diff + 5, 0 );
+            radicand.translate( diff + 5, 0 );
 
         // 否则， 移动指数
         } else {
 
-            exponent.translate( position.x - width + 5, +5 );
+            exponent.translate( position.x - width + 5, 0 );
 
         }
 
