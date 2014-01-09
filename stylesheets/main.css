@@ -69,6 +69,7 @@
     bottom: 50px;
     right: 20px;
     background: #f2f2f2;
+    display: none;
 }
 
 .go-to-top a {
