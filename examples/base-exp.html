@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>基础表达式</title>
+    <meta charset="utf-8">
+    <script src="../dev-lib/kitygraph.all.min.js"></script>
+    <!--<script src="../dist/kity-formula.all.min.js"></script>-->
+    <script src="../dev-lib/dev-define.js"></script>
+    <script>
+        inc.config({
+            base: '../src'
+        });
+    </script>
+    <script src="../dev-lib/exports.js"></script>
+    <script src="../dev-lib/dev-start.js"></script>
+    <script>
+
+        window.onload = function () {
+
+            var formula = new kf.Formula( document.body ),
+                exps = [
+                    new kf.AdditionExpression( "a", "b" ),
+                    new kf.SubtractionExpression( "a", "b" ),
+                    new kf.MultiplicationExpression( "a", "b" ),
+                    new kf.DivisionExpression( 'a', 'b' ),
+                    new kf.PlusMinusExpression( 'a', 'b' ),
+                    new kf.MinusPlusExpression( 'a', 'b' ),
+                    new kf.AsteriskExpression( 'a', 'b' ),
+                    new kf.DotExpression( "a", "b" ),
+                    new kf.FractionExpression( "b", "a" )
+                ]
+
+            for ( var i in exps ) {
+                formula.appendExpression( exps[i] );
+            }
+
+        };
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

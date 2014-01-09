@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>逻辑表达式</title>
+    <meta charset="utf-8">
+    <script src="../dev-lib/kitygraph.all.js"></script>
+    <!--<script src="../dist/kity-formula.all.min.js"></script>-->
+    <script src="../dev-lib/dev-define.js"></script>
+    <script>
+        inc.config({
+            base: '../src'
+        });
+    </script>
+    <script src="../dev-lib/exports.js"></script>
+    <script src="../dev-lib/dev-start.js"></script>
+    <script>
+
+        window.onload = function () {
+
+            var formula = new kf.Formula( document.body ),
+                exp1 = new kf.LogicalConjunctionExpression( "a", "b"),
+                exp2 = new kf.LogicalDisjunctionExpression( "a", "b" );
+
+            formula.appendExpression( exp1 );
+            formula.appendExpression( exp2 );
+
+        };
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

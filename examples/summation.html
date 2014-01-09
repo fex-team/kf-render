@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>求和表达式</title>
+    <meta charset="utf-8">
+    <script src="../dev-lib/kitygraph.all.js"></script>
+    <!--<script src="../dist/kity-formula.all.min.js"></script>-->
+    <script src="../dev-lib/dev-define.js"></script>
+    <script>
+        inc.config({
+            base: '../src'
+        });
+    </script>
+    <script src="../dev-lib/exports.js"></script>
+    <script src="../dev-lib/dev-start.js"></script>
+    <script>
+
+        window.onload = function () {
+
+            var formula = new kf.Formula( document.body ),
+                integrationExp = new kf.SummationExpression( new kf.EqualExpression( "x", "1" ), new kf.EqualExpression( "x", "0" ) );
+
+            formula.appendExpression( integrationExp );
+
+        };
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>方根表达式</title>
+    <meta charset="utf-8">
+    <script src="../dev-lib/kitygraph.all.js"></script>
+    <!--<script src="../dist/kity-formula.all.min.js"></script>-->
+    <script src="../dev-lib/dev-define.js"></script>
+    <script>
+        inc.config({
+            base: '../src'
+        });
+    </script>
+    <script src="../dev-lib/exports.js"></script>
+    <script src="../dev-lib/dev-start.js"></script>
+    <script>
+
+        window.onload = function () {
+
+            var formula = new kf.Formula( document.body ),
+                addExp = new kf.AdditionExpression( new kf.TextExpression("a"), "b" ),
+                subExp = new kf.SubtractionExpression( addExp, "c" ),
+                divExp = new kf.DivisionExpression( subExp, "43" ),
+                mulExp = new kf.MultiplicationExpression( divExp, "t" ),
+                fraExp = new kf.FractionExpression( "3xy", mulExp ),
+                radExp = new kf.RadicalExpression( fraExp, 3 ),
+                equalExp = new kf.EqualExpression( "f(x)", radExp );
+
+            formula.appendExpression( equalExp );
+            formula.appendExpression( new kf.RadicalExpression( "a", "3" ) )
+
+        };
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

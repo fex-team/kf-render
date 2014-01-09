@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>集合表达式</title>
+    <meta charset="utf-8">
+    <script src="../dev-lib/kitygraph.all.min.js"></script>
+    <!--<script src="../dist/kity-formula.all.min.js"></script>-->
+    <script src="../dev-lib/dev-define.js"></script>
+    <script>
+        inc.config({
+            base: '../src'
+        });
+    </script>
+    <script src="../dev-lib/exports.js"></script>
+    <script src="../dev-lib/dev-start.js"></script>
+    <script>
+
+        window.onload = function () {
+
+            var formula = new kf.Formula( document.body ),
+                exp1 = new kf.IntersectionExpression( "a", "b" ),
+                exp2 = new kf.UnionExpression( "a", "b"),
+                exp3 = new kf.SubSetExpression( "a", "b" ),
+                exp4 = new kf.SuperSetExpression( "a", "b" ),
+                exp5 = new kf.InSetExpression( "a", "b" );
+
+            formula.appendExpression( exp1 );
+            formula.appendExpression( exp2 );
+            formula.appendExpression( exp3 );
+            formula.appendExpression( exp4 );
+            formula.appendExpression( exp5 );
+
+        };
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

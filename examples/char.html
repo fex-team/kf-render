@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>基础文本字符</title>
+    <meta charset="utf-8">
+    <script src="../dev-lib/kitygraph.all.js"></script>
+    <!--<script src="../dist/kity-formula.all.min.js"></script>-->
+    <script src="../dev-lib/dev-define.js"></script>
+    <script>
+        inc.config({
+            base: '../src'
+        });
+    </script>
+    <script src="../dev-lib/exports.js"></script>
+    <script src="../dev-lib/dev-start.js"></script>
+    <script>
+        window.onload = function () {
+
+            var formula = new kf.Formula( document.body ),
+                textExp1 = new kf.TextExpression( "abcdefghijklmnopqrstuvwxyz" ),
+                textExp2 = new kf.TextExpression( "ABCDEFGHIJKLMNOPQRSTUVWXYZ" ),
+                textExp3 = new kf.TextExpression( "0123456789" ),
+                textExp4 = new kf.TextExpression( "+-/|()![]:'<>." );
+
+
+            formula.appendExpression( textExp1 );
+            formula.appendExpression( textExp2 );
+            formula.appendExpression( textExp3 );
+            formula.appendExpression( textExp4 );
+
+        };
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

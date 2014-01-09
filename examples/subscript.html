@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>上下标表达式</title>
+    <meta charset="utf-8">
+    <script src="../dev-lib/kitygraph.all.js"></script>
+    <!--<script src="../dist/kity-formula.all.min.js"></script>-->
+    <script src="../dev-lib/dev-define.js"></script>
+    <script>
+        inc.config({
+            base: '../src'
+        });
+    </script>
+    <script src="../dev-lib/exports.js"></script>
+    <script src="../dev-lib/dev-start.js"></script>
+    <script>
+
+        window.onload = function () {
+
+            var formula = new kf.Formula( document.body ),
+                subExp = new kf.SubtractionExpression( "(a", "b)" ),
+                subscriptExp = new kf.SubscriptExpression( subExp, 3 ),
+                superscriptExp = new kf.SuperscriptExpression( "abc", 3 );
+
+            formula.appendExpression( subscriptExp );
+            formula.appendExpression( superscriptExp );
+
+        };
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
