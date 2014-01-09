@@ -88,8 +88,13 @@
     padding: 0 20px;
 }
 
-.copyright a {
+.copyright {
+    font-size: 14px;
+}
+
+.footer-warp .copyright a {
     text-decoration: none;
+    color: #007edf;
 }
 
 .copyright a:HOVER {
