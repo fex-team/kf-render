@@ -23,6 +23,10 @@ table td div {
     line-height: 50px;
 }
 
+.demo-container {
+    min-height: 1500px;
+}
+
 .demo-container .base-charset-container {
     height: 150px;
 }
