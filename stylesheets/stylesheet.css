@@ -264,7 +264,7 @@ Full-Width Styles
 
 .inner {
   position: relative;
-  max-width: 800px;
+  max-width: 1000px;
   padding: 20px 10px;
   margin: 0 auto;
 }
@@ -356,16 +356,32 @@ Full-Width Styles
   background: #f2f2f2;
   border-top: 1px solid #111;
   border-bottom: 1px solid #111;
+  padding-bottom: 100px;
 }
 
 #main_content {
-  padding-top: 40px;
+  padding-top: 80px;
 }
 
 #footer_wrap {
+  height: 200px;
   background: #212121;
 }
 
+.bottom-info-box {
+    height: 150px;
+}
+
+.footer-warp .copyright, .footer-warp .copyright a {
+    color: #999;
+    line-height: 50px;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-warp .copyright-box {
+    padding: 0;
+}
 
 
 /*******************************************************************************

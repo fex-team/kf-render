@@ -1,0 +1,36 @@
+/*!
+ * demo页面样式表
+ */
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+}
+
+table td {
+    height: 80px;
+    vertical-align: top;
+}
+
+.title-cell {
+    width: 150px;
+}
+
+table td div {
+    height: 100%;
+    line-height: 50px;
+}
+
+.demo-container .base-charset-container {
+    height: 150px;
+}
+
+.demo-container .symbol-container {
+    height: 50px;
+}
+
+.demo-container .greek-container {
+    height: 110px;
+}

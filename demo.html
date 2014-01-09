@@ -6,13 +6,11 @@
         <meta http-equiv="X-UA-Compatible" content="chrome=1"/>
         <meta name="description" content="Formula : HTML(SVG) Formula display solutions"/>
 
-        <title>DEMO - Kity Formula  HTML(SVG)数学公式呈现库</title>
+        <title>表达式列表 - Kity Formula  HTML(SVG)数学公式呈现库</title>
 
-        <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-        <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/main.css">
-
-        <script src="javascripts/jquery-1.10.2.min.js"></script>
-        <script src="javascripts/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/stylesheet.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/main.css">
+        <script src="../javascripts/go-to-top.js"></script>
 
     </head>
 
@@ -27,16 +25,12 @@
 
                 <h2 id="project_tagline">HTML(SVG)数学公式呈现库</h2>
 
-                <!--<section id="downloads">-->
-                <!--<a class="zip_download_link" href="https://github.com/kitygraph/formula/zipball/master">Download this project as a .zip file</a>-->
-                <!--<a class="tar_download_link" href="https://github.com/kitygraph/formula/tarball/master">Download this project as a tar.gz file</a>-->
-                <!--</section>-->
             </header>
             <div class="nav">
                 <ul>
-                    <li ><a href="index.html">首页</a></li>
-                    <li ><a href="getting-started.html">Getting started</a></li>
-                    <li class="selected"><a href="demo.html">Demo</a></li>
+                    <li ><a href="/">首页</a></li>
+                    <li ><a href="/getting-started.html">Getting started</a></li>
+                    <li class="selected"><a href="/demo.html">Demo</a></li>
                 </ul>
             </div>
         </div>
@@ -44,29 +38,37 @@
         <!-- MAIN CONTENT -->
         <div id="main_content_wrap" class="outer">
             <section id="main_content" class="inner">
-                <div class="demo-list">
-    <a href="demo/char.html" target="demo-iframe">基本字符集</a><br/>
-    <a href="demo/ext-char.html" target="demo-iframe">希腊字符集</a><br/>
-    <a href="demo/base-exp.html" target="demo-iframe">基础表达式</a><br/>
-    <a href="demo/mu-exp.html" target="demo-iframe">多表达式</a><br/>
-    <a href="demo/subscript.html" target="demo-iframe">上下标表达式</a><br/>
-    <a href="demo/summation.html" target="demo-iframe">求和表达式</a><br/>
-    <a href="demo/integration.html" target="demo-iframe">积分表达式</a><br/>
-    <a href="demo/extract-a-root.html" target="demo-iframe">方根表达式</a><br/>
-</div>
+                <p><link rel="stylesheet" href="../stylesheets/demo.css">
+<script src="../lib/kitygraph.all.min.js"></script>
+<script src="../lib/kity-formula.all.min.js"></script>
+<script src="../javascripts/demo.js"></script></p>
 
-<div class="demo-frame">
-    <iframe src="demo/char.html" name="demo-iframe"></iframe>
+<div class="demo-container">
+    <h2>基本字符集</h2>
+    <div id="baseCharset" class="base-charset-container"></div>
+
+    <h2>可打印符号集</h2>
+    <div id="symbol" class="symbol-container"></div>
+
+    <h2>希腊字符集</h2>
+    <div id="greek" class="greek-container"></div>
+
+    <h2>表达式列表</h2>
+    <div id="container"></div>
+
+    <h2>复合公式示例</h2>
+    <div id="complex"></div>
 </div>
-<div class="demo-clear"></div>
 
             </section>
+            <div id="goToTop" class="go-to-top"><a href="#"></a></div>
         </div>
 
         <!-- FOOTER  -->
-        <div id="footer_wrap" class="outer">
-            <footer class="inner">
-                <p class="copyright">&copy;2013 <a href="http://www.baidu.com/">Baidu</a> <a href="http://ueditor.baidu.com/">Kity</a>
+        <div id="footer_wrap" class="outer footer-warp">
+            <div class="bottom-info-box"></div>
+            <footer class="inner copyright-box">
+                <p class="copyright">&copy;2013 <a href="http://www.baidu.com/">Baidu</a><span class="team-box">FEX Team</span><a href="http://ueditor.baidu.com/">Kity Group</a>
                 </p>
             </footer>
         </div>
