@@ -17,9 +17,13 @@
         window.onload = function () {
 
             var formula = new kf.Formula( document.body ),
-                integrationExp = new kf.IntegrationExpression( new kf.EqualExpression( "x", "1" ), new kf.EqualExpression( "x", "0" ) );
+                exp = new kf.SuperscriptExpression( "\\rho\\r", "2" ),
+                exp = new kf.CombinationExpression( exp, "dV" ),
+                integrationExp = new kf.IntegrationExpression( exp, null, "V" );
 
-            formula.appendExpression( integrationExp );
+            integrationExp.setType( kf.IntegrationExpression.TYPE_TRIPLE );
+
+            formula.appendExpression( new kf.EqualExpression( new kf.SubscriptExpression( "I", "z" ), integrationExp ) );
 
         };
 

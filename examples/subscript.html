@@ -20,10 +20,13 @@
             var formula = new kf.Formula( document.body ),
                 subExp = new kf.SubtractionExpression( "(a", "b)" ),
                 subscriptExp = new kf.SubscriptExpression( subExp, 3 ),
-                superscriptExp = new kf.SuperscriptExpression( "abc", 3 );
+                superscriptExp = new kf.SuperscriptExpression( "abc", 3 ),
+                supExp1 = new kf.SuperscriptExpression( "a", 2 ),
+                supExp2 = new kf.SuperscriptExpression( "b", 2 );
 
             formula.appendExpression( subscriptExp );
             formula.appendExpression( superscriptExp );
+            formula.appendExpression( new kf.AdditionExpression( supExp1, supExp2 ) );
 
         };
 

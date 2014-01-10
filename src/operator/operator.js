@@ -15,6 +15,9 @@ define( function ( require, exports, modules ) {
 
             this.callBase();
 
+            // 该操作符所属的表达式
+            this.parentExpression = null;
+
             // 操作符名称
             this.operatorName = operatorName;
 
@@ -32,6 +35,18 @@ define( function ( require, exports, modules ) {
         applyOperand: function () {
 
             throw new Error( 'applyOperand is abstract' );
+
+        },
+
+        setParentExpression: function ( exp ) {
+
+            this.parentExpression = exp;
+
+        },
+
+        clearParentExpression: function () {
+
+            this.parentExpression = null;
 
         },
 
