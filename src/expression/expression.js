@@ -5,24 +5,59 @@
 
 define( function ( require, exports, module ) {
 
-    var kity = require( "kity" );
+    var kity = require( "kity"),
 
-    return kity.createClass( 'Expression', {
+        // 打包函数列表
+        WRAP_FN = [],
 
-        base: require( "signgroup" ),
+        Expression = kity.createClass( 'Expression', {
 
-        getBaseWidth: function () {
+            base: require( "signgroup" ),
 
-            return this.getWidth();
+            getBaseWidth: function () {
+
+                return this.getWidth();
+
+            },
+
+            getBaseHeight: function () {
+
+                return this.getHeight();
+
+            }
+
+        } );
+
+    // 表达式自动打包
+    kity.Utils.extend( Expression, {
+
+        registerWrap: function ( fn ) {
+
+            WRAP_FN.push( fn );
 
         },
 
-        getBaseHeight: function () {
+        // 打包函数
+        wrap: function ( operand ) {
 
-            return this.getHeight();
+            var result = undefined;
+
+            kity.Utils.each( WRAP_FN, function ( fn ) {
+
+                result = fn( operand );
+
+                if ( result ) {
+                    return false;
+                }
+
+            } );
+
+            return result;
 
         }
 
     } );
+
+    return Expression;
 
 } );

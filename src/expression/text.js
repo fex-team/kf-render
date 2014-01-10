@@ -6,7 +6,7 @@ define( function ( require, exports, module ) {
 
     var Text = require( "char/text" ),
         kity = require( "kity" ),
-
+        Expression = require( "expression/expression" ),
         TextExpression = kity.createClass( 'TextExpression', {
 
             base: require( "expression/expression" ),
@@ -23,22 +23,18 @@ define( function ( require, exports, module ) {
 
         } );
 
-    // 自动打包
-    kity.Utils.extend( TextExpression, {
+    // 注册文本表达式的打包函数
+    Expression.registerWrap( function ( operand ) {
 
-        wrap: function ( operand ) {
+        var operandType = typeof operand;
 
-            var operandType = typeof operand;
+        if ( operandType === 'number' || operandType === 'string' ) {
 
-            if ( operandType === 'number' || operandType === 'string' ) {
-
-                operand = new TextExpression( operand );
-
-            }
-
-            return operand;
+            operand = new TextExpression( operand );
 
         }
+
+        return operand;
 
     } );
 

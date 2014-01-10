@@ -13,6 +13,7 @@ define( function ( require, exports, modules ) {
         constructor: function () {
 
             this.callBase( "Superscript" );
+            this.setBoxSize( 0, 0 );
 
         },
 
