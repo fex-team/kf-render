@@ -13,6 +13,7 @@
 
             // expression
             TextExpression: require( "expression/text" ),
+            EmptyExpression: require( "expression/empty" ),
             CombinationExpression: require( "expression/compound-exp/combination" ),
 
             AdditionExpression: require( "expression/compound-exp/binary-exp/addition" ),
@@ -21,7 +22,7 @@
             DotExpression: require( "expression/compound-exp/binary-exp/dot" ),
             EqualExpression: require( "expression/compound-exp/binary-exp/equal" ),
             FractionExpression: require( "expression/compound-exp/binary-exp/fraction" ),
-            IntegrationExpression: require( "expression/compound-exp/binary-exp/integration" ),
+            IntegrationExpression: require( "expression/compound-exp/integration" ),
             LogicalConjunctionExpression: require( "expression/compound-exp/binary-exp/logical-conjunction" ),
             LogicalDisjunctionExpression: require( "expression/compound-exp/binary-exp/logical-disjunction" ),
             MultiplicationExpression: require( "expression/compound-exp/binary-exp/multiplication" ),

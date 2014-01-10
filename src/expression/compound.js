@@ -6,7 +6,7 @@
 define( function ( require, exports, modules ) {
 
     var kity = require( "kity" ),
-        TextExpression = require( "expression/text" );
+        Expression = require( "expression/expression" );
 
     return kity.createClass( 'CompoundExpression', {
 
@@ -35,6 +35,8 @@ define( function ( require, exports, modules ) {
             this.operator = operator;
             this.setChildren( 0, this.operator );
 
+            this.operator.setParentExpression( this );
+
             return this;
 
         },
@@ -52,7 +54,7 @@ define( function ( require, exports, modules ) {
                 return this;
             }
 
-            operand = TextExpression.wrap( operand );
+            operand = Expression.wrap( operand );
 
             if ( this.operands[ index ] ) {
                 this.operands[ index ].remove();
