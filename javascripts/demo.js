@@ -55,6 +55,9 @@ window.onload = function () {
         }, {
             title: "下标表达式",
             exp: new kf.SubscriptExpression( "a", "b" )
+        }, {
+            title: "积分表达式",
+            exp: new kf.IntegrationExpression( "f(x)dx", "b", "a" )
         }
 
     ];
@@ -207,7 +210,20 @@ window.onload = function () {
                     return new kf.DotExpression( exp1, new kf.RadicalExpression( "b", "n" ) );
 
                 }
-            }],
+            }, {
+                title: "转动惯量",
+                exp: function () {
+
+                    var exp = new kf.SuperscriptExpression( "\\rho\\r", "2" ),
+                        exp = new kf.CombinationExpression( exp, "dV" ),
+                        integrationExp = new kf.IntegrationExpression( exp, null, "V" );
+
+                    integrationExp.setType( kf.IntegrationExpression.TYPE_TRIPLE );
+
+                    return new kf.EqualExpression( new kf.SubscriptExpression( "I", "z" ), integrationExp );
+
+                }
+            } ],
             tables = [];
 
         // 创建table容器
