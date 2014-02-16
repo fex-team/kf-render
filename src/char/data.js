@@ -102,8 +102,8 @@ define( function ( require, exports, module ) {
         "\u03B4": require( "char/data/greek/delta" ),
         "\\delta\\": require( "char/data/greek/delta" ),
 
-        "\u03B5": require( "char/data/greek/varepsilon" ),
-        "\\epsilon\\": require( "char/data/greek/varepsilon" ),
+        "\u03B5": require( "char/data/greek/epsilon" ),
+        "\\epsilon\\": require( "char/data/greek/epsilon" ),
 
         "\u03B6": require( "char/data/greek/zeta" ),
         "\\zeta\\": require( "char/data/greek/zeta" ),

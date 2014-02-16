@@ -15,7 +15,7 @@ define( function ( require, exports, module ) {
             this.callBase( container );
 
             this.container = new kity.Group();
-            this.baseZoom = 2;
+            this.baseZoom = 1;
 
             this.base( 'addShape', this.container );
 
