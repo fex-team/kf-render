@@ -43,6 +43,13 @@ define( function ( require, exports, module ) {
 
             this.insertExpression( expression, this.expressions.length );
 
+        },
+
+        clear: function () {
+
+            this.callBase();
+            this.expressions = [];
+
         }
 
     } );

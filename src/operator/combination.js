@@ -42,7 +42,7 @@ define( function ( require, exports, modules ) {
 
                 operand.translate( offset - box.x, ( maxHeight - ( box.y + box.height ) ) / 2 );
 
-                offset += box.width - box.x;
+                offset += box.width;
 
             } );
 

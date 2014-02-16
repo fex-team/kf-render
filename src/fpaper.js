@@ -37,6 +37,12 @@ define( function ( require, exports, module ) {
 
             return this.container.removeShape( pos );
 
+        },
+
+        clear: function () {
+
+            return this.container.clear();
+
         }
 
     } );

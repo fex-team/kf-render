@@ -50,10 +50,6 @@ define( function ( require, exports, modules ) {
         // 操作数存储位置是从1开始
         setOperand: function ( operand, index ) {
 
-            if ( operand === undefined ) {
-                return this;
-            }
-
             operand = Expression.wrap( operand );
 
             if ( this.operands[ index ] ) {

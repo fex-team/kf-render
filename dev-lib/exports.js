@@ -30,7 +30,7 @@
             SuperscriptExpression: require( "expression/compound-exp/binary-exp/superscript" ),
             SubscriptExpression: require( "expression/compound-exp/binary-exp/subscript" ),
             SubtractionExpression: require( "expression/compound-exp/binary-exp/subtraction" ),
-            SummationExpression: require( "expression/compound-exp/binary-exp/summation" ),
+            SummationExpression: require( "expression/compound-exp/summation" ),
             PlusMinusExpression: require( "expression/compound-exp/binary-exp/plus-minus" ),
             MinusPlusExpression: require( "expression/compound-exp/binary-exp/minus-plus"),
 

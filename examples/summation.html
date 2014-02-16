@@ -18,9 +18,16 @@
         window.onload = function () {
 
             var formula = new kf.Formula( document.body ),
-                integrationExp = new kf.SummationExpression( new kf.EqualExpression( "x", "1" ), new kf.EqualExpression( "x", "0" ) );
+//                integrationExp = new kf.SummationExpression( "abc", new kf.EqualExpression( "x", "1" ), new kf.EqualExpression( "x", "0" ) );
+                bc = new kf.FractionExpression( "a", "b" );
+                tc = new kf.EqualExpression( "n", 0 ),
+                integrationExp = new kf.SummationExpression( bc, "n", tc );
 
-            formula.appendExpression( integrationExp );
+            var tt = new kf.EqualExpression( "fx", integrationExp );
+
+            formula.appendExpression( tt );
+
+            window.f = formula;
 
         };
 

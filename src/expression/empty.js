@@ -34,7 +34,7 @@ define( function ( require, exports, module ) {
     // 注册打包函数
     Expression.registerWrap( function ( operand ) {
 
-        if ( operand === null ) {
+        if ( operand === null || operand === undefined ) {
             return new EmptyExpression();
         }
 
