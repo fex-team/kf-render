@@ -15,8 +15,8 @@ define( function ( require, exports, modules ) {
             this.callBase( "Dot" );
 
             // 绘制符号图形
-            this.addOperatorShape( new kity.Circle( 10, 21.5, 3 ).fill( "black" ) );
-            this.setBoxSize( 38, 63 );
+            this.addOperatorShape( new kity.Circle( 10, 13, 2 ).fill( "black" ) );
+            this.setBoxSize( 21, 27 );
 
         }
 

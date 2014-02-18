@@ -14,9 +14,9 @@ define( function ( require, exports, modules ) {
 
             this.callBase( "Division" );
 
-            this.addOperatorShape( new kity.Rect( 0, 20, 43, 3, 3 ).fill( "black" ) );
-            this.addOperatorShape( new kity.Circle( 22, 11, 3 ).fill( "black" ) );
-            this.addOperatorShape( new kity.Circle( 22, 32, 3 ).fill( "black" ) );
+            this.addOperatorShape( new kity.Rect( 5, 13, 17, 1, 1 ).fill( "black" ) );
+            this.addOperatorShape( new kity.Circle( 14, 10, 1 ).fill( "black" ) );
+            this.addOperatorShape( new kity.Circle( 14, 17, 1 ).fill( "black" ) );
 
         }
 

@@ -66,7 +66,7 @@ define( function ( require, exports, modules ) {
 
     function generateOperator () {
 
-        var path = "M21.689,98.771l12.627-59.922C39.864,12.537,46.389-0.406,53.881,0.01c1.741,0.817,2.646,2.694,2.731,5.641   c-0.835,2.774-1.867,4.047-3.08,3.82c-0.916-0.171-1.698-1.05-2.346-2.636c-0.351-1.532-0.674-2.327-0.976-2.381   c-2.478-1.93-6.407,9.792-11.781,35.166l-12.758,60.628c-8.028,39.533-15.718,57.879-23.068,55.039   c-2.354-0.932-3.111-2.78-2.275-5.554c0.443-2.368,1.42-3.397,2.948-3.113c0.915,0.171,1.54,1.021,1.891,2.552   c0.43,1.054,0.799,1.615,1.105,1.672c1.522,0.285,3.337-3.532,5.452-11.437C13.875,132.961,17.19,119.432,21.689,98.771z",
+        var pathData = "M16.273,1.056c-1.68,0-2.448,1.92-2.88,5.521c-0.336,2.304-0.624,4.993-0.864,7.584   c-0.768,8.497-1.824,14.593-3.072,21.458c-0.72,3.984-1.632,9.121-5.665,9.121C1.536,44.74,0,42.772,0,40.899   c0-1.392,1.008-2.016,1.968-2.016s1.92,0.768,1.92,1.92c0,0.72-0.384,1.872-2.016,1.968c0.336,0.432,1.008,0.912,1.873,0.912   c1.68,0,2.448-1.92,2.88-5.521c0.336-2.304,0.624-4.993,0.864-7.585c0.768-8.353,1.776-14.401,3.072-21.602   C11.281,5.185,12.193,0,16.226,0c2.256,0,3.792,1.968,3.792,3.84c0,1.392-1.008,2.016-1.968,2.016c-0.96,0-1.92-0.768-1.92-1.92   c0-0.72,0.384-1.872,2.016-1.968C17.81,1.536,17.138,1.056,16.273,1.056z",
             group = new kity.Group();
 
         this.addOperatorShape( group );
@@ -74,11 +74,11 @@ define( function ( require, exports, modules ) {
         switch ( this.type ) {
 
             case types.TYPE_SINGLE:
-                group.addShape( new kity.Path( path ).fill( "black" ) );
+                group.addShape( new kity.Path( pathData ).fill( "black" ) );
                 break;
 
             case types.TYPE_DOUBLE:
-                var symbol = new kity.Path( path ).fill( "black" ),
+                var symbol = new kity.Path( pathData ).fill( "black" ),
                     useShape = new kity.Use( symbol );
 
                 group.addShape( symbol );
@@ -89,7 +89,7 @@ define( function ( require, exports, modules ) {
                 break;
 
             case types.TYPE_TRIPLE:
-                var symbol = new kity.Path( path ).fill( "black" ),
+                var symbol = new kity.Path( pathData ).fill( "black" ),
                     useShape = new kity.Use( symbol );
 
                 group.addShape( symbol );
@@ -125,15 +125,15 @@ define( function ( require, exports, modules ) {
 
         if ( supOperand ) {
 
-            supOperand.setAnchor( 0, 0 ).scale(0.7);
-            subOperand.setAnchor( 0, 0 ).scale(0.7);
+            supOperand.setAnchor( 0, 0 ).scale( 0.7 );
+            subOperand.setAnchor( 0, 0 ).scale( 0.7 );
 
             supBox = supOperand.getRenderBox();
             subBox = subOperand.getRenderBox();
 
             // 上限偏移
-            offset.x += 5;
-            supOperand.translate( offset.x, 5 );
+            offset.x += 2;
+            supOperand.translate( offset.x, 2 );
 
             // 符号偏移
             offset.y += supBox.height / 2;
@@ -141,7 +141,7 @@ define( function ( require, exports, modules ) {
             operatorShape.translate( 0, offset.y );
 
             // 下限偏移
-            subOperand.translate( operatorBox.width - 30, offset.y + operatorBox.height - subBox.height + 12 );
+            subOperand.translate( operatorBox.width - 8, offset.y + operatorBox.height - subBox.height + 6 );
 
         }
 
@@ -149,7 +149,7 @@ define( function ( require, exports, modules ) {
 
         // 被积函数偏移
         maxHeight = Math.max( operatorBox.height, integrandBox.height );
-        integrand.translate( offset.x + 10, ( maxHeight - integrandBox.height ) / 2 + offset.y - integrandBox.y );
+        integrand.translate( offset.x + 2, ( maxHeight - integrandBox.height ) / 2 + offset.y - integrandBox.y );
 
         // 操作符偏移
         maxHeight = ( maxHeight - operatorBox.height ) / 2;
@@ -182,6 +182,7 @@ define( function ( require, exports, modules ) {
         // 仅调整边框大小
 
             this.box.setHeight( expBox.height + offset.y - diff );
+
         }
 
     }

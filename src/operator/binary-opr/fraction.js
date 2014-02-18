@@ -28,12 +28,11 @@ define( function ( require, exports, modules ) {
 
             this.addOperatorShape( operatorShape );
             // 重置操作符的偏移， 使得该操作符回归到0,0的位置
-            this.operatorShape.translate( -10, -10 );
             this.setBoxSize( 0, 0 );
 
             upOperand.translate( ( width - upWidth ) / 2, height - upHeight );
             operatorShape.translate( 0, height );
-            downOperand.translate( ( width - downWidth ) / 2, height + 3 );
+            downOperand.translate( ( width - downWidth ) / 2, height + operatorShape.getHeight() );
 
         }
 
@@ -42,7 +41,7 @@ define( function ( require, exports, modules ) {
 
     function generateOperator ( width ) {
 
-        return new kity.Rect( 0, 0, width, 3 ).fill( "black" );
+        return new kity.Rect( 0, 0, width, 1 ).fill( "black" );
 
     }
 

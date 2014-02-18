@@ -24,7 +24,7 @@ define( function ( require, exports, modules ) {
 
             subscript.setAnchor( 0, subBox.y + subBox.height );
             subscript.scale( 0.5 );
-            subscript.translate( operandBox.x + operandBox.width, 0 );
+            subscript.translate( operandBox.x + operandBox.width + 2, 0 );
 
         }
 

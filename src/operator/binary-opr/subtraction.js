@@ -14,7 +14,7 @@ define( function ( require, exports, module ) {
 
             this.callBase( "Subtraction" );
 
-            this.addOperatorShape( new kity.Rect( 0, 20, 43, 3, 3 ).fill( "black" ) );
+            this.addOperatorShape( new kity.Rect( 5, 13, 17, 1, 1 ).fill( "black" ) );
 
         }
 

@@ -14,10 +14,10 @@ define( function ( require, exports, modules ) {
 
             this.callBase( "Mp" );
 
+            var pathData = "M8.497,20.234c0,0.36,0,0.888-0.48,0.888s-0.48-0.432-0.48-0.816v-6.697H0.84c-0.408,0-0.84,0-0.84-0.48   s0.432-0.48,0.84-0.48h6.697V6.097H0.84c-0.408,0-0.84,0-0.84-0.48s0.432-0.48,0.84-0.48h14.329c0.408,0,0.84,0,0.84,0.48   s-0.432,0.48-0.84,0.48H8.497v6.553h6.672c0.408,0,0.84,0,0.84,0.48s-0.432,0.48-0.84,0.48H8.497V20.234z";
+
             // 绘制符号图形
-            this.addOperatorShape( new kity.Rect( 0, 0, 43, 3, 3 ).fill( "black" ) );
-            this.addOperatorShape( new kity.Rect( 0, 20, 43, 3, 3 ).fill( "black" ) );
-            this.addOperatorShape( new kity.Rect( 20, 0, 3, 43, 3 ).fill( "black" ) );
+            this.addOperatorShape( new kity.Path( pathData ).fill( "black" ).translate( 5, 2 ) );
 
         }
 

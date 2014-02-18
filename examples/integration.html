@@ -17,9 +17,7 @@
         window.onload = function () {
 
             var formula = new kf.Formula( document.body ),
-                exp = new kf.SuperscriptExpression( "\\rho\\r", "2" ),
-                exp = new kf.CombinationExpression( exp, "dV" ),
-                integrationExp = new kf.IntegrationExpression( exp, null, "V" );
+                integrationExp = new kf.IntegrationExpression( new kf.AdditionExpression( "a", "b" ), "a", "b" );
 
             integrationExp.setType( kf.IntegrationExpression.TYPE_TRIPLE );
 

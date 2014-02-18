@@ -23,7 +23,7 @@ define( function ( require, exports, modules ) {
 
             superscript.setAnchor( 0, 0 );
             superscript.scale( 0.5 );
-            superscript.translate( operandBox.x + operandBox.width, 0 );
+            superscript.translate( operandBox.x + operandBox.width + 2, 0 );
 
         }
 
