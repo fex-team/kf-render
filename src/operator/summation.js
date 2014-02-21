@@ -53,7 +53,7 @@ define( function ( require, exports, modules ) {
             operatorShape.translate( 0, scriptMaxHeight + leftOffset );
             subscript.translate( ( opBox.width - subBox.width ) / 2, scriptMaxHeight + opBox.height + leftOffset );
             // 主表达式偏移
-            exp.translate( opBoxShape.getWidth(), rightOffset );
+            exp.translate( Math.max( opBoxShape.getWidth(), supBox.width, subBox.width ), rightOffset );
 
         }
 
