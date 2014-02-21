@@ -23,8 +23,8 @@ define( function ( require, exports, modules ) {
                 subBox = subscript.getRenderBox();
 
             subscript.setAnchor( 0, subBox.y + subBox.height );
-            subscript.scale( 0.5 );
-            subscript.translate( operandBox.x + operandBox.width + 2, 0 );
+            subscript.scale( 0.7 );
+            subscript.translate( operandBox.x + operandBox.width + 2, 3 );
 
         }
 

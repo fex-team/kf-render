@@ -11,9 +11,18 @@ define( function ( require, exports, module ) {
 
         base: require( "signgroup" ),
 
-        constructor: function ( value ) {
+        constructor: function ( value, type ) {
 
-            var currentData = CHAR_DATA[ value ];
+            var currentData;
+
+            // 默认是标准字体
+            type = type || "std";
+
+            currentData = CHAR_DATA[ type ][ value ];
+
+            if ( !currentData ) {
+                currentData = CHAR_DATA[ "std" ][ value ];
+            }
 
             if ( !currentData ) {
                 throw new Error( 'invalid character: ' + value );

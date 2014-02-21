@@ -24,7 +24,7 @@
                 mulExp = new kf.MultiplicationExpression( divExp, "t" ),
                 fraExp = new kf.FractionExpression( "3xy", mulExp ),
                 radExp = new kf.RadicalExpression( fraExp, 3 ),
-                equalExp = new kf.EqualExpression( "f(x)", radExp );
+                equalExp = new kf.EqExpression( "f(x)", radExp );
 
             formula.appendExpression( equalExp );
             formula.appendExpression( new kf.RadicalExpression( "a", "3" ) )

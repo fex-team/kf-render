@@ -22,8 +22,8 @@ define( function ( require, exports, modules ) {
             var operandBox = operand.getRenderBox();
 
             superscript.setAnchor( 0, 0 );
-            superscript.scale( 0.5 );
-            superscript.translate( operandBox.x + operandBox.width + 2, 0 );
+            superscript.scale( 0.7 );
+            superscript.translate( operandBox.x + operandBox.width + 2, -3 );
 
         }
 

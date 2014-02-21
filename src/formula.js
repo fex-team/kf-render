@@ -5,7 +5,7 @@
 define( function ( require, exports, module ) {
 
     var kity = require( 'kity' ),
-        EXPRESSION_INTERVAL = 50;
+        EXPRESSION_INTERVAL = 10;
 
     return kity.createClass( 'Formula', {
 

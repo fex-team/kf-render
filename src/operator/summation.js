@@ -18,8 +18,8 @@ define( function ( require, exports, modules ) {
 
         applyOperand: function ( exp, superscript, subscript ) {
 
-            superscript.setAnchor(0, 0).scale(0.5);
-            subscript.setAnchor(0, 0).scale(0.5);
+            superscript.setAnchor(0, 0).scale(0.7);
+            subscript.setAnchor(0, 0).scale(0.7);
 
             var supBox = superscript.getRenderBox(),
                 subBox = subscript.getRenderBox(),
@@ -62,7 +62,7 @@ define( function ( require, exports, modules ) {
 
     function generateOperator () {
 
-        var pathData = "M2.208,31.154h13.249c7.777,0,10.513-1.584,11.281-9.361h0.864l-1.152,10.993H1.056c-0.72,0-1.008,0-1.008-0.336   c0-0.096,0-0.144,0.336-0.576l10.705-13.729L0,1.056C0,0.048,0.048,0,1.056,0h25.395l1.152,10.609h-0.864   c-0.816-7.633-3.216-9.361-11.185-9.361H3.937l9.457,14.545c0.048,0.096,0.24,0.384,0.24,0.576c0,0.144,0,0.24-0.336,0.624   L2.208,31.154z",
+        var pathData = "M0.672,33.603c-0.432,0-0.648,0-0.648-0.264c0-0.024,0-0.144,0.24-0.432l12.433-14.569L0,0.96c0-0.264,0-0.72,0.024-0.792   C0.096,0.024,0.12,0,0.672,0h28.371l2.904,6.745h-0.6C30.531,4.8,28.898,3.72,28.298,3.336c-1.896-1.2-3.984-1.608-5.28-1.8   c-0.216-0.048-2.4-0.384-5.617-0.384H4.248l11.185,15.289c0.168,0.24,0.168,0.312,0.168,0.36c0,0.12-0.048,0.192-0.216,0.384   L3.168,31.515h14.474c4.608,0,6.96-0.624,7.464-0.744c2.76-0.72,5.305-2.352,6.241-4.848h0.6l-2.904,7.681H0.672z",
             operator = new kity.Path( pathData ).fill( "black" ),
             operatorShape = new kity.Group();
 
