@@ -7,7 +7,7 @@ define( function ( require, exports, modules ) {
 
     var kity = require( "kity" );
 
-    return kity.createClass( 'BinaryOperator', {
+    return kity.createClass( 'CombinationOperator', {
 
         base: require( "operator/operator" ),
 

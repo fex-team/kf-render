@@ -5,23 +5,22 @@
 define( function ( require, exports, module ) {
 
     var RomanText = require( "char/roman" ),
-        kity = require( "kity" ),
-        RomanTextExpression = kity.createClass( 'RomanTextExpression', {
+        kity = require( "kity" );
 
-            base: require( "expression/expression" ),
+    return kity.createClass( 'RomanTextExpression', {
 
-            constructor: function ( content ) {
+        base: require( "expression/expression" ),
 
-                this.callBase();
+        constructor: function ( content ) {
 
-                this.content = content + '';
+            this.callBase();
 
-                this.setChildren( 0, new RomanText( this.content ) );
+            this.content = content + '';
 
-            }
+            this.setChildren( 0, new RomanText( this.content ) );
 
-        } );
+        }
 
-    return RomanTextExpression;
+    } );
 
 } );

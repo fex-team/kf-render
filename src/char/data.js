@@ -94,6 +94,11 @@ define( function ( require, exports, module ) {
             "{": require( "char/data/symbol/l-braces" ),
             "}": require( "char/data/symbol/r-braces" ),
 
+            "\\infty\\": require( "char/data/symbol/infty" ),
+            "\u221E": require( "char/data/symbol/infty" ),
+
+            "\\to\\": require( "char/data/symbol/to" ),
+
             // greek
             "\u03B1": require( "char/data/greek/alpha" ),
             "\\alpha\\": require( "char/data/greek/alpha" ),

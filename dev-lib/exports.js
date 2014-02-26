@@ -16,6 +16,7 @@
             RomanTextExpression: require( "expression/roman" ),
             EmptyExpression: require( "expression/empty" ),
             CombinationExpression: require( "expression/compound-exp/combination" ),
+            FunctionExpression: require( "expression/compound-exp/func" ),
 
             AdditionExpression: require( "expression/compound-exp/binary-exp/addition" ),
             AsteriskExpression: require( "expression/compound-exp/binary-exp/asterisk" ),
