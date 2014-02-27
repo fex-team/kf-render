@@ -26,6 +26,7 @@
             IntegrationExpression: require( "expression/compound-exp/integration" ),
             MultiplicationExpression: require( "expression/compound-exp/binary-exp/multiplication" ),
             RadicalExpression: require( "expression/compound-exp/binary-exp/radical" ),
+            ScriptExpression: require( "expression/compound-exp/script" ),
             SuperscriptExpression: require( "expression/compound-exp/binary-exp/superscript" ),
             SubscriptExpression: require( "expression/compound-exp/binary-exp/subscript" ),
             SubtractionExpression: require( "expression/compound-exp/binary-exp/subtraction" ),
