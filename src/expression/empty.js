@@ -9,35 +9,9 @@ define( function ( require, exports, module ) {
 
         Expression = require( "expression/expression" ),
 
-        EmptyOperator = require( "operator/empty" ),
-
         EmptyExpression = kity.createClass( 'EmptyExpression', {
 
-            base: Expression,
-
-            constructor: function () {
-
-                this.callBase();
-
-                this.setChildren( 0, new EmptyOperator() );
-
-            },
-
-            getBaseWidth: function () {
-                return 0;
-            },
-
-            getBaseHeight: function () {
-                return 0;
-            },
-
-            getWidth: function () {
-                return 0;
-            },
-
-            getHeight: function () {
-                return 0;
-            }
+            base: Expression
 
         } );
 
