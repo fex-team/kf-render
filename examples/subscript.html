@@ -28,6 +28,8 @@
             formula.appendExpression( superscriptExp );
             formula.appendExpression( new kf.AdditionExpression( supExp1, supExp2 ) );
 
+            formula.appendExpression( new kf.CombinationExpression( new kf.SuperscriptExpression( null, "a" ), "a" ) );
+
         };
 
     </script>

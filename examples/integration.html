@@ -16,12 +16,21 @@
     <script>
         window.onload = function () {
 
-            var formula = new kf.Formula( document.body ),
-                integrationExp = new kf.IntegrationExpression( new kf.AdditionExpression( "a", "b" ), "a", "b" );
+//            var formula = new kf.Formula( document.body ),
+//                sumExp = new kf.SummationExpression( "a" ),
+//                integrationExp = new kf.IntegrationExpression( sumExp );
+//
+////            integrationExp.setType( kf.IntegrationExpression.TYPE_TRIPLE );
+//
+//            formula.appendExpression( new kf.EqExpression( new kf.SubscriptExpression( "I", "z" ), integrationExp ) );
 
-            integrationExp.setType( kf.IntegrationExpression.TYPE_TRIPLE );
+            var formula = new kf.Formula( document.body );
 
-            formula.appendExpression( new kf.EqExpression( new kf.SubscriptExpression( "I", "z" ), integrationExp ) );
+            var tt = new kf.IntegrationExpression( new kf.SummationExpression( "a", "a", "a" ), "a", "a" );
+
+//            var tt = new kf.IntegrationExpression( "a" );
+            tt = new kf.CombinationExpression( tt, "a" );
+            formula.appendExpression( tt );
 
         };
 
