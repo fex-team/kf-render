@@ -22,6 +22,7 @@
             AsteriskExpression: require( "expression/compound-exp/binary-exp/asterisk" ),
             DivisionExpression: require( "expression/compound-exp/binary-exp/division" ),
             DotExpression: require( "expression/compound-exp/binary-exp/dot" ),
+            DotsExpression: require( "expression/compound-exp/binary-exp/dots" ),
             FractionExpression: require( "expression/compound-exp/binary-exp/fraction" ),
             IntegrationExpression: require( "expression/compound-exp/integration" ),
             MultiplicationExpression: require( "expression/compound-exp/binary-exp/multiplication" ),
@@ -34,6 +35,9 @@
             PlusMinusExpression: require( "expression/compound-exp/binary-exp/plus-minus" ),
             MinusPlusExpression: require( "expression/compound-exp/binary-exp/minus-plus"),
             ParallelExpression: require( "expression/compound-exp/binary-exp/parallel"),
+
+            // Brackets expressoin
+            BracketsExpression: require( "expression/compound-exp/brackets" ),
 
             /********* relational expression start *********/
 
@@ -80,7 +84,6 @@
             NotSubseteqExpression: require( "expression/compound-exp/binary-exp/relational/not/not-subseteq" ),
             NotSupseteqExpression: require( "expression/compound-exp/binary-exp/relational/not/not-supseteq" ),
             NotSimExpression: require( "expression/compound-exp/binary-exp/relational/not/not-sim" ),
-            NotCongExpression: require( "expression/compound-exp/binary-exp/relational/not/not-cong" ),
             NotInExpression: require( "expression/compound-exp/binary-exp/relational/not/not-in" ),
             NotCongExpression: require( "expression/compound-exp/binary-exp/relational/not/not-cong" ),
 

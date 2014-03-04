@@ -84,7 +84,7 @@ define( function ( require, exports, modules ) {
             // 命名为a以便于精简表达式
             a = SHAPE_DATA_WIDTH,
             // 表达式高度, 2 是字符集的底部填充高度
-            h = operand.getBaseHeight() - 2,
+            h = operand.getHeight() - 2,
             drawer = shape.getDrawer();
 
         drawer.moveTo( tan20 * h, 0 );

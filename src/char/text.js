@@ -26,12 +26,6 @@ define( function ( require, exports, module ) {
 
         },
 
-        getBaseWidth: function () {
-
-            return this.getWidth();
-
-        },
-
         getBaseHeight: function () {
 
             var chars = this.contentShape.getItems(),

@@ -21,30 +21,67 @@ define( function ( require, exports, module ) {
             sub.setAnchor( 0, 0 ).scale( 0.7 );
             sup.setAnchor( 0, 0 ).scale( 0.7 );
 
-            var operandBox = operand.getRenderBox(),
-                supBox = sup.getRenderBox(),
-                subBox = sub.getRenderBox(),
-                maxScriptHeight = Math.max( supBox.height, subBox.height ) / 3,
-                maxScriptWidth = Math.max( supBox.width, subBox.width ),
-                // Y轴偏移
+            // 基础空间大小
+            var operandBox = {
+                    width: operand.getWidth(),
+                    height: operand.getBaseHeight()
+                },
+                supBox = {
+                    width: sup.getWidth() || sub.getWidth(),
+                    height: sup.getBaseHeight() || sub.getBaseHeight()
+                },
+                subBox = {
+                    width: sub.getWidth() || supBox.width,
+                    height: sub.getBaseHeight() || supBox.height
+                },
+                // 占用空间大小
+                operandSpaceSize = operand.getRenderBox(),
+                supSpaceSize = {
+                    width: sup.getWidth() || sub.getWidth(),
+                    height: sup.getHeight() || sub.getHeight()
+                },
+                subSpaceSize = {
+                    width: sub.getWidth() || supSpaceSize.width,
+                    height: sub.getHeight() || supSpaceSize.height
+                },
+
+                // 基础空间到占用空间的偏移
+                operandOffset = {
+                    height: ( operandSpaceSize.height - operandBox.height ) / 2
+                },
+                supOffset = {
+                    height: ( supSpaceSize.height - supBox.height ) / 2
+                },
+                subOffset = {
+                    height: ( subSpaceSize.height - subBox.height ) / 2
+                },
                 offset = 0,
-                // 上下标和操作数之间的横向间距
-                SPACE = 1,
                 boxSize = {
-                    w: operandBox.width + SPACE + maxScriptWidth,
-                    h: maxScriptHeight * 2 + operandBox.height
-                }
+                    width: Math.max( supSpaceSize.width, subSpaceSize.width ) + 1 + operandSpaceSize.width,
+                    height: Math.max( supSpaceSize.height, subSpaceSize.height ) * 2 + operandBox.height / 3
+                },
+                operandTranslate = supBox.height + supOffset.height - operandOffset.height - operandBox.height / 3,
+                subTranslate = operandTranslate + operandSpaceSize.height - operandOffset.height - operandBox.height / 3;
 
-            this.setBoxSize( boxSize.w, boxSize.h );
+            var diff = boxSize.height - ( subTranslate + subSpaceSize.height );
 
-            offset = maxScriptHeight - supBox.height / 3;
-            sup.translate( operandBox.width + SPACE, offset );
+            if ( diff > 0 ) {
+                // 扩展顶部空间
+                offset += diff;
+                operandTranslate += diff;
+                subTranslate += diff;
+            } else {
+                // 扩展底部空间
+                boxSize.height -= diff;
+            }
 
-            offset = maxScriptHeight;
-            operand.translate( 0, offset );
+            sup.translate( operandSpaceSize.width + 1, offset );
 
-            offset += operandBox.height - maxScriptHeight * 2;
-            sub.translate( operandBox.width + SPACE, offset );
+            operand.translate( 0, operandTranslate );
+
+            sub.translate( operandSpaceSize.width + 1, subTranslate );
+
+            this.setBoxSize( boxSize.width, boxSize.height );
 
         }
 

@@ -93,6 +93,7 @@ define( function ( require, exports, module ) {
             ".": require( "char/data/symbol/point" ),
             "{": require( "char/data/symbol/l-braces" ),
             "}": require( "char/data/symbol/r-braces" ),
+            ",": require( "char/data/symbol/comma" ),
 
             "\\infty\\": require( "char/data/symbol/infty" ),
             "\u221E": require( "char/data/symbol/infty" ),

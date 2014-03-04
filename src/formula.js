@@ -11,18 +11,23 @@ define( function ( require, exports, module ) {
 
         base: require( 'fpaper' ),
 
-        constructor: function ( container ) {
+        constructor: function ( container, config ) {
 
             this.callBase( container );
             this.expressions = [];
 
-            this.zoom = 1;
+            config = config || {
+                fontsize: 20
+            };
 
-            initZoom.call( this );
+            this.zoom = ( config.fontsize || 20 ) / 20 ;
 
         },
 
         insertExpression: function ( expression, index ) {
+
+            // clear zoom
+            this.container.resetTransform();
 
             for ( var i = this.expressions.length; i > index; i-- ) {
 
@@ -37,11 +42,36 @@ define( function ( require, exports, module ) {
             notifyExpression.call( this, expression );
             correctOffset.call( this );
 
+            this.resetZoom();
+            this.resize();
+
         },
 
         appendExpression: function ( expression ) {
 
             this.insertExpression( expression, this.expressions.length );
+
+        },
+
+        resize: function () {
+
+            var renderBox = this.container.getRenderBox();
+
+            this.node.setAttribute( "width", renderBox.width );
+            this.node.setAttribute( "height", renderBox.height );
+
+        },
+
+        resetZoom: function () {
+
+            var zoomLevel = this.zoom / this.getBaseZoom();
+
+            if ( zoomLevel !== 0 ) {
+
+                this.container.setAnchor( 0, 0 );
+                this.container.scale( zoomLevel );
+
+            }
 
         },
 
@@ -53,19 +83,6 @@ define( function ( require, exports, module ) {
         }
 
     } );
-
-    function initZoom () {
-
-        var zoomLevel = this.zoom - this.getBaseZoom();
-
-        if ( zoomLevel !== 0 ) {
-
-            this.container.setAnchor( 0, 0 );
-            this.container.scale( Math.pow( 2, zoomLevel ) );
-
-        }
-
-    }
 
     // 调整表达式之间的偏移
     function correctOffset () {
@@ -95,7 +112,13 @@ define( function ( require, exports, module ) {
     // 通知表达式已接入到paper
     function notifyExpression ( expression ) {
 
-        var len = expression.getChildren().length;
+        var len = 0;
+
+        if ( !expression ) {
+            return;
+        }
+
+        len = expression.getChildren().length;
 
         if ( len > 0 ) {
 

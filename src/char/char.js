@@ -53,9 +53,7 @@ define( function ( require, exports, module ) {
         },
 
         getBaseHeight: function () {
-
             return this.char.getHeight();
-
         },
 
         getBoxWidth: function () {
