@@ -18,17 +18,27 @@
         window.onload = function () {
 
             var formula = new kf.Formula( document.body ),
-                exp1 = new kf.IntersectionExpression( "a", "b" ),
-                exp2 = new kf.UnionExpression( "a", "b"),
-                exp3 = new kf.SubSetExpression( "a", "b" ),
-                exp4 = new kf.SuperSetExpression( "a", "b" ),
-                exp5 = new kf.InSetExpression( "a", "b" );
+                    exps = [
+                        new kf.CapExpression( "a", "b" ),
+                        new kf.CupExpression( "a", "b"),
+                        new kf.SubsetExpression( "a", "b" ),
+                        new kf.SupsetExpression( "a", "b" ),
+                        new kf.SubseteqExpression( "a", "b" ),
+                        new kf.SupseteqExpression( "a", "b" ),
+                        new kf.InExpression( "a", "b" ),
+                        new kf.NiExpression( "a", "b" ),
+                        new kf.ParallelExpression( "a", "b" ),
+                        new kf.SqsubsetExpression( "a", "b" ),
+                        new kf.SqsupsetExpression( "a", "b" ),
+                        new kf.SqsubseteqExpression( "a", "b" ),
+                        new kf.SqsupseteqExpression( "a", "b" ),
+                        new kf.SqcapExpression( "a", "b" ),
+                        new kf.SqcupExpression( "a", "b" )
+                    ]
 
-            formula.appendExpression( exp1 );
-            formula.appendExpression( exp2 );
-            formula.appendExpression( exp3 );
-            formula.appendExpression( exp4 );
-            formula.appendExpression( exp5 );
+            for ( var i in exps ) {
+                formula.appendExpression( exps[i] );
+            }
 
         };
 

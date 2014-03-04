@@ -7,7 +7,7 @@ define( function ( require, exports, modules ) {
 
     var kity = require( "kity" );
 
-    return kity.createClass( 'BinaryOperator', {
+    return kity.createClass( 'CombinationOperator', {
 
         base: require( "operator/operator" ),
 
@@ -42,7 +42,7 @@ define( function ( require, exports, modules ) {
 
                 operand.translate( offset - box.x, ( maxHeight - ( box.y + box.height ) ) / 2 );
 
-                offset += box.width - box.x;
+                offset += box.width;
 
             } );
 

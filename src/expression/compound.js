@@ -37,6 +37,9 @@ define( function ( require, exports, modules ) {
 
             this.operator.setParentExpression( this );
 
+            // 表达式关联到操作符
+            operator.expression = this;
+
             return this;
 
         },
@@ -48,9 +51,11 @@ define( function ( require, exports, modules ) {
         },
 
         // 操作数存储位置是从1开始
-        setOperand: function ( operand, index ) {
+        setOperand: function ( operand, index, isWrap ) {
 
-            if ( operand === undefined ) {
+            // 不包装操作数
+            if ( isWrap === false ) {
+                this.operands[ index ] = operand;
                 return this;
             }
 
