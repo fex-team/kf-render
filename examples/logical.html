@@ -18,11 +18,15 @@
         window.onload = function () {
 
             var formula = new kf.Formula( document.body ),
-                exp1 = new kf.LogicalConjunctionExpression( "a", "b"),
-                exp2 = new kf.LogicalDisjunctionExpression( "a", "b" );
+                    exps = [
+                        new kf.WedgeExpression( "a", "b" ),
+                        new kf.VeeExpression( "a", "b" ),
+                        new kf.MidExpression( "a", "b" )
+                    ]
 
-            formula.appendExpression( exp1 );
-            formula.appendExpression( exp2 );
+            for ( var i in exps ) {
+                formula.appendExpression( exps[i] );
+            }
 
         };
 

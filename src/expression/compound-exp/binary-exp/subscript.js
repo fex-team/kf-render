@@ -4,33 +4,17 @@
 
 define( function ( require, exports, modules ) {
 
-    var kity = require( "kity" ),
-        SubscriptExpression = require( "operator/binary-opr/subscript" );
+    var kity = require( "kity" );
 
-    return kity.createClass( 'SubExpression', {
+    return kity.createClass( 'SubscriptExpression', {
 
-        base: require( "expression/compound-exp/binary" ),
+        base: require( "expression/compound-exp/script" ),
 
         constructor: function ( operand, subscript ) {
 
-            this.callBase( operand, subscript );
-
-            this.setOperator( new SubscriptExpression() );
-
-        },
-
-        getBaseHeight: function () {
-
-            return this.getFirstOperand().getBaseHeight();
-
-        },
-
-        getBaseWidth: function () {
-
-            return this.getFirstOperand().getBaseWidth();
+            this.callBase( operand, null, subscript );
 
         }
-
     } );
 
 } );

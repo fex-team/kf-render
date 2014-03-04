@@ -16,12 +16,8 @@ define( function ( require, exports, modules ) {
             var operator = this,
                 operatorBox = operator.getRenderBox(),
                 // 操作数特殊处理
-                leftOperandBox = kity.Utils.extend( leftOperand.getRenderBox(), {
-                    height: leftOperand.getBaseHeight()
-                } ),
-                rightOperandBox = kity.Utils.extend( rightOperand.getRenderBox(), {
-                    height: rightOperand.getBaseHeight()
-                } ),
+                leftOperandBox = leftOperand.getRenderBox(),
+                rightOperandBox = rightOperand.getRenderBox(),
 
                 // 偏移量
                 offset = 0,

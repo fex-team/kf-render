@@ -4,30 +4,15 @@
 
 define( function ( require, exports, modules ) {
 
-    var kity = require( "kity" ),
-        SuperscriptOperator = require( "operator/binary-opr/superscript" );
+    var kity = require( "kity" );
 
     return kity.createClass( 'SuperscriptExpression', {
 
-        base: require( "expression/compound-exp/binary" ),
+        base: require( "expression/compound-exp/script" ),
 
         constructor: function ( operand, superscript ) {
 
-            this.callBase( operand, superscript );
-
-            this.setOperator( new SuperscriptOperator() );
-
-        },
-
-        getBaseHeight: function () {
-
-            return this.getFirstOperand().getBaseHeight();
-
-        },
-
-        getBaseWidth: function () {
-
-            return this.getFirstOperand().getBaseWidth();
+            this.callBase( operand, superscript, null );
 
         }
 

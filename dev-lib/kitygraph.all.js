@@ -1,9 +1,9 @@
 /*!
  * ====================================================
- * kitygraph - v1.0.0 - 2013-12-16
+ * kitygraph - v1.0.0 - 2014-03-02
  * https://github.com/kitygraph/kitygraph
  * GitHub: https://github.com/kitygraph/kitygraph.git 
- * Copyright (c) 2013 Baidu UEditor Group; Licensed MIT
+ * Copyright (c) 2014 Baidu UEditor Group; Licensed MIT
  * ====================================================
  */
 
@@ -3520,7 +3520,7 @@ define("graphic/shape", [ "graphic/svg", "core/utils", "graphic/eventhandler", "
             var b = this.getBoundaryBox();
             var xMin = Number.MAX_VALUE, xMax = -Number.MAX_VALUE, yMin = Number.MAX_VALUE, yMax = -Number.MAX_VALUE;
             var bps = [ [ b.x, b.y ], [ b.x + b.width, b.y ], [ b.x, b.y + b.height ], [ b.x + b.width, b.y + b.height ] ];
-            var matrix = this.getTransform().getMatrix();
+            var matrix = this.node.getCTM();
             var bp, rp, rps = [];
             while (bp = bps.pop()) {
                 rp = Matrix.transformPoint(bp[0], bp[1], matrix);
