@@ -103,7 +103,7 @@ define( function ( require, exports, modules ) {
         // 表达式宽度
         var w = operand.getWidth() + 2 * SHAPE_DATA_WIDTH;
 
-        return new kity.Rect( 0, 0, w, 2 * SHAPE_DATA_WIDTH ).fill( "black" );
+        return new kity.Rect( w, 2 * SHAPE_DATA_WIDTH ).fill( "black" );
 
     }
 

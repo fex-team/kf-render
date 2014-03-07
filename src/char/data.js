@@ -95,6 +95,12 @@ define( function ( require, exports, module ) {
             "}": require( "char/data/symbol/r-braces" ),
             ",": require( "char/data/symbol/comma" ),
 
+            "\\times\\": require( "char/data/symbol/times" ),
+            "\\div\\": require( "char/data/symbol/div" ),
+            "\\ast\\": require( "char/data/symbol/asterisk" ),
+            "\\dot\\": require( "char/data/symbol/dot" ),
+            "\\eq\\": require( "char/data/symbol/eq" ),
+
             "\\infty\\": require( "char/data/symbol/infty" ),
             "\u221E": require( "char/data/symbol/infty" ),
 

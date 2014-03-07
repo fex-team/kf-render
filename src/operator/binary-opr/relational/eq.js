@@ -4,7 +4,8 @@
 
 define( function ( require, exports, modules ) {
 
-    var kity = require( "kity" );
+    var kity = require( "kity" ),
+        CHAR_DATA = require( "char/data" );
 
     return kity.createClass( 'EqOperator', {
 
@@ -12,10 +13,17 @@ define( function ( require, exports, modules ) {
 
         constructor: function () {
 
-            this.callBase( "Eq" );
+            var opData = CHAR_DATA.std[ "\\eq\\" ],
+                opShape = null;
 
-            this.addOperatorShape( new kity.Rect( 5, 10.5, 17, 1, 1 ).fill( "black" ) );
-            this.addOperatorShape( new kity.Rect( 5, 15.5, 17, 1, 1 ).fill( "black" ) );
+            this.callBase( "Equal" );
+
+            opShape = new kity.Path( opData.path ).fill( "black" );
+            opShape.translate( opData.offset.x, opData.offset.y );
+
+            // 绘制符号图形
+            this.addOperatorShape( opShape );
+            this.setBoxSize( opData.size[ 0 ], opData.size[ 1 ] );
 
         }
 

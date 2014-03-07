@@ -27,30 +27,50 @@ define( function ( require, exports, modules ) {
 
     function generate ( left, right, exp ) {
 
-        debugger;
-        var leftPath = SYMBOL_DATA[ left ],
-            rightPath = SYMBOL_DATA[ right ],
+        var leftPath = SYMBOL_DATA.std[ left ].path,
+            rightPath = SYMBOL_DATA.std[ right ].path,
             group = new kity.Group(),
             leftOp = new kity.Path( leftPath ).fill( "black" ),
             rightOp = new kity.Path( rightPath ).fill( "black" ),
             expSpaceSize = exp.getRenderBox(),
-            opShapeSize = null,
-            zoom = 1,
+            leftOpSize = null,
+            rightOpSize = null,
+            leftZoom = 1,
+            rightZoom = 1,
+            // 左右空间大小
+            SPACE = 2,
             offset = 0;
 
         this.addOperatorShape( group.addShape( leftOp ).addShape( rightOp ) );
 
-        opShapeSize = leftOp.getRenderBox();
+        leftOpSize = leftOp.getRenderBox();
+        rightOpSize = rightOp.getRenderBox();
 
-        zoom = expSpaceSize.height / opShapeSize.height;
+        leftZoom = expSpaceSize.height ? expSpaceSize.height / leftOpSize.height : 1;
+        rightZoom = expSpaceSize.height ? expSpaceSize.height / rightOpSize.height : 1;
 
-        leftOp.setAnchor( 0, 0 ).scale( zoom );
-        rightOp.setAnchor( 0, 0 ).scale( zoom );
+        if ( leftZoom > 1 ) {
+            leftOp.setAnchor( 0, 0 ).scale( 1 + ( leftZoom - 1 ) / 2, leftZoom );
+        }
 
-        opShapeSize = leftOp.getRenderBox();
+        if ( rightZoom > 1 ) {
+            rightOp.setAnchor( 0, 0 ).scale( 1 + ( rightZoom - 1 ) / 2, rightZoom );
+        }
 
-        rightOp.translate( opShapeSize.width + expSpaceSize.width + 4, 0 );
-        exp.translate( opShapeSize.width + 2, 0 );
+        // 重新获取大小
+        leftOpSize = leftOp.getRenderBox();
+        rightOpSize = rightOp.getRenderBox();
+
+        offset += SPACE;
+        leftOp.translate( offset, 0 );
+
+        offset += SPACE + leftOpSize.width;
+        exp.translate( offset, 0 );
+
+        offset += SPACE + expSpaceSize.width;
+        rightOp.translate( offset, 0 );
+
+        this.setBoxSize( offset + rightOpSize.width + SPACE, expSpaceSize.height );
 
     }
 

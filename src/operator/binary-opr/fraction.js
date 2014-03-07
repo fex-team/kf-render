@@ -32,7 +32,9 @@ define( function ( require, exports, modules ) {
 
             upOperand.translate( ( maxWidth - upWidth ) / 2, maxHeight - upHeight );
             operatorShape.translate( 0, maxHeight );
-            downOperand.translate( ( maxWidth - downWidth ) / 2, maxHeight + operatorShape.getHeight() + ( maxHeight - downHeight ) / 2 );
+            downOperand.translate( ( maxWidth - downWidth ) / 2, maxHeight + operatorShape.getHeight() );
+
+            this.setBoxSize( maxWidth, 2 * maxHeight + operatorShape.getHeight() );
 
         }
 
@@ -41,7 +43,7 @@ define( function ( require, exports, modules ) {
 
     function generateOperator ( width ) {
 
-        return new kity.Rect( 0, 0, width, 1 ).fill( "black" );
+        return new kity.Rect( width, 1 ).fill( "black" );
 
     }
 

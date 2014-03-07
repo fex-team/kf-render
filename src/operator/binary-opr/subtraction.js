@@ -4,7 +4,8 @@
 
 define( function ( require, exports, module ) {
 
-    var kity = require( 'kity' );
+    var kity = require( 'kity' ),
+        CHAR_DATA = require( "char/data" );
 
     return kity.createClass( 'SubtractionOperator', {
 
@@ -12,9 +13,17 @@ define( function ( require, exports, module ) {
 
         constructor: function () {
 
+            var opData = CHAR_DATA.std[ "-" ],
+                opShape = null;
+
             this.callBase( "Subtraction" );
 
-            this.addOperatorShape( new kity.Rect( 5, 13, 17, 1, 1 ).fill( "black" ) );
+            opShape = new kity.Path( opData.path ).fill( "black" );
+            opShape.translate( opData.offset.x, opData.offset.y );
+
+            // 绘制符号图形
+            this.addOperatorShape( opShape );
+            this.setBoxSize( opData.size[ 0 ], opData.size[ 1 ] );
 
         }
 

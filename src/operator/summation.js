@@ -76,7 +76,7 @@ define( function ( require, exports, modules ) {
         var scriptHeight = Math.max( supBox.height, subBox.height ),
             maxWidth = Math.max( expBox.width + 5, supBox.width, subBox.width );
 
-        return new kity.Rect( 0, 0, maxWidth, scriptHeight * 2 + expBox.height ).fill( "transparent" );
+        return new kity.Rect( maxWidth, scriptHeight * 2 + expBox.height ).fill( "transparent" );
 
     }
 
