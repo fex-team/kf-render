@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>否定表达式</title>
+    <meta charset="utf-8">
+    <script src="../dev-lib/kitygraph.all.js"></script>
+    <!--<script src="../dist/kity-formula.all.min.js"></script>-->
+    <script src="../dev-lib/dev-define.js"></script>
+    <script>
+        inc.config({
+            base: '../src'
+        });
+    </script>
+    <script src="../dev-lib/exports.js"></script>
+    <script src="../dev-lib/dev-start.js"></script>
+    <script>
+        window.onload = function () {
+
+            var formula = new kf.Formula( document.body ),
+                    exps = [
+                        new kf.NotEqExpression( "a", "b" ),
+                        new kf.NotEquivExpression( "a", "b" ),
+                        new kf.NotLtExpression( "a", "b" ),
+                        new kf.NotGtExpression( "a", "b" ),
+                        new kf.NotLeExpression( "a", "b" ),
+                        new kf.NotGeExpression( "a", "b" ),
+                        new kf.NotSubseteqExpression( "a", "b" ),
+                        new kf.NotSupseteqExpression( "a", "b" ),
+                        new kf.NotSimExpression( "a", "b" ),
+                        new kf.NotCongExpression( "a", "b" ),
+                        new kf.NotInExpression( "a", "b" )
+                    ]
+
+            for ( var i in exps ) {
+                formula.appendExpression( exps[i] );
+            }
+
+        };
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

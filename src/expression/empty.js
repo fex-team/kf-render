@@ -11,30 +11,14 @@ define( function ( require, exports, module ) {
 
         EmptyExpression = kity.createClass( 'EmptyExpression', {
 
-            base: Expression,
-
-            getBaseWidth: function () {
-                return 0;
-            },
-
-            getBaseHeight: function () {
-                return 0;
-            },
-
-            getWidth: function () {
-                return 0;
-            },
-
-            getHeight: function () {
-                return 0;
-            }
+            base: Expression
 
         } );
 
     // 注册打包函数
     Expression.registerWrap( function ( operand ) {
 
-        if ( operand === null ) {
+        if ( operand === null || operand === undefined ) {
             return new EmptyExpression();
         }
 

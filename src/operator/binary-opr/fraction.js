@@ -22,18 +22,19 @@ define( function ( require, exports, modules ) {
                 downWidth = downOperand.getWidth(),
                 upHeight = upOperand.getHeight(),
                 downHeight = downOperand.getHeight(),
-                width = Math.max( upWidth, downWidth ),
-                height = Math.max( upHeight, downHeight ),
-                operatorShape = generateOperator( width );
+                maxWidth = Math.max( upWidth, downWidth ),
+                maxHeight = Math.max( upHeight, downHeight ),
+                operatorShape = generateOperator( maxWidth );
 
             this.addOperatorShape( operatorShape );
             // 重置操作符的偏移， 使得该操作符回归到0,0的位置
-            this.operatorShape.translate( -10, -10 );
             this.setBoxSize( 0, 0 );
 
-            upOperand.translate( ( width - upWidth ) / 2, height - upHeight );
-            operatorShape.translate( 0, height );
-            downOperand.translate( ( width - downWidth ) / 2, height + 3 );
+            upOperand.translate( ( maxWidth - upWidth ) / 2, maxHeight - upHeight );
+            operatorShape.translate( 0, maxHeight );
+            downOperand.translate( ( maxWidth - downWidth ) / 2, maxHeight + operatorShape.getHeight() );
+
+            this.setBoxSize( maxWidth, 2 * maxHeight + operatorShape.getHeight() );
 
         }
 
@@ -42,7 +43,7 @@ define( function ( require, exports, modules ) {
 
     function generateOperator ( width ) {
 
-        return new kity.Rect( 0, 0, width, 3 ).fill( "black" );
+        return new kity.Rect( width, 1 ).fill( "black" );
 
     }
 

@@ -19,6 +19,11 @@ define( function ( require, exports, module ) {
 
                 this.setChildren( 0, new Text( this.content ) );
 
+            },
+
+            // 对于文本的基础高度， 需要重定义
+            getBaseHeight: function () {
+                return this.getChild( 0 ).getBaseHeight();
             }
 
         } );

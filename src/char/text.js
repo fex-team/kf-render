@@ -5,7 +5,6 @@
 define( function ( require, exports, module ) {
 
     var kity = require( "kity" ),
-        CHAR_DATA = require( 'char/data' ),
         Char = require( "char/char" );
 
 
@@ -24,12 +23,6 @@ define( function ( require, exports, module ) {
             initContentShape.call( this );
 
             this.addShape( this.contentShape );
-
-        },
-
-        getBaseWidth: function () {
-
-            return this.getWidth();
 
         },
 
@@ -59,7 +52,7 @@ define( function ( require, exports, module ) {
 
                 var charShape = this.contentShape.getItem( index );
 
-                charShape.translate( offset, 0 );
+                charShape.translate( offset + 1, 0 );
 
                 offset += charShape.getBoxWidth();
 
