@@ -19,9 +19,9 @@
 
             var formula = new kf.Formula( document.body ),
                     exps = [
-                        new kf.WedgeExpression( "a", "b" ),
-                        new kf.VeeExpression( "a", "b" ),
-                        new kf.MidExpression( "a", "b" )
+                        new kf.TextExpression( "a\\wedge\\b" ),
+                        new kf.TextExpression( "a\\vee\\b" ),
+                        new kf.TextExpression( "a\\mid\\b" )
                     ]
 
             for ( var i in exps ) {

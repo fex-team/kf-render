@@ -15,6 +15,8 @@ define( function ( require, exports, modules ) {
 
             this.callBase();
 
+            this.setFlag( "Script" );
+
             this.setOperator( new ScriptOperator() );
 
             this.setOpd( operand );

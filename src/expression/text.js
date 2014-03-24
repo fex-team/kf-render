@@ -15,6 +15,8 @@ define( function ( require, exports, module ) {
 
                 this.callBase();
 
+                this.setFlag( "Text" );
+
                 this.content = content + '';
 
                 this.setChildren( 0, new Text( this.content ) );
@@ -24,12 +26,20 @@ define( function ( require, exports, module ) {
             // 对于文本的基础高度， 需要重定义
             getBaseHeight: function () {
                 return this.getChild( 0 ).getBaseHeight();
+            },
+
+            addedCall: function () {
+
+                this.updateBoxSize();
+
+                return this;
+
             }
 
         } );
 
     // 注册文本表达式的打包函数
-    Expression.registerWrap( function ( operand ) {
+    Expression.registerWrap( 'text', function ( operand ) {
 
         var operandType = typeof operand;
 

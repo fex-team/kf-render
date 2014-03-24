@@ -23,7 +23,7 @@ define( function ( require, exports, modules ) {
 
             // 绘制符号图形
             this.addOperatorShape( opShape );
-            this.setBoxSize( opData.size[ 0 ], opData.size[ 1 ] );
+//            this.setBoxSize( opData.size[ 0 ], opData.size[ 1 ] );
 
         }
 

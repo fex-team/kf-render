@@ -18,18 +18,11 @@
         window.onload = function () {
 
             var formula = new kf.Formula( document.body ),
-//                addExp = new kf.AdditionExpression( new kf.TextExpression("a"), "b" ),
-//                subExp = new kf.SubtractionExpression( addExp, "c" ),
-//                divExp = new kf.DivisionExpression( subExp, "43" ),
-//                mulExp = new kf.MultiplicationExpression( divExp, "t" ),
-//                fraExp = new kf.FractionExpression( "3xy", mulExp ),
-//                radExp = new kf.RadicalExpression( fraExp, 3 ),
-//                equalExp = new kf.EqExpression( "f(x)", radExp );
-                    tt = new kf.RadicalExpression( "x" );
+                tt1 = new kf.RadicalExpression( "x"),
+                tt2 = new kf.RadicalExpression( "xxyz", "abc" );
 
-            formula.appendExpression( tt );
-//            formula.appendExpression( new kf.RadicalExpression( "a", "3" ) )
-//            formula.appendExpression( new kf.RadicalExpression( "q" ) )
+            formula.appendExpression( tt1 );
+            formula.appendExpression( tt2 );
 
         };
 

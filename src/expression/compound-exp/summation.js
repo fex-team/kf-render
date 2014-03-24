@@ -22,6 +22,8 @@ define( function ( require, exports, modules ) {
 
             this.callBase();
 
+            this.setFlag( "Summation" );
+
             this.setExp( exp );
             this.setSuperscript( superscript );
             this.setSubscript( subscript );

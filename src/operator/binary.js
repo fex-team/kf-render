@@ -11,19 +11,9 @@ define( function ( require, exports, modules ) {
 
         base: require( "operator/operator" ),
 
-        constructor: function ( operatorName ) {
-
-            this.callBase( operatorName );
-
-            // box
-            this.setBoxSize( 27, 27 );
-//            this.operatorShape.translate( 10, 10 );
-
-        },
-
-        // 清理操作符的偏移
-        clearTransform: function () {
-            this.operatorShape.setTransform( new kity.Matrix( 1, 0, 0, 1, 0, 0 ) );
+        setParentExpression: function ( exp ) {
+            this.callBase( exp );
+//            exp.setBoxSize( 27, 27 );
         }
 
     } );

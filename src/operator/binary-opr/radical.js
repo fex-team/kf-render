@@ -24,7 +24,6 @@ define( function ( require, exports, modules ) {
         constructor: function () {
 
             this.callBase( "Radical" );
-            this.clearTransform();
 
         },
 
@@ -49,9 +48,7 @@ define( function ( require, exports, modules ) {
         this.addOperatorShape( vLine );
         this.addOperatorShape( hLine );
 
-        adjustmentPosition( mergeShape( decoration, vLine, hLine ), this.operatorShape, radicand, exponent );
-
-        adjustmentBox.call( this );
+        adjustmentPosition.call( this, mergeShape( decoration, vLine, hLine ), this.operatorShape, radicand, exponent );
 
     }
 
@@ -81,16 +78,14 @@ define( function ( require, exports, modules ) {
     function generateVLine ( operand ) {
 
         var shape = new kity.Path(),
-            // 命名为a以便于精简表达式
-            a = SHAPE_DATA_WIDTH,
             // 表达式高度, 2 是字符集的底部填充高度
             h = operand.getHeight() - 2,
             drawer = shape.getDrawer();
 
         drawer.moveTo( tan20 * h, 0 );
         drawer.lineTo( 0, h );
-        drawer.lineBy( sin20 * a * 3, cos20 * a * 3 );
-        drawer.lineBy( tan20 * h + sin20 * a * 3, -( h + 3 * a * cos20 ) );
+        drawer.lineBy( sin20 * SHAPE_DATA_WIDTH * 3, cos20 * SHAPE_DATA_WIDTH * 3 );
+        drawer.lineBy( tan20 * h + sin20 * SHAPE_DATA_WIDTH * 3, -( h + 3 * SHAPE_DATA_WIDTH * cos20 ) );
         drawer.close();
 
         return shape.fill( "black" );
@@ -130,48 +125,35 @@ define( function ( require, exports, modules ) {
     // 调整整个根号表达式的各个部分： 位置、操作符、被开方数、指数
     function adjustmentPosition ( position, operator, radicand, exponent ) {
 
-        var radicandBox = radicand.getRenderBox(),
-            diff = 0,
-            width = 0,
-            exponentBox = null;
-
-        // 调整被开方数和根号的相对位置
-        radicand.translate( position.x + SHAPE_DATA_WIDTH - radicandBox.x + 5, position.y + 2 * SHAPE_DATA_WIDTH + 5 );
-        operator.translate( 5, 5 );
-
-        if ( !exponent ) {
-
-            return;
-
-        }
+        var exponentBox = null,
+            opOffset = {
+                x: 0,
+                y: 0
+            },
+            opBox = operator.getRenderBox();
 
         exponent.setAnchor( 0, 0 );
-        exponent.scale( 0.5 );
+        exponent.scale( 0.7 );
         exponentBox = exponent.getRenderBox();
-        // width代表适合放置指数的最小宽度
-        width = exponentBox.width + exponentBox.height * tan20;
 
-        // 指数宽度超过根号左边部分的宽度， 则移动根号和被开方数
-        if ( width > position.x ) {
+        if ( exponentBox.width > 0 && exponentBox.height > 0 ) {
 
-            diff = width - position.x;
+            opOffset.y = exponentBox.height - opBox.height / 2;
 
-            operator.translate( diff + 5, 0 );
-            radicand.translate( diff + 5, 0 );
+            // 指数不超出根号， 则移动指数
+            if ( opOffset.y < 0 ) {
+                exponent.translate( 0, -opOffset.y );
+                opOffset.y = 0;
+            }
 
-        // 否则， 移动指数
-        } else {
-
-            exponent.translate( position.x - width + 5, 0 );
-
+            opOffset.x = exponentBox.width + ( opBox.height / 2 ) * tan20 - position.x;
         }
 
-    }
+        operator.translate( opOffset.x, opOffset.y );
 
-    // 调整整个边框的大小
-    function adjustmentBox () {
+        radicand.translate( opOffset.x + position.x + SHAPE_DATA_WIDTH, opOffset.y + 2 * SHAPE_DATA_WIDTH );
 
-        this.setBoxSize( this.operatorShape.getWidth(), this.operatorShape.getHeight() + 10 );
+//        this.parentExpression.setBoxSize( operator.getWidth() + opOffset.x, operator.getHeight() + opOffset.y );
 
     }
 

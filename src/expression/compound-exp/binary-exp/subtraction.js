@@ -15,6 +15,8 @@ define( function ( require, exports, modules ) {
 
             this.callBase( leftOperand, rightOperand );
 
+            this.setFlag( "Subtraction" );
+
             this.setOperator( new SubtractionOperator() );
 
         }

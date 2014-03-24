@@ -15,8 +15,14 @@ define( function ( require, exports, module ) {
             this.callBase( container );
 
             this.container = new kity.Group();
+            this.container.setAttr( "data-type", "kf-container" );
+
+            this.background = new kity.Group();
+            this.background.setAttr( "data-type", "kf-bg" );
+
             this.baseZoom = 1;
 
+            this.base( 'addShape', this.background );
             this.base( 'addShape', this.container );
 
         },
@@ -31,6 +37,10 @@ define( function ( require, exports, module ) {
 
             return this.container.addShape( shape, pos );
 
+        },
+
+        getBackground: function () {
+            return this.background;
         },
 
         removeShape: function ( pos ) {

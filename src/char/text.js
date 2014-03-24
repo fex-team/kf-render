@@ -52,7 +52,7 @@ define( function ( require, exports, module ) {
 
                 var charShape = this.contentShape.getItem( index );
 
-                charShape.translate( offset + 1, 0 );
+                charShape.translate( offset, 0 );
 
                 offset += charShape.getBoxWidth();
 

@@ -7,12 +7,65 @@ define( function ( require, exports, module ) {
 
     var kity = require( "kity"),
 
+        GTYPE = require( "def/gtype" ),
+
         // 打包函数列表
         WRAP_FN = [],
+
+        // 注册的打包函数的名称与其在注册器列表中的索引之间的对应关系
+        WRAP_FN_INDEX = {},
 
         Expression = kity.createClass( 'Expression', {
 
             base: require( "signgroup" ),
+
+            constructor: function () {
+
+                this.callBase();
+
+                this.type = GTYPE.EXP;
+
+                this.children = [];
+
+                this.box.fill( "transparent" ).setAttr( "data-type", "kf-editor-exp-box" );
+                this.box.setAttr( "data-type", "kf-editor-exp-bg-box" );
+
+                this.expContent = new kity.Group();
+                this.expContent.setAttr( "data-type", "kf-editor-exp-content-box" );
+
+                this.addShape( this.expContent );
+
+            },
+
+            getChildren: function () {
+
+                return this.children;
+
+            },
+
+            getChild: function ( index ) {
+
+                return this.children[ index ] || null;
+
+            },
+
+            setFlag: function ( flag ) {
+
+                this.setAttr( "data-flag", flag || "Expression" );
+
+            },
+
+            setChildren: function ( index, exp ) {
+
+                // 首先清理掉之前的表达式
+                if ( this.children[ index ] ) {
+                    this.children[ index ].remove();
+                }
+
+                this.children[ index ] = exp;
+                this.expContent.addShape( exp );
+
+            },
 
             getBaseWidth: function () {
 
@@ -24,6 +77,13 @@ define( function ( require, exports, module ) {
 
                 return this.getHeight();
 
+            },
+
+            updateBoxSize: function () {
+
+                var renderBox = this.expContent.getRenderBox();
+                this.setBoxSize( renderBox.width, renderBox.height );
+
             }
 
         } );
@@ -31,9 +91,26 @@ define( function ( require, exports, module ) {
     // 表达式自动打包
     kity.Utils.extend( Expression, {
 
-        registerWrap: function ( fn ) {
+        registerWrap: function ( name, fn ) {
 
+            WRAP_FN_INDEX[ name ] = WRAP_FN.length;
             WRAP_FN.push( fn );
+
+        },
+
+        revokeWrap: function ( name ) {
+
+            var fn = null;
+
+            if ( name in WRAP_FN_INDEX ) {
+
+                fn = WRAP_FN[ WRAP_FN_INDEX[ name ] ];
+                WRAP_FN[ WRAP_FN_INDEX[ name ] ] = null;
+                delete WRAP_FN_INDEX[ name ];
+
+            }
+
+            return fn;
 
         },
 
@@ -43,6 +120,10 @@ define( function ( require, exports, module ) {
             var result = undefined;
 
             kity.Utils.each( WRAP_FN, function ( fn ) {
+
+                if ( !fn ) {
+                    return;
+                }
 
                 result = fn( operand );
 

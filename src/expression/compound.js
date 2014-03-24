@@ -6,6 +6,9 @@
 define( function ( require, exports, modules ) {
 
     var kity = require( "kity" ),
+
+        GTYPE = require( "def/gtype" ),
+
         Expression = require( "expression/expression" );
 
     return kity.createClass( 'CompoundExpression', {
@@ -16,8 +19,19 @@ define( function ( require, exports, modules ) {
 
             this.callBase();
 
+            this.type = GTYPE.COMPOUND_EXP;
+
             this.operands = [];
             this.operator = null;
+
+            this.operatorBox = new kity.Group();
+            this.operatorBox.setAttr( "data-type", "kf-editor-exp-op-box" );
+
+            this.operandBox = new kity.Group();
+            this.operandBox.setAttr( "data-type", "kf-editor-exp-operand-box" );
+
+            this.setChildren( 0, this.operatorBox );
+            this.setChildren( 1, this.operandBox );
 
         },
 
@@ -32,8 +46,9 @@ define( function ( require, exports, modules ) {
                 this.operator.remove();
             }
 
+            this.operatorBox.addShape( operator );
+
             this.operator = operator;
-            this.setChildren( 0, this.operator );
 
             this.operator.setParentExpression( this );
 
@@ -66,7 +81,8 @@ define( function ( require, exports, modules ) {
             }
 
             this.operands[ index ] = operand;
-            this.setChildren( index+1, operand );
+
+            this.operandBox.addShape( operand );
 
             return this;
 
@@ -74,13 +90,21 @@ define( function ( require, exports, modules ) {
 
         getOperand: function ( index ) {
 
-            return this.getChild( index + 1 );
+            return this.operands[ index ];
+
+        },
+
+        getOperands: function () {
+
+            return this.operands;
 
         },
 
         addedCall: function () {
 
             this.operator.applyOperand.apply( this.operator, this.operands );
+
+            this.updateBoxSize();
 
             return this;
 

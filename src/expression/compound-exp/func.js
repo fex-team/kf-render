@@ -22,6 +22,8 @@ define( function ( require, exports, modules ) {
 
             this.callBase();
 
+            this.setFlag( "Func" );
+
             this.setOperator( new FunctionOperator( funcName ) );
 
             this.setFuncExp( funcExp );

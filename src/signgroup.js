@@ -4,7 +4,8 @@
 
 define( function ( require, exports, module ) {
 
-    var kity = require( 'kity' );
+    var kity = require( 'kity' ),
+        GTYPE = require( 'def/gtype' );
 
     return kity.createClass( 'SignGroup', {
 
@@ -13,21 +14,13 @@ define( function ( require, exports, module ) {
         constructor: function () {
 
             this.callBase();
-            this.children = [];
+
+            this.type = GTYPE.UNKNOWN;
+
+            this.box = new kity.Rect( 0, 0, 0, 0 );
+            this.addShape( this.box );
 
             this.zoom = 1;
-
-        },
-
-        getChildren: function () {
-
-            return this.children;
-
-        },
-
-        getChild: function ( index ) {
-
-            return this.children[ index ] || null;
 
         },
 
@@ -43,18 +36,26 @@ define( function ( require, exports, module ) {
 
         },
 
-        setChildren: function ( index, exp ) {
+        setBoxSize: function ( w, h ) {
 
-            // 首先清理掉之前的表达式
-            if ( this.children[ index ] ) {
+            return this.box.setSize( w, h );
 
-                this.children[ index ].remove();
+        },
 
-            }
+        setBoxWidth: function ( w ) {
 
-            this.children[ index ] = exp;
-            this.addShape( exp );
+            return this.box.setWidth( w );
 
+        },
+
+        setBoxHeight: function ( h ) {
+
+            return this.box.setHeight( h );
+
+        },
+
+        getType: function () {
+            return this.type;
         },
 
         addedCall: function () {}

@@ -15,6 +15,8 @@ define( function ( require, exports, module ) {
 
             this.callBase();
 
+            this.setFlag( "RomanText" );
+
             this.content = content + '';
 
             this.setChildren( 0, new RomanText( this.content ) );

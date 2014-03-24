@@ -14,6 +14,8 @@ define( function ( require, exports, modules ) {
 
             this.callBase( operand, null, subscript );
 
+            this.setFlag( "Subscript" );
+
         }
     } );
 

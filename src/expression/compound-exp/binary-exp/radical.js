@@ -20,6 +20,8 @@ define( function ( require, exports, modules ) {
 
             this.callBase( radicand, exponent );
 
+            this.setFlag( "Radicand" );
+
             this.setOperator( new RadicalOperator() );
 
         },

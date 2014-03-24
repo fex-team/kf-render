@@ -11,17 +11,27 @@ define( function ( require, exports, module ) {
 
         EmptyExpression = kity.createClass( 'EmptyExpression', {
 
-            base: Expression
+            base: Expression,
+
+            constructor: function () {
+
+                this.callBase();
+
+                this.setFlag( "Empty" );
+
+            }
 
         } );
 
     // 注册打包函数
-    Expression.registerWrap( function ( operand ) {
+    Expression.registerWrap( 'empty', function ( operand ) {
 
         if ( operand === null || operand === undefined ) {
             return new EmptyExpression();
         }
 
     } );
+
+    return EmptyExpression;
 
 } );

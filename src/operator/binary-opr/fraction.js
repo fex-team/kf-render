@@ -27,14 +27,11 @@ define( function ( require, exports, modules ) {
                 operatorShape = generateOperator( maxWidth );
 
             this.addOperatorShape( operatorShape );
-            // 重置操作符的偏移， 使得该操作符回归到0,0的位置
-            this.setBoxSize( 0, 0 );
-
             upOperand.translate( ( maxWidth - upWidth ) / 2, maxHeight - upHeight );
             operatorShape.translate( 0, maxHeight );
             downOperand.translate( ( maxWidth - downWidth ) / 2, maxHeight + operatorShape.getHeight() );
 
-            this.setBoxSize( maxWidth, 2 * maxHeight + operatorShape.getHeight() );
+//            this.getParentExpression().setBoxSize( maxWidth, 2 * maxHeight + operatorShape.getHeight() );
 
         }
 

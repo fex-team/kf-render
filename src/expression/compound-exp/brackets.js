@@ -24,6 +24,8 @@ define( function ( require, exports, modules ) {
 
             this.callBase();
 
+            this.setFlag( "Brackets" );
+
             // 参数整理
             if ( arguments.length === 2 ) {
                 exp = right;

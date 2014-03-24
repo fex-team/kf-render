@@ -70,7 +70,7 @@ define( function ( require, exports, modules ) {
         offset += SPACE + expSpaceSize.width;
         rightOp.translate( offset, 0 );
 
-        this.setBoxSize( offset + rightOpSize.width + SPACE, expSpaceSize.height );
+//        this.setBoxSize( offset + rightOpSize.width + SPACE, expSpaceSize.height );
 
     }
 

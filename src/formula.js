@@ -5,7 +5,59 @@
 define( function ( require, exports, module ) {
 
     var kity = require( 'kity' ),
-        EXPRESSION_INTERVAL = 10;
+        GTYPE = require( "def/gtype" ),
+        DEFAULT_OPTIONS = {
+            fontsize: 20,
+            autoresize: true,
+            padding: [ 0 ]
+        },
+        EXPRESSION_INTERVAL = 10,
+
+        ExpressionWrap = kity.createClass( 'ExpressionWrap', {
+
+            constructor: function ( exp, config ) {
+
+                this.wrap = new kity.Group();
+                this.bg = new kity.Rect( 0, 0, 0, 0 ).fill( "transparent" );
+                this.exp = exp;
+
+                this.config = config;
+
+                this.wrap.setAttr( "data-type", "kf-exp-wrap" );
+                this.bg.setAttr( "data-type", "kf-exp-wrap-bg" );
+
+                this.wrap.addShape( this.bg );
+                this.wrap.addShape( this.exp );
+
+            },
+
+            getWrapShape: function () {
+                return this.wrap;
+            },
+
+            getExpression: function () {
+                return this.exp;
+            },
+
+            getBackground: function () {
+                return this.bg;
+            },
+
+            resize: function () {
+
+                var padding = this.config.padding,
+                    expBox = this.exp.getRenderBox();
+
+                if ( padding.length === 1 ) {
+                    padding[ 1 ] = padding[ 0 ];
+                }
+
+                this.bg.setSize( padding[ 1 ] * 2 + expBox.width, padding[ 0 ] * 2 + expBox.height );
+                this.exp.translate( padding[ 1 ], padding[ 0 ] );
+
+            }
+
+        } );
 
     return kity.createClass( 'Formula', {
 
@@ -16,34 +68,37 @@ define( function ( require, exports, module ) {
             this.callBase( container );
             this.expressions = [];
 
-            config = config || {
-                fontsize: 20
-            };
+            this.config = kity.Utils.extend( {}, DEFAULT_OPTIONS, config );
 
-            this.zoom = ( config.fontsize || 20 ) / 20 ;
+            this.zoom = ( this.config.fontsize || 20 ) / 20 ;
+
+            if ( "width" in this.config ) {
+                this.setWidth( this.config.width );
+            }
+
+            if ( "height" in this.config ) {
+                this.setHeight( this.config.height );
+            }
 
         },
 
         insertExpression: function ( expression, index ) {
 
+            var expWrap = this.wrap( expression );
+
             // clear zoom
             this.container.resetTransform();
 
-            for ( var i = this.expressions.length; i > index; i-- ) {
+            this.expressions.splice( index, 0, expWrap.getWrapShape() );
 
-                this.expressions[ i ] = this.expressions[ i-1 ];
+            this.addShape( expWrap.getWrapShape() );
 
-            }
-
-            this.expressions[ index ] = expression;
-
-            this.addShape( expression );
-
-            notifyExpression.call( this, expression );
+            notifyExpression.call( this, expWrap.getExpression() );
+            expWrap.resize();
             correctOffset.call( this );
 
             this.resetZoom();
-            this.resize();
+            this.config.autoresize && this.resize();
 
         },
 
@@ -72,6 +127,12 @@ define( function ( require, exports, module ) {
                 this.container.scale( zoomLevel );
 
             }
+
+        },
+
+        wrap: function ( exp ) {
+
+            return new ExpressionWrap( exp, this.config );
 
         },
 
@@ -112,21 +173,32 @@ define( function ( require, exports, module ) {
     // 通知表达式已接入到paper
     function notifyExpression ( expression ) {
 
-        var len = 0;
+        var len = 0,
+            childGroup = null;
 
         if ( !expression ) {
             return;
         }
 
-        len = expression.getChildren().length;
+        if ( expression.getType() === GTYPE.EXP ) {
 
-        if ( len > 0 ) {
-
-            for ( var i = 0; i < len; i++ ) {
+            for ( var i = 0, len = expression.getChildren().length; i < len; i++ ) {
 
                 notifyExpression( expression.getChild( i ) );
 
             }
+
+        } else if ( expression.getType() === GTYPE.COMPOUND_EXP ) {
+
+            // 操作数处理
+            for ( var i = 0, len = expression.getOperands().length; i < len; i++ ) {
+
+                notifyExpression( expression.getOperand( i ) );
+
+            }
+
+            // 处理操作符
+            notifyExpression( expression.getOperator() );
 
         }
 

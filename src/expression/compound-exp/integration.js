@@ -22,6 +22,8 @@ define( function ( require, exports, modules ) {
 
                 this.callBase();
 
+                this.setFlag( "Integration" );
+
                 this.setOperator( new IntegrationOperator() );
                 this.setIntegrand( integrand );
                 this.setSuperscript( superscript );

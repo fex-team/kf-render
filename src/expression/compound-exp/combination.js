@@ -16,6 +16,8 @@ define( function ( require, exports, modules ) {
 
             this.callBase();
 
+            this.setFlag( "Combination" );
+
             this.setOperator( new CombinationOperator() );
 
             kity.Utils.each( arguments, function ( operand, index ) {
