@@ -141,6 +141,18 @@ define( function ( require, exports, module ) {
             this.callBase();
             this.expressions = [];
 
+        },
+
+        clearExpressions: function () {
+
+            kity.Utils.each( this.expressions, function ( exp, i ) {
+
+                exp.remove();
+
+            } );
+
+            this.expressions = [];
+
         }
 
     } );

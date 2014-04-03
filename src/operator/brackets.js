@@ -17,17 +17,19 @@ define( function ( require, exports, modules ) {
 
         },
 
-        applyOperand: function ( leftBrackets, rightBrackets, exp ) {
+        applyOperand: function ( exp ) {
 
-            generate.call( this, leftBrackets, rightBrackets, exp );
+            generate.call( this, exp );
 
         }
 
     } );
 
-    function generate ( left, right, exp ) {
+    function generate ( exp ) {
 
-        var leftPath = SYMBOL_DATA.std[ left ].path,
+        var left = this.getParentExpression().getLeftSymbol(),
+            right = this.getParentExpression().getRightSymbol(),
+            leftPath = SYMBOL_DATA.std[ left ].path,
             rightPath = SYMBOL_DATA.std[ right ].path,
             group = new kity.Group(),
             leftOp = new kity.Path( leftPath ).fill( "black" ),

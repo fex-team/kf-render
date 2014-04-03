@@ -18,17 +18,9 @@
         window.onload = function () {
 
             var formula = new kf.Formula( document.body ),
-                exps = [
-                    new kf.TextExpression( "a+b" ),
-                    new kf.TextExpression( "a-b" ),
-                    new kf.TextExpression( "a\\times\\b" ),
-                    new kf.TextExpression( 'a\\div\\b' ),
-                    new kf.TextExpression( 'a\\pm\\b' ),
-                    new kf.TextExpression( 'a\\mp\\b' ),
-                    new kf.TextExpression( 'a\\ast\\b' ),
-                    new kf.TextExpression( "a\\cdot\\b" ),
-                    new kf.CombinationExpression( "a+b-c+", new kf.FractionExpression( "a", "2i" ) )
-                ]
+                    exps = [
+                        new kf.BracketsExpression( "(", ")", new kf.FractionExpression( "a-b", "a+b" ) )
+                    ];
 
             for ( var i in exps ) {
                 formula.appendExpression( exps[i] );

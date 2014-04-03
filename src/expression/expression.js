@@ -84,6 +84,10 @@ define( function ( require, exports, module ) {
                 var renderBox = this.expContent.getRenderBox();
                 this.setBoxSize( renderBox.width, renderBox.height );
 
+            },
+
+            getBox: function () {
+                return this.box;
             }
 
         } );

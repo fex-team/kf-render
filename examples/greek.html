@@ -17,12 +17,16 @@
 
         window.onload = function () {
 
-            var formula = new kf.Formula( "test" ),
-                    textExp1 = new kf.TextExpression( "\\alpha\\\\beta\\\\gamma\\\\delta\\\\epsilon\\\\zeta\\\\eta\\\\theta\\\\iota\\\\kappa\\\\lambda\\\\mu\\\\nu\\\\xi\\\\omicron\\\\pi\\\\rho\\\\sigma\\\\tau\\\\upsilon\\\\phi\\\\chi\\\\psi\\\\omega\\" ),
-                    textExp2 = new kf.TextExpression( "\\Alpha\\\\Beta\\\\Gamma\\\\Delta\\\\Epsilon\\\\Zeta\\\\Eta\\\\Theta\\\\Iota\\\\Kappa\\\\Lambda\\\\Mu\\\\Nu\\\\Xi\\\\Omicron\\\\Pi\\\\Rho\\\\Sigma\\\\Tau\\\\Upsilon\\\\Phi\\\\Chi\\\\Psi\\\\Omega\\" );
+            var formula1 = new kf.Formula( "test" ),
+                formula2 = new kf.Formula( "test2" ),
+                textExp1 = new kf.TextExpression( "\\alpha\\\\beta\\\\gamma\\\\delta\\\\epsilon\\\\zeta\\\\eta\\\\theta\\\\iota\\\\kappa\\\\lambda\\\\mu\\\\nu\\\\xi\\\\omicron\\\\pi\\\\rho\\\\sigma\\\\tau\\\\upsilon\\\\phi\\\\chi\\\\psi\\\\omega\\" ),
+                textExp2 = new kf.TextExpression( "\\Alpha\\\\Beta\\\\Gamma\\\\Delta\\\\Epsilon\\\\Zeta\\\\Eta\\\\Theta\\\\Iota\\\\Kappa\\\\Lambda\\\\Mu\\\\Nu\\\\Xi\\\\Omicron\\\\Pi\\\\Rho\\\\Sigma\\\\Tau\\\\Upsilon\\\\Phi\\\\Chi\\\\Psi\\\\Omega\\" ),
+                textExp3 = new kf.TextExpression( "\\varphi\\\\varepsilon\\" );
 
-            formula.appendExpression( textExp1 );
-            formula.appendExpression( textExp2 );
+            formula1.appendExpression( textExp1 );
+            formula1.appendExpression( textExp2 );
+
+            formula2.appendExpression( textExp3 );
 
         };
 
@@ -30,6 +34,8 @@
 </head>
 <body>
 <h1>希腊字符集</h1>
-<div id="test" style="width: 100%; height: 500px;"></div>
+<div id="test" style="width: 100%; height: 100px;"></div>
+<h1>希腊字符变体</h1>
+<div id="test2" style="width: 100%; height: 500px;"></div>
 </body>
 </html>

@@ -21,10 +21,15 @@ define( function ( require, exports, module ) {
             this.background.setAttr( "data-type", "kf-bg" );
 
             this.baseZoom = 1;
+            this.zoom = 1;
 
             this.base( 'addShape', this.background );
             this.base( 'addShape', this.container );
 
+        },
+
+        getZoom: function () {
+            return this.zoom;
         },
 
         getBaseZoom: function () {

@@ -32,11 +32,20 @@ define( function ( require, exports, modules ) {
                 right = left;
             }
 
-            this.setOperator( new BracketsOperator() );
-            this.setOperand( left, 0, false );
-            this.setOperand( right, 1, false );
-            this.setOperand( exp, 2 );
+            this.leftSymbol = left;
+            this.rightSymbol = right;
 
+            this.setOperator( new BracketsOperator() );
+            this.setOperand( exp, 0 );
+
+        },
+
+        getLeftSymbol: function () {
+            return this.leftSymbol;
+        },
+
+        getRightSymbol: function () {
+            return this.rightSymbol;
         }
 
     } );
