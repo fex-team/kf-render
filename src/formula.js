@@ -7,7 +7,7 @@ define( function ( require, exports, module ) {
     var kity = require( 'kity' ),
         GTYPE = require( "def/gtype" ),
         DEFAULT_OPTIONS = {
-            fontsize: 20,
+            fontsize: 50,
             autoresize: true,
             padding: [ 0 ]
         },
@@ -70,7 +70,13 @@ define( function ( require, exports, module ) {
 
             this.config = kity.Utils.extend( {}, DEFAULT_OPTIONS, config );
 
-            this.zoom = ( this.config.fontsize || 20 ) / 20 ;
+            this.initEnvironment();
+
+        },
+
+        initEnvironment: function () {
+
+            this.zoom = ( this.config.fontsize ) / 50 ;
 
             if ( "width" in this.config ) {
                 this.setWidth( this.config.width );
@@ -79,6 +85,8 @@ define( function ( require, exports, module ) {
             if ( "height" in this.config ) {
                 this.setHeight( this.config.height );
             }
+
+            this.node.setAttribute( "font-size", DEFAULT_OPTIONS.fontsize );
 
         },
 

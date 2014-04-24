@@ -19,16 +19,15 @@
 
             var formula = new kf.Formula( document.body ),
                 exps = [
-                    new kf.TextExpression( "a+b" ),
-                    new kf.TextExpression( "a-b" ),
-                    new kf.TextExpression( "a\\times\\b" ),
-                    new kf.TextExpression( 'a\\div\\b' ),
-                    new kf.TextExpression( 'a\\pm\\b' ),
-                    new kf.TextExpression( 'a\\mp\\b' ),
-                    new kf.TextExpression( 'a\\ast\\b' ),
-                    new kf.TextExpression( "a\\cdot\\b" ),
-                    new kf.CombinationExpression( "a+b-c+", new kf.FractionExpression( "a", "2i" ) )
-                ]
+                    new kf.TextExpression( "c=a+b" ),
+                    new kf.TextExpression( "c=a-b" ),
+                    new kf.TextExpression( "c=a\\times\\b" ),
+                    new kf.TextExpression( 'c=a\\div\\b' ),
+                    new kf.TextExpression( 'c=a\\pm\\b' ),
+                    new kf.TextExpression( 'c=a\\mp\\b' ),
+                    new kf.TextExpression( 'c=a\\ast\\b' ),
+                    new kf.TextExpression( "c=a\\cdot\\b" )
+                ];
 
             for ( var i in exps ) {
                 formula.appendExpression( exps[i] );

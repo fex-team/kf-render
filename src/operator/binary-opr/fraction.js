@@ -18,29 +18,41 @@ define( function ( require, exports, modules ) {
 
         applyOperand: function ( upOperand, downOperand ) {
 
-            var upWidth = upOperand.getWidth(),
-                downWidth = downOperand.getWidth(),
-                upHeight = upOperand.getHeight(),
-                downHeight = downOperand.getHeight(),
+            upOperand.setAnchor( 0, 0 ).scale( 0.66 );
+            downOperand.setAnchor( 0, 0 ).scale( 0.66 );
+
+            var upWidth = Math.ceil( upOperand.getWidth() ),
+                downWidth = Math.ceil( downOperand.getWidth() ),
+                upHeight = Math.ceil( upOperand.getHeight() ),
+                downHeight = Math.ceil( downOperand.getHeight() ),
+                offset = 3,
+                // 整体padding
+                boxPadding = 5,
                 maxWidth = Math.max( upWidth, downWidth ),
+                // 内部padding
+                padding = 3,
                 maxHeight = Math.max( upHeight, downHeight ),
-                operatorShape = generateOperator( maxWidth );
+                operatorShape = generateOperator( maxWidth, offset );
 
             this.addOperatorShape( operatorShape );
-            upOperand.translate( ( maxWidth - upWidth ) / 2, maxHeight - upHeight );
-            operatorShape.translate( 0, maxHeight );
-            downOperand.translate( ( maxWidth - downWidth ) / 2, maxHeight + operatorShape.getHeight() );
+            upOperand.translate( ( maxWidth - upWidth ) / 2 + offset, maxHeight - upHeight );
+            operatorShape.translate( 0, maxHeight + padding );
+            // 下部不需要偏移
+            downOperand.translate( ( maxWidth - downWidth ) / 2 + offset, maxHeight + padding + operatorShape.getHeight() );
 
-//            this.getParentExpression().setBoxSize( maxWidth, 2 * maxHeight + operatorShape.getHeight() );
+            this.parentExpression.setBoxSize( maxWidth + offset * 2, maxHeight * 2 + operatorShape.getHeight() + padding * 2 );
+
+            this.parentExpression.expand( boxPadding, boxPadding );
+            this.parentExpression.translateElement( boxPadding, boxPadding );
 
         }
 
     } );
 
 
-    function generateOperator ( width ) {
+    function generateOperator ( width, offset ) {
 
-        return new kity.Rect( width, 1 ).fill( "black" );
+        return new kity.Rect( width + offset * 2, 1 ).fill( "black" );
 
     }
 

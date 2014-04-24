@@ -15,9 +15,9 @@ define( function ( require, exports, module ) {
 
             this.callBase();
 
+            this.box = new kity.Rect( 0, 0, 0, 0 );
             this.type = GTYPE.UNKNOWN;
 
-            this.box = new kity.Rect( 0, 0, 0, 0 );
             this.addShape( this.box );
 
             this.zoom = 1;
@@ -56,6 +56,14 @@ define( function ( require, exports, module ) {
 
         getType: function () {
             return this.type;
+        },
+
+        getBaseHeight: function () {
+            return this.getHeight();
+        },
+
+        getBaseWidth: function () {
+            return this.getWidth();
         },
 
         addedCall: function () {}

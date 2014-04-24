@@ -8,6 +8,8 @@
 
         global.kf = {
 
+            FontInstaller: require( "string/installer" ),
+
             // base
             Formula: require( "formula" ),
             Operator: require( "operator/operator" ),
@@ -32,7 +34,7 @@
             ParallelExpression: require( "expression/compound-exp/binary-exp/parallel"),
 
             // Brackets expressoin
-            BracketsExpression: require( "expression/compound-exp/brackets" ),
+            BracketsExpression: require( "expression/compound-exp/brackets" )
 
         };
 

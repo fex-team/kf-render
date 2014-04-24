@@ -1,31 +1,27 @@
 /**
- * 求和表达式
+ * 可以带上下表的函数表达式
  * @abstract
  */
 
 define( function ( require, exports, modules ) {
 
-    var kity = require( "kity" ),
-        SCRIPT_TYPE = require( "def/script-type" ),
-        SummationOperator = require( "operator/summation" );
+    var kity = require( "kity" );
 
-    return kity.createClass( 'SummationExpression', {
+    return kity.createClass( 'ScriptableFuncExpression', {
 
-        base: require( "expression/compound-exp/scriptable-func" ),
+        base: require( "expression/compound-exp/scriptable" ),
 
         /**
-         * 构造求和表达式
-         * @param exp 求和主题表达式
+         * 构造表达式
+         * @param exp 函数表达式操作符
          * @param upOperand 上标
          * @param downOperand 下标
          */
-        constructor: function ( exp, superscript, subscript ) {
+        constructor: function ( operator, exp, superscript, subscript ) {
 
-            var operator = new SummationOperator();
+            var operator = operator;
 
-            this.callBase( operator, exp, superscript, subscript );
-            this.setFlag( "Summation" );
-            this.setScriptType( SCRIPT_TYPE.FOLLOW );
+            this.callBase();
 
             this.setExp( exp );
             this.setSuperscript( superscript );
@@ -37,9 +33,7 @@ define( function ( require, exports, modules ) {
         },
 
         setExp: function ( exp ) {
-
             this.setOperand( exp, 0 );
-
         },
 
         setSuperscript: function ( sup ) {

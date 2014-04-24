@@ -20,7 +20,7 @@
             var formula = new kf.Formula( document.body ),
                 subExp = new kf.SubtractionExpression( "(a", "b)" ),
                 subscriptExp = new kf.ScriptExpression( "x", 3 ),
-                superscriptExp = new kf.SuperscriptExpression( "abc", 3 ),
+                superscriptExp = new kf.SuperscriptExpression( "abc", 3 );
                 supExp1 = new kf.SuperscriptExpression( "a", 2 ),
                 supExp2 = new kf.SuperscriptExpression( "b", 2 ),
                 supExp3 = new kf.ScriptExpression( "a", "b", "c" );
@@ -30,7 +30,7 @@
             formula.appendExpression( new kf.CombinationExpression( supExp1, "+", supExp2 ) );
             formula.appendExpression( supExp3 );
 
-            formula.appendExpression( new kf.CombinationExpression( new kf.SuperscriptExpression( null, "a" ), "a" ) );
+            formula.appendExpression( new kf.CombinationExpression( new kf.ScriptExpression( null, "n", "1" ), "Y" ) );
 
         };
 

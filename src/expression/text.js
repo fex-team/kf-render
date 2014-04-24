@@ -6,32 +6,34 @@ define( function ( require, exports, module ) {
 
     var Text = require( "char/text" ),
         kity = require( "kity" ),
+        FONT_DEFINE = require( "char/def" ),
         Expression = require( "expression/expression" ),
         TextExpression = kity.createClass( 'TextExpression', {
 
             base: require( "expression/expression" ),
 
-            constructor: function ( content ) {
+            constructor: function ( content, fontFamily ) {
 
                 this.callBase();
 
+                this.fontFamily = fontFamily || FONT_DEFINE.KF_AMS_MAIN;
                 this.setFlag( "Text" );
 
                 this.content = content + '';
 
-                this.setChildren( 0, new Text( this.content ) );
+                this.textContent = new Text( this.content, this.fontFamily );
 
-            },
+                this.setChildren( 0, this.textContent );
+                this.setChildren( 1, new kity.Rect( 0, 0, 0, 0 ).fill( "transparent" ) );
 
-            // 对于文本的基础高度， 需要重定义
-            getBaseHeight: function () {
-                return this.getChild( 0 ).getBaseHeight();
             },
 
             addedCall: function () {
 
-                this.updateBoxSize();
+                var box = this.textContent.getRenderBox();
 
+                this.getChild( 1 ).setSize( box.width, box.height );
+                this.updateBoxSize();
                 return this;
 
             }

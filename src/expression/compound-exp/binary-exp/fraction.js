@@ -19,16 +19,6 @@ define( function ( require, exports, modules ) {
 
             this.setOperator( new FractionOperator() );
 
-        },
-
-        addedCall: function () {
-
-            this.callBase();
-
-            var renderBox = this.expContent.getRenderBox();
-            this.setBoxSize( renderBox.width + 6, renderBox.height + 6 );
-            this.expContent.translate( 3, 3 );
-
         }
 
     } );

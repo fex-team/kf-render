@@ -67,6 +67,17 @@ define( function ( require, exports, module ) {
 
             },
 
+            translateElement: function ( x, y ) {
+
+                this.expContent.translate( x, y );
+
+            },
+
+            expand: function ( width, height ) {
+                var renderBox = this.getRenderBox();
+                this.setBoxSize( renderBox.width + width * 2, renderBox.height + height * 2 );
+            },
+
             getBaseWidth: function () {
 
                 return this.getWidth();

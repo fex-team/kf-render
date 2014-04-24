@@ -47,6 +47,10 @@ define( function ( require, exports, modules ) {
 
         getSubscript: function () {
             this.getOperand( 2 );
+        },
+
+        applyOperand: function () {
+
         }
 
     } );

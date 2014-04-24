@@ -103,9 +103,6 @@ define( function ( require, exports, modules ) {
         addedCall: function () {
 
             this.operator.applyOperand.apply( this.operator, this.operands );
-
-            this.updateBoxSize();
-
             return this;
 
         }

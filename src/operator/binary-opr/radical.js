@@ -50,6 +50,9 @@ define( function ( require, exports, modules ) {
 
         adjustmentPosition.call( this, mergeShape( decoration, vLine, hLine ), this.operatorShape, radicand, exponent );
 
+        this.parentExpression.expand( 5, 5 );
+        this.parentExpression.translateElement( 5, 5 );
+
     }
 
     // 生成根号中的左边装饰部分
@@ -78,8 +81,7 @@ define( function ( require, exports, modules ) {
     function generateVLine ( operand ) {
 
         var shape = new kity.Path(),
-            // 表达式高度, 2 是字符集的底部填充高度
-            h = operand.getHeight() - 2,
+            h = operand.getHeight(),
             drawer = shape.getDrawer();
 
         drawer.moveTo( tan20 * h, 0 );
@@ -152,8 +154,6 @@ define( function ( require, exports, modules ) {
         operator.translate( opOffset.x, opOffset.y );
 
         radicand.translate( opOffset.x + position.x + SHAPE_DATA_WIDTH, opOffset.y + 2 * SHAPE_DATA_WIDTH );
-
-//        this.parentExpression.setBoxSize( operator.getWidth() + opOffset.x, operator.getHeight() + opOffset.y );
 
     }
 

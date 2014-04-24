@@ -5,24 +5,47 @@
 define( function ( require, exports, module ) {
 
     var kity = require( "kity" ),
-        Char = require( "char/char" );
+
+        CHAR_ALIASE = require( "char/map" ),
+
+        FONT_DEFINE = require( "char/def" );
 
 
     return kity.createClass( 'Text', {
 
         base: require( "signgroup" ),
 
-        constructor: function ( content ) {
+        constructor: function ( content, fontFamily ) {
 
             this.callBase();
 
-            this.chars = null;
-            this.contentText = content || "";
-            this.contentShape = new kity.Group();
+            this.fontFamily = fontFamily || FONT_DEFINE.KF_AMS_MAIN;
+            this.content = content || "";
 
-            initContentShape.call( this );
+            this.transformContent = transform( this.content );
+
+            this.contentShape = new kity.Group();
+            this.contentNode = this.createContent();
+            this.contentShape.addShape( this.contentNode );
+
+            this.contentShape.translate( 0, 40 );
 
             this.addShape( this.contentShape );
+
+        },
+
+        createContent: function () {
+
+            var contentNode = new kity.Text( this.transformContent );
+
+            contentNode.setAttr( {
+                "font-family": this.fontFamily,
+                "font-size": 50,
+                x: 0,
+                y: 0
+            } );
+
+            return contentNode;
 
         },
 
@@ -35,60 +58,22 @@ define( function ( require, exports, module ) {
 
             while ( currentChar = chars[ index ] ) {
 
-                height = Math.max( height, currentChar.getBaseHeight() );
+                height = Math.max( height, currentChar.getHeight() );
                 index++;
 
             }
 
             return height;
 
-        },
-
-        addedCall: function () {
-
-            var offset = 0;
-
-            kity.Utils.each( this.chars, function ( charData, index ) {
-
-                var charShape = this.contentShape.getItem( index );
-
-                charShape.translate( offset, 0 );
-
-                offset += charShape.getBoxWidth();
-
-            }, this );
-
         }
 
     } );
 
+    function transform ( content ) {
 
-    function initContentShape () {
-
-        var match = null,
-            content = this.contentText,
-            chars = [];
-
-        while ( match = /^([^\\]*)(\\[^\\]+\\)([\s\S]*)/.exec( content ) ) {
-
-            content = match[3];
-            chars = chars.concat( match[1].split( "" ) );
-            chars.push( match[2] );
-
-        }
-
-        chars = chars.concat( content.split( "" ) );
-
-        // 字符数组
-        this.chars = chars;
-
-        kity.Utils.each( chars, function ( charData, index ) {
-
-            var charShape = new Char( charData );
-
-            this.contentShape.addShape( charShape );
-
-        }, this );
+        return content.replace( /\\([a-zA-Z]+)\\/g, function ( match, input ) {
+            return CHAR_ALIASE[ input ];
+        } );
 
     }
 

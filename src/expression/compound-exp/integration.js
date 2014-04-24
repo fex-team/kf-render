@@ -10,7 +10,7 @@ define( function ( require, exports, modules ) {
 
         IntegrationExpression = kity.createClass( 'IntegrationExpression', {
 
-            base: require( "expression/compound" ),
+            base: require( "expression/compound-exp/scriptable-func" ),
 
             /**
              * 构造积分表达式
@@ -20,20 +20,23 @@ define( function ( require, exports, modules ) {
              */
             constructor: function ( integrand, superscript, subscript ) {
 
-                this.callBase();
+                var operator = new IntegrationOperator();
 
+                this.callBase( operator, integrand, superscript, subscript );
                 this.setFlag( "Integration" );
 
-                this.setOperator( new IntegrationOperator() );
+                this.setScriptOperand( operator );
+                this.setOperator( operator );
+
                 this.setIntegrand( integrand );
                 this.setSuperscript( superscript );
                 this.setSubscript( subscript );
 
-            },
+                this.setScriptOperand( operator );
+                this.setOperator( operator );
 
-            setIntegrand: function ( integrand ) {
-
-                return this.setOperand( integrand, 0 );
+                // 设置下标偏移
+                this.setSubOffset( -20 );
 
             },
 
@@ -45,33 +48,23 @@ define( function ( require, exports, modules ) {
                 this.getOperator().resetType();
             },
 
-            getIntegrand: function () {
+            setIntegrand: function ( exp ) {
 
-                return this.getOperand( 0 );
-
-            },
-
-            setSuperscript: function ( superscript ) {
-
-                return this.setOperand( superscript, 1 );
+                this.setOperand( exp, 0 );
 
             },
 
-            getSuperscript: function () {
+            setSuperscript: function ( sup ) {
 
-                return this.getOperand( 1 );
-
-            },
-
-            setSubscript: function ( subscript ) {
-
-                return this.setOperand( subscript, 2 );
+                this.setOperand( sup, 1 );
+                this.setScriptSup( this.getOperand( 1 ) );
 
             },
 
-            getSubscript: function () {
+            setSubscript: function ( sub ) {
 
-                return this.getOperand( 2 );
+                this.setOperand( sub, 2 );
+                this.setScriptSub( this.getOperand( 2 ) );
 
             }
 

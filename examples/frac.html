@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>求和表达式</title>
+    <title>分数表达式</title>
     <meta charset="utf-8">
     <script src="../dev-lib/kitygraph.all.js"></script>
     <!--<script src="../dist/kity-formula.all.min.js"></script>-->
@@ -18,9 +18,10 @@
         window.onload = function () {
 
             var formula = new kf.Formula( document.body ),
-                sumExp = new kf.SummationExpression( "f(x)+13", "n=1", "n" );
+                tt1 = new kf.FractionExpression( new kf.CombinationExpression( "-b\\pm\\abd", new kf.RadicalExpression( "b", 2 ) ), "abc" ),
+                tt2 = new kf.FractionExpression( "xxyz", "abc" );
 
-            formula.appendExpression( sumExp );
+            formula.appendExpression( new kf.CombinationExpression( tt1, tt2 )  );
 
         };
 
