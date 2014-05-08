@@ -19,7 +19,7 @@
                         autoresize: false
                     } ),
                 exps = [
-                    new kf.CombinationExpression( new kf.SuperscriptExpression( "a", "2" ), "+", new kf.SuperscriptExpression( "b", "2" ), "=", new kf.SuperscriptExpression( "c", "2" ) ),
+                    new kf.CombinationExpression( "a", new kf.SuperscriptExpression( "a", "2" ), "+", new kf.SuperscriptExpression( "b", "2" ), "=", new kf.SuperscriptExpression( "c", "2" ) ),
                     new kf.CombinationExpression( new kf.SubscriptExpression( "x", "1" ), "+", new kf.SubscriptExpression( "x", "2" ) ),
                     new kf.CombinationExpression( new kf.ScriptExpression( null, "n", "1" ), "Y" )
                 ];

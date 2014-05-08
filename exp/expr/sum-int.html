@@ -19,10 +19,10 @@
                     autoresize: false
                 } ),
                 exps = [
-                    new kf.CombinationExpression( new kf.IntegrationExpression( "a", "b" ), "f(x)" ),
-                    new kf.CombinationExpression( new kf.IntegrationExpression( "a", "b" ).setType( 2 ), "f(x)" ),
-                    new kf.CombinationExpression( new kf.IntegrationExpression( "a", "b" ).setType( 3 ), "f(x)" ),
-                    new kf.CombinationExpression( "x=", new kf.SummationExpression( "r", "i=1" ), new kf.CombinationExpression( new kf.SubscriptExpression( "p", "i" ), new kf.SubscriptExpression( "x", "i" ) ) )
+                    new kf.CombinationExpression( "a", new kf.IntegrationExpression( "f(x)", "a", "b" ), "a" ),
+                    new kf.CombinationExpression( "a", new kf.IntegrationExpression( "f(x)", "a", "b" ).setType( 2 ), "a" ),
+                    new kf.CombinationExpression( new kf.IntegrationExpression( "f(x)", "a", "b" ).setType( 3 ) ),
+                    new kf.CombinationExpression( "x=", new kf.SummationExpression( new kf.CombinationExpression( new kf.SubscriptExpression( "p", "i" ), new kf.SubscriptExpression( "x", "i" ) ), "r", "i=1" ) )
                 ];
 
 

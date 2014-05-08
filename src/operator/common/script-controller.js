@@ -8,16 +8,6 @@ define( function ( require ) {
         defaultOptions = {
             subOffset: 0,
             supOffset: 0,
-            // 整体扩展
-            expand: {
-                width: 0,
-                height: 0
-            },
-            // 整体偏移
-            allOffset: {
-                x: 0,
-                y: 0
-            },
             // 上下标的默认缩放值
             zoom: 0.66
         };
@@ -53,7 +43,7 @@ define( function ( require ) {
                 maxOffset = Math.max( supBox.height, subBox.height ),
                 space = {
                     width: Math.max( targetBox.width, supBox.width, subBox.width ),
-                    height: 0
+                    height: maxOffset * 2 + targetBox.height
                 },
                 targetHeight = targetBox.height,
                 vOffset = 0;
@@ -67,9 +57,7 @@ define( function ( require ) {
             target.translate( ( space.width - targetBox.width ) / 2, maxOffset );
             sub.translate( ( space.width - subBox.width ) / 2, maxOffset + targetBox.height );
 
-            this.opObj.parentExpression.setBoxSize( space.width, space.height );
-            this.opObj.parentExpression.expand( options.expand.width, options.expand.height );
-            this.opObj.parentExpression.translateElement( options.allOffset.x, options.allOffset.y );
+            return space;
 
         },
 
@@ -122,9 +110,7 @@ define( function ( require ) {
                 space.height = targetHeight;
             }
 
-            this.opObj.parentExpression.setBoxSize( space.width, space.height );
-            this.opObj.parentExpression.expand( options.expand.width, options.expand.height );
-            this.opObj.parentExpression.translateElement( options.allOffset.x, options.allOffset.y );
+            return space;
 
         }
 

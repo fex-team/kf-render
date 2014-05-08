@@ -29,22 +29,28 @@ define( function ( require, exports, modules ) {
             this.opType = 1;
         },
 
-        applyOperand: function ( sup, sub ) {
+        applyOperand: function ( exp, sup, sub ) {
 
-            var opShape = this.getOperatorShape();
+            var opShape = this.getOperatorShape(),
+                padding = 5,
+                expBox = exp.getFixRenderBox(),
+                space = new ScriptController( this, opShape, sup, sub, {
+                    subOffset: -15
+                } ).applySide(),
+                diff = ( space.height - expBox.height ) / 2;
 
-            new ScriptController( this, opShape, sup, sub, {
-                subOffset: -15,
-                expand: {
-                    width: 10,
-                    height: 10
-                },
-                zoom: 0.5,
-                allOffset: {
-                    x: 5,
-                    y: 5
-                }
-            } ).applySide();
+            if ( diff >= 0 ) {
+                exp.translate( space.width + padding, diff );
+            } else {
+                diff = -diff;
+                opShape.translate( 0, diff );
+                sup.translate( 0, diff );
+                sub.translate( 0, diff );
+                exp.translate( space.width + padding, 0 );
+            }
+
+            this.parentExpression.expand( padding, padding * 2 );
+            this.parentExpression.translateElement( padding, padding );
 
         },
 

@@ -18,7 +18,7 @@ define( function ( require, exports, modules ) {
              * @param supOperand 上限
              * @param subOperand 下限
              */
-            constructor: function ( superscript, subscript ) {
+            constructor: function ( integrand, superscript, subscript ) {
 
                 this.callBase();
 
@@ -26,6 +26,7 @@ define( function ( require, exports, modules ) {
 
                 this.setOperator( new IntegrationOperator() );
 
+                this.setIntegrand( integrand );
                 this.setSuperscript( superscript );
                 this.setSubscript( subscript );
 
@@ -41,16 +42,16 @@ define( function ( require, exports, modules ) {
                 return this;
             },
 
+            setIntegrand: function ( integrand ) {
+                this.setOperand( integrand, 0 );
+            },
+
             setSuperscript: function ( sup ) {
-
-                this.setOperand( sup, 0 );
-
+                this.setOperand( sup, 1 );
             },
 
             setSubscript: function ( sub ) {
-
-                this.setOperand( sub, 1 );
-
+                this.setOperand( sub, 2 );
             }
 
         } );

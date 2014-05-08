@@ -20,8 +20,8 @@
                     } ),
                 brackets1 = new kf.BracketsExpression( "(", ")", new kf.CombinationExpression( "1+", new kf.FractionExpression("1", "n") ) ),
                 exps = [
-                    new kf.CombinationExpression( new kf.FunctionExpression( "sin" ), 30 ),
-                    new kf.CombinationExpression( "e=", new kf.FunctionExpression( "lim", null, "x\\to\\\\infty\\" ), new kf.SuperscriptExpression( brackets1, 3 ) )
+                    new kf.FunctionExpression( "sin", 30 ),
+                    new kf.CombinationExpression( "e=", new kf.FunctionExpression( "lim", new kf.SuperscriptExpression( brackets1, 3 ), null, "x\\to\\\\infty\\" ) )
                 ];
 
 

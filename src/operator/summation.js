@@ -19,21 +19,26 @@ define( function ( require, exports, modules ) {
 
         },
 
-        applyOperand: function ( sup, sub ) {
+        applyOperand: function ( expr, sup, sub ) {
 
-            var opShape = this.getOperatorShape();
+            var opShape = this.getOperatorShape(),
+                expBox = expr.getFixRenderBox(),
+                padding = 5,
+                space = new ScriptController( this, opShape, sup, sub ).applyUpDown(),
+                diff = ( space.height - expBox.height ) / 2;
 
-            new ScriptController( this, opShape, sup, sub, {
-                extend: {
-                    width: 5,
-                    height: 5
-                },
-                allOffset: {
-                    x: 5,
-                    y: 5
-                },
-                zoom: 0.5
-            } ).applyUpDown();
+            if ( diff >= 0 ) {
+                expr.translate( space.width + padding, diff );
+            } else {
+                diff = -diff;
+                opShape.translate( 0, diff );
+                sup.translate( 0, diff );
+                sub.translate( 0, diff );
+                expr.translate( space.width + padding, 0 );
+            }
+
+            this.parentExpression.expand( padding, padding * 2 );
+            this.parentExpression.translateElement( padding, padding );
 
         },
 

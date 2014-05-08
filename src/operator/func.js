@@ -22,17 +22,33 @@ define( function ( require, exports, modules ) {
 
         /*
          * 积分操作符应用操作数
-         * @param integrand 被积函数
-         * @param supOperand 上限
-         * @param subOperand 下限
+         * @param expr 函数表达式
+         * @param sup 上限
+         * @param sub 下限
          */
-        applyOperand: function ( supOperand, subOperand ) {
+        applyOperand: function ( expr, sup, sub ) {
 
-            var opShape = generateOperator.call( this );
 
-            this.addOperatorShape( opShape );
+            var opShape = generateOperator.call( this ),
+                padding = 5,
+                expBox = expr.getFixRenderBox(),
+                space = new ScriptController( this, opShape, sup, sub, {
+                    zoom: 0.5
+                } ).applyUpDown(),
+                diff = ( space.height - expBox.height ) / 2;
 
-            adjustmentPosition.call( this, opShape, supOperand, subOperand );
+            if ( diff >= 0 ) {
+                expr.translate( space.width + padding, diff );
+            } else {
+                diff = -diff;
+                opShape.translate( 0, diff );
+                sup.translate( 0, diff );
+                sub.translate( 0, diff );
+                expr.translate( space.width + padding, 0 );
+            }
+
+            this.parentExpression.expand( padding, padding * 2 );
+            this.parentExpression.translateElement( padding, padding );
 
         }
 
@@ -41,22 +57,10 @@ define( function ( require, exports, modules ) {
     /* 返回操作符对象 */
     function generateOperator () {
 
-        return new Text( this.funcName, "KF AMS ROMAN" );
+        var opShape = new Text( this.funcName, "KF AMS ROMAN" );
+        this.addOperatorShape( opShape )
 
-    }
-
-    function adjustmentPosition ( operatorShape, sup, sub ) {
-
-        new ScriptController( this, operatorShape, sup, sub, {
-            expand: {
-                width: 10,
-                height: 0
-            },
-            allOffset: {
-                x: 5,
-                y: 0
-            }
-        } ).applyUpDown();
+        return opShape;
 
     }
 
