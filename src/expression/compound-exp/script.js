@@ -35,22 +35,6 @@ define( function ( require, exports, modules ) {
 
         setSubscript: function ( sub ) {
             this.setOperand( sub, 2 );
-        },
-
-        getOpd: function () {
-            this.getOperand( 0 );
-        },
-
-        getSuperscript: function () {
-            this.getOperand( 1 );
-        },
-
-        getSubscript: function () {
-            this.getOperand( 2 );
-        },
-
-        applyOperand: function () {
-
         }
 
     } );

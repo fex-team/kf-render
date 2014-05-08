@@ -4,8 +4,7 @@
 
 define( function ( require, exports, module ) {
 
-    var kity = require( "kity" ),
-        CHAR_DATA = require( 'char/data' );
+    var kity = require( "kity" );
 
     return kity.createClass( "Char", {
 

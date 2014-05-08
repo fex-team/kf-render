@@ -8,8 +8,6 @@
 
         global.kf = {
 
-            FontInstaller: require( "string/installer" ),
-
             // base
             Formula: require( "formula" ),
             Operator: require( "operator/operator" ),
@@ -18,7 +16,6 @@
             Expression: require( "expression/expression" ),
             CompoundExpression: require( "expression/compound" ),
             TextExpression: require( "expression/text" ),
-            RomanTextExpression: require( "expression/roman" ),
             EmptyExpression: require( "expression/empty" ),
             CombinationExpression: require( "expression/compound-exp/combination" ),
             FunctionExpression: require( "expression/compound-exp/func" ),
@@ -29,9 +26,7 @@
             ScriptExpression: require( "expression/compound-exp/script" ),
             SuperscriptExpression: require( "expression/compound-exp/binary-exp/superscript" ),
             SubscriptExpression: require( "expression/compound-exp/binary-exp/subscript" ),
-            SubtractionExpression: require( "expression/compound-exp/binary-exp/subtraction" ),
             SummationExpression: require( "expression/compound-exp/summation" ),
-            ParallelExpression: require( "expression/compound-exp/binary-exp/parallel"),
 
             // Brackets expressoin
             BracketsExpression: require( "expression/compound-exp/brackets" )

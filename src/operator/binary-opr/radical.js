@@ -8,7 +8,7 @@ define( function ( require, exports, modules ) {
 
         // 符号图形属性
         // 线条宽度
-        SHAPE_DATA_WIDTH = 0.5,
+        SHAPE_DATA_WIDTH = 1,
 
         // 计算公式
         radians = 2 * Math.PI / 360,
@@ -50,8 +50,8 @@ define( function ( require, exports, modules ) {
 
         adjustmentPosition.call( this, mergeShape( decoration, vLine, hLine ), this.operatorShape, radicand, exponent );
 
-        this.parentExpression.expand( 5, 5 );
-        this.parentExpression.translateElement( 5, 5 );
+        this.parentExpression.expand( 0, 10 );
+        this.parentExpression.translateElement( 0, 5 );
 
     }
 

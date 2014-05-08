@@ -5,11 +5,7 @@
 define( function ( require, exports, module ) {
 
     var kity = require( "kity" ),
-
-        CHAR_ALIASE = require( "char/map" ),
-
-        FONT_DEFINE = require( "char/def" );
-
+        FontManager = require( "font/manager" );
 
     return kity.createClass( 'Text', {
 
@@ -19,10 +15,10 @@ define( function ( require, exports, module ) {
 
             this.callBase();
 
-            this.fontFamily = fontFamily || FONT_DEFINE.KF_AMS_MAIN;
+            this.fontFamily = fontFamily;
             this.content = content || "";
 
-            this.transformContent = transform( this.content );
+            this.transformContent = this.transform( this.content );
 
             this.contentShape = new kity.Group();
             this.contentNode = this.createContent();
@@ -65,16 +61,25 @@ define( function ( require, exports, module ) {
 
             return height;
 
+        },
+
+        transform: function ( content ) {
+
+            var fontFamily = this.fontFamily;
+
+            return content.replace( /\\([a-zA-Z]+)\\/g, function ( match, input ) {
+                var data = FontManager.getCharacterValue( input, fontFamily )
+
+                if ( !data ) {
+                    console.error( input+"丢失" )
+                }
+
+                return data;
+
+            } );
+
         }
 
     } );
-
-    function transform ( content ) {
-
-        return content.replace( /\\([a-zA-Z]+)\\/g, function ( match, input ) {
-            return CHAR_ALIASE[ input ];
-        } );
-
-    }
 
 } );

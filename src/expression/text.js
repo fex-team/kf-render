@@ -6,7 +6,7 @@ define( function ( require, exports, module ) {
 
     var Text = require( "char/text" ),
         kity = require( "kity" ),
-        FONT_DEFINE = require( "char/def" ),
+        FONT_CONF = require( "char/conf" ),
         Expression = require( "expression/expression" ),
         TextExpression = kity.createClass( 'TextExpression', {
 
@@ -16,7 +16,7 @@ define( function ( require, exports, module ) {
 
                 this.callBase();
 
-                this.fontFamily = fontFamily || FONT_DEFINE.KF_AMS_MAIN;
+                this.fontFamily = fontFamily || FONT_CONF.defaultFont;
                 this.setFlag( "Text" );
 
                 this.content = content + '';

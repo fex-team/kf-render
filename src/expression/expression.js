@@ -75,7 +75,7 @@ define( function ( require, exports, module ) {
 
             expand: function ( width, height ) {
                 var renderBox = this.getRenderBox();
-                this.setBoxSize( renderBox.width + width * 2, renderBox.height + height * 2 );
+                this.setBoxSize( renderBox.width + width , renderBox.height + height );
             },
 
             getBaseWidth: function () {

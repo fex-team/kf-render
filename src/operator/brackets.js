@@ -4,8 +4,7 @@
 
 define( function ( require, exports, modules ) {
 
-    var kity = require( "kity" ),
-        SYMBOL_DATA = require( "char/data" );
+    var kity = require( "kity" );
 
     return kity.createClass( 'BracketsOperator', {
 

@@ -18,9 +18,10 @@
         window.onload = function () {
 
             var formula = new kf.Formula( document.body ),
-                sumExp = new kf.SummationExpression( "f(x)+13", "n=1", "n" );
+                sumExp = new kf.SummationExpression( "n=1", "n" ),
+                intExp = new kf.IntegrationExpression( "x", "y" );
 
-            formula.appendExpression( sumExp );
+            formula.appendExpression( new kf.CombinationExpression( sumExp, intExp ) );
 
         };
 

@@ -4,8 +4,7 @@
 
 define( function ( require, exports, module ) {
 
-    var kity = require( 'kity' ),
-        FontInstall = require( "string/installer" );
+    var kity = require( 'kity' );
 
     return kity.createClass( 'FPaper', {
 
@@ -26,16 +25,6 @@ define( function ( require, exports, module ) {
 
             this.base( 'addShape', this.background );
             this.base( 'addShape', this.container );
-
-            this.initFont();
-
-        },
-
-        initFont: function () {
-
-            this.fontManager = new FontInstall( this );
-
-            this.fontManager.mount( require( "font/kf-ams-main" ) );
 
         },
 

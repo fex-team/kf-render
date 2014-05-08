@@ -6,6 +6,9 @@ define( function ( require, exports, module ) {
 
     var kity = require( 'kity' ),
         GTYPE = require( "def/gtype" ),
+        CONF = require( "conf" ),
+        FontManager = require( "font/manager" ),
+        FontInstaller = require( "font/installer" ),
         DEFAULT_OPTIONS = {
             fontsize: 50,
             autoresize: true,
@@ -57,113 +60,146 @@ define( function ( require, exports, module ) {
 
             }
 
+        }),
+
+        Formula = kity.createClass( 'Formula', {
+
+            base: require( 'fpaper' ),
+
+            constructor: function ( container, config ) {
+
+                this.callBase( container );
+                this.expressions = [];
+                this.fontInstaller = new FontInstaller( this );
+
+                this.config = kity.Utils.extend( {}, DEFAULT_OPTIONS, config );
+
+                this.initEnvironment();
+                this.initFont();
+
+            },
+
+            initEnvironment: function () {
+
+                this.zoom = ( this.config.fontsize ) / 50 ;
+
+                if ( "width" in this.config ) {
+                    this.setWidth( this.config.width );
+                }
+
+                if ( "height" in this.config ) {
+                    this.setHeight( this.config.height );
+                }
+
+                this.node.setAttribute( "font-size", DEFAULT_OPTIONS.fontsize );
+
+            },
+
+            initFont: function () {
+
+                var fontInstaller = this.fontInstaller;
+
+                kity.Utils.each( FontManager.getFontList(), function ( fontData ) {
+                    fontInstaller.mount( fontData );
+                } );
+
+            },
+
+            insertExpression: function ( expression, index ) {
+
+                var expWrap = this.wrap( expression );
+
+                // clear zoom
+                this.container.resetTransform();
+
+                this.expressions.splice( index, 0, expWrap.getWrapShape() );
+
+                this.addShape( expWrap.getWrapShape() );
+
+                notifyExpression.call( this, expWrap.getExpression() );
+                expWrap.resize();
+                correctOffset.call( this );
+
+                this.resetZoom();
+                this.config.autoresize && this.resize();
+
+            },
+
+            appendExpression: function ( expression ) {
+
+                this.insertExpression( expression, this.expressions.length );
+
+            },
+
+            resize: function () {
+
+                var renderBox = this.container.getRenderBox();
+
+                this.node.setAttribute( "width", renderBox.width );
+                this.node.setAttribute( "height", renderBox.height );
+
+            },
+
+            resetZoom: function () {
+
+                var zoomLevel = this.zoom / this.getBaseZoom();
+
+                if ( zoomLevel !== 0 ) {
+
+                    this.container.setAnchor( 0, 0 );
+                    this.container.scale( zoomLevel );
+
+                }
+
+            },
+
+            wrap: function ( exp ) {
+
+                return new ExpressionWrap( exp, this.config );
+
+            },
+
+            clear: function () {
+
+                this.callBase();
+                this.expressions = [];
+
+            },
+
+            clearExpressions: function () {
+
+                kity.Utils.each( this.expressions, function ( exp, i ) {
+
+                    exp.remove();
+
+                } );
+
+                this.expressions = [];
+
+            }
+
         } );
 
-    return kity.createClass( 'Formula', {
+    kity.Utils.extend( Formula, {
 
-        base: require( 'fpaper' ),
+        registerFont: function ( fontData ) {
 
-        constructor: function ( container, config ) {
-
-            this.callBase( container );
-            this.expressions = [];
-
-            this.config = kity.Utils.extend( {}, DEFAULT_OPTIONS, config );
-
-            this.initEnvironment();
-
-        },
-
-        initEnvironment: function () {
-
-            this.zoom = ( this.config.fontsize ) / 50 ;
-
-            if ( "width" in this.config ) {
-                this.setWidth( this.config.width );
-            }
-
-            if ( "height" in this.config ) {
-                this.setHeight( this.config.height );
-            }
-
-            this.node.setAttribute( "font-size", DEFAULT_OPTIONS.fontsize );
-
-        },
-
-        insertExpression: function ( expression, index ) {
-
-            var expWrap = this.wrap( expression );
-
-            // clear zoom
-            this.container.resetTransform();
-
-            this.expressions.splice( index, 0, expWrap.getWrapShape() );
-
-            this.addShape( expWrap.getWrapShape() );
-
-            notifyExpression.call( this, expWrap.getExpression() );
-            expWrap.resize();
-            correctOffset.call( this );
-
-            this.resetZoom();
-            this.config.autoresize && this.resize();
-
-        },
-
-        appendExpression: function ( expression ) {
-
-            this.insertExpression( expression, this.expressions.length );
-
-        },
-
-        resize: function () {
-
-            var renderBox = this.container.getRenderBox();
-
-            this.node.setAttribute( "width", renderBox.width );
-            this.node.setAttribute( "height", renderBox.height );
-
-        },
-
-        resetZoom: function () {
-
-            var zoomLevel = this.zoom / this.getBaseZoom();
-
-            if ( zoomLevel !== 0 ) {
-
-                this.container.setAnchor( 0, 0 );
-                this.container.scale( zoomLevel );
-
-            }
-
-        },
-
-        wrap: function ( exp ) {
-
-            return new ExpressionWrap( exp, this.config );
-
-        },
-
-        clear: function () {
-
-            this.callBase();
-            this.expressions = [];
-
-        },
-
-        clearExpressions: function () {
-
-            kity.Utils.each( this.expressions, function ( exp, i ) {
-
-                exp.remove();
-
-            } );
-
-            this.expressions = [];
+            FontManager.registerFont( fontData );
 
         }
 
     } );
+
+    // 自运行， 注册配置好的字体
+    ( function () {
+
+        kity.Utils.each( CONF.font.list, function ( fontData ) {
+
+            Formula.registerFont( fontData );
+
+        } );
+
+    } )();
 
     // 调整表达式之间的偏移
     function correctOffset () {
@@ -225,5 +261,7 @@ define( function ( require, exports, module ) {
         expression.addedCall && expression.addedCall();
 
     }
+
+    return Formula;
 
 } );

@@ -10,7 +10,7 @@ define( function ( require, exports, modules ) {
 
         IntegrationExpression = kity.createClass( 'IntegrationExpression', {
 
-            base: require( "expression/compound-exp/scriptable-func" ),
+            base: require( "expression/compound" ),
 
             /**
              * 构造积分表达式
@@ -18,25 +18,16 @@ define( function ( require, exports, modules ) {
              * @param supOperand 上限
              * @param subOperand 下限
              */
-            constructor: function ( integrand, superscript, subscript ) {
+            constructor: function ( superscript, subscript ) {
 
-                var operator = new IntegrationOperator();
+                this.callBase();
 
-                this.callBase( operator, integrand, superscript, subscript );
                 this.setFlag( "Integration" );
 
-                this.setScriptOperand( operator );
-                this.setOperator( operator );
+                this.setOperator( new IntegrationOperator() );
 
-                this.setIntegrand( integrand );
                 this.setSuperscript( superscript );
                 this.setSubscript( subscript );
-
-                this.setScriptOperand( operator );
-                this.setOperator( operator );
-
-                // 设置下标偏移
-                this.setSubOffset( -20 );
 
             },
 
@@ -48,30 +39,20 @@ define( function ( require, exports, modules ) {
                 this.getOperator().resetType();
             },
 
-            setIntegrand: function ( exp ) {
-
-                this.setOperand( exp, 0 );
-
-            },
-
             setSuperscript: function ( sup ) {
 
-                this.setOperand( sup, 1 );
-                this.setScriptSup( this.getOperand( 1 ) );
+                this.setOperand( sup, 0 );
 
             },
 
             setSubscript: function ( sub ) {
 
-                this.setOperand( sub, 2 );
-                this.setScriptSub( this.getOperand( 2 ) );
+                this.setOperand( sub, 1 );
 
             }
 
         } );
 
-
-    kity.Utils.extend( IntegrationExpression, IntegrationOperator.types );
 
     return IntegrationExpression;
 

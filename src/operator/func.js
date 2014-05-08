@@ -5,7 +5,7 @@
 define( function ( require, exports, modules ) {
 
     var kity = require( "kity" ),
-        RomanText = require( "char/roman" );
+        Text = require( "char/text" );
 
     return kity.createClass( 'FunctionOperator', {
 
@@ -38,7 +38,7 @@ define( function ( require, exports, modules ) {
     /* 返回操作符对象 */
     function generateOperator () {
 
-        var textShape = new RomanText( this.funcName );
+        var textShape = new Text( this.funcName );
 
         this.addOperatorShape( textShape );
 
