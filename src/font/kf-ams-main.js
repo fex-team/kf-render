@@ -2244,6 +2244,7 @@ define( function ( require ) {
             "ddots": "\u22f0",
             "vdots": "\u22ee",
             "dots": "\u2026",
+            "ldots": "\u2026",
             "#": "\u0023",
             "bot": "\u22a5",
             "angle": "\u2220",

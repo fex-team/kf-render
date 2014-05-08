@@ -18,8 +18,8 @@ define( function ( require, exports, modules ) {
 
         applyOperand: function ( upOperand, downOperand ) {
 
-            upOperand.setAnchor( 0, 0 ).scale( 0.66 );
-            downOperand.setAnchor( 0, 0 ).scale( 0.66 );
+            upOperand.scale( 0.66 );
+            downOperand.scale( 0.66 );
 
             var upWidth = Math.ceil( upOperand.getWidth() ),
                 downWidth = Math.ceil( downOperand.getWidth() ),

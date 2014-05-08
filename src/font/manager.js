@@ -26,6 +26,16 @@ define( function ( require ) {
 
         },
 
+        getCharacterData: function ( char, fontFamily ) {
+
+            try {
+                return FONT_LIST[ fontFamily ].data[ char ].d;
+            } catch ( e ) {
+                return null;
+            }
+
+        },
+
         /**
          * 按照指定的字体族， 返回给定的转义序列str所对应的unicode字符
          * 如果不存在对应的字体族或者该族内不存在对应的转义序列， 则返回空串

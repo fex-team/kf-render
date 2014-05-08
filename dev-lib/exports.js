@@ -4,6 +4,14 @@
 
 ( function ( global ) {
 
+    var oldGetRenderBox = kity.Shape.getRenderBox;
+
+    kity.extendClass(kity.Shape, {
+        getFixRenderBox: function () {
+            return this.getRenderBox( this.container.container );
+        }
+    });
+
     define( 'kf.start', function ( require ) {
 
         global.kf = {

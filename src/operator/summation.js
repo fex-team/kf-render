@@ -48,12 +48,11 @@ define( function ( require, exports, modules ) {
             group.addShape( opBgShape );
             group.addShape( operatorShape );
 
-            operatorShape.setAnchor( 0, 0 );
             operatorShape.scale( 1.6 );
 
             this.addOperatorShape( group );
 
-            opRenderBox = operatorShape.getRenderBox();
+            opRenderBox = operatorShape.getFixRenderBox();
 
             if ( this.displayType === "inline" ) {
                 operatorShape.translate( 5, 15 );

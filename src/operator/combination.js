@@ -29,7 +29,7 @@ define( function ( require, exports, modules ) {
 
             kity.Utils.each( operands, function ( operand ) {
 
-                var box = operand.getRenderBox();
+                var box = operand.getFixRenderBox();
 
                 cached.push( box );
                 maxHeight = Math.max( box.height, maxHeight );

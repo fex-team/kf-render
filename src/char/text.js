@@ -18,7 +18,7 @@ define( function ( require, exports, module ) {
             this.fontFamily = fontFamily;
             this.content = content || "";
 
-            this.transformContent = this.transform( this.content );
+            this.translationContent = this.translation( this.content );
 
             this.contentShape = new kity.Group();
             this.contentNode = this.createContent();
@@ -32,7 +32,7 @@ define( function ( require, exports, module ) {
 
         createContent: function () {
 
-            var contentNode = new kity.Text( this.transformContent );
+            var contentNode = new kity.Text( this.translationContent );
 
             contentNode.setAttr( {
                 "font-family": this.fontFamily,
@@ -63,7 +63,7 @@ define( function ( require, exports, module ) {
 
         },
 
-        transform: function ( content ) {
+        translation: function ( content ) {
 
             var fontFamily = this.fontFamily;
 

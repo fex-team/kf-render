@@ -76,7 +76,7 @@ define( function ( require, exports, modules ) {
 
             opGroup.translate( 2, 15 );
 
-            opBox.setSize( opGroup.getRenderBox().width + 4, opGroup.getRenderBox().height + 25 );
+            opBox.setSize( opGroup.getFixRenderBox().width + 4, opGroup.getFixRenderBox().height + 25 );
 
             return group;
 

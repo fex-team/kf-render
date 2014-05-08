@@ -4,7 +4,8 @@
 
 define( function ( require, exports, modules ) {
 
-    var kity = require( "kity" );
+    var kity = require( "kity" ),
+        FontManager = require( "font/manager" );
 
     return kity.createClass( 'BracketsOperator', {
 
@@ -28,50 +29,46 @@ define( function ( require, exports, modules ) {
 
         var left = this.getParentExpression().getLeftSymbol(),
             right = this.getParentExpression().getRightSymbol(),
-            leftPath = SYMBOL_DATA.std[ left ].path,
-            rightPath = SYMBOL_DATA.std[ right ].path,
+            leftPath = FontManager.getCharacterData( left, "KF AMS MAIN" ),
+            rightPath = FontManager.getCharacterData( right, "KF AMS MAIN" ),
             group = new kity.Group(),
             leftOp = new kity.Path( leftPath ).fill( "black" ),
             rightOp = new kity.Path( rightPath ).fill( "black" ),
-            expSpaceSize = exp.getRenderBox(),
+            expSpaceSize = exp.getFixRenderBox(),
             leftOpSize = null,
             rightOpSize = null,
             leftZoom = 1,
             rightZoom = 1,
             // 左右空间大小
-            SPACE = 2,
+            SPACE = 0,
             offset = 0;
 
         this.addOperatorShape( group.addShape( leftOp ).addShape( rightOp ) );
 
-        leftOpSize = leftOp.getRenderBox();
-        rightOpSize = rightOp.getRenderBox();
+        leftOpSize = leftOp.getFixRenderBox();
+        rightOpSize = rightOp.getFixRenderBox();
 
         leftZoom = expSpaceSize.height ? expSpaceSize.height / leftOpSize.height : 1;
         rightZoom = expSpaceSize.height ? expSpaceSize.height / rightOpSize.height : 1;
 
-        if ( leftZoom > 1 ) {
-            leftOp.setAnchor( 0, 0 ).scale( 1 + ( leftZoom - 1 ) / 2, leftZoom );
-        }
-
-        if ( rightZoom > 1 ) {
-            rightOp.setAnchor( 0, 0 ).scale( 1 + ( rightZoom - 1 ) / 2, rightZoom );
-        }
+        leftOp.scale( leftZoom );
+        rightOp.scale( rightZoom );
 
         // 重新获取大小
-        leftOpSize = leftOp.getRenderBox();
-        rightOpSize = rightOp.getRenderBox();
+        leftOpSize = leftOp.getFixRenderBox();
+        rightOpSize = rightOp.getFixRenderBox();
 
-        offset += SPACE;
-        leftOp.translate( offset, 0 );
+        offset -= leftOpSize.x;
+        leftOp.translate( offset, -leftOpSize.y );
 
-        offset += SPACE + leftOpSize.width;
+        offset += SPACE + leftOpSize.width - expSpaceSize.x;
         exp.translate( offset, 0 );
 
-        offset += SPACE + expSpaceSize.width;
-        rightOp.translate( offset, 0 );
+        offset += SPACE + expSpaceSize.width - rightOpSize.x;
+        rightOp.translate( offset, -rightOpSize.y );
 
-//        this.setBoxSize( offset + rightOpSize.width + SPACE, expSpaceSize.height );
+        this.parentExpression.expand( 10, 0 );
+        this.parentExpression.translateElement( 5, 0 );
 
     }
 

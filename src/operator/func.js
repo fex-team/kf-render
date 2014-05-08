@@ -5,7 +5,8 @@
 define( function ( require, exports, modules ) {
 
     var kity = require( "kity" ),
-        Text = require( "char/text" );
+        Text = require( "char/text" ),
+        ScriptController = require( "operator/common/script-controller" );
 
     return kity.createClass( 'FunctionOperator', {
 
@@ -25,11 +26,13 @@ define( function ( require, exports, modules ) {
          * @param supOperand 上限
          * @param subOperand 下限
          */
-        applyOperand: function ( funcExp, supOperand, subOperand ) {
+        applyOperand: function ( supOperand, subOperand ) {
 
-            generateOperator.call( this );
+            var opShape = generateOperator.call( this );
 
-            adjustmentPosition.call( this, this.operatorShape, funcExp, supOperand, subOperand );
+            this.addOperatorShape( opShape );
+
+            adjustmentPosition.call( this, opShape, supOperand, subOperand );
 
         }
 
@@ -38,33 +41,22 @@ define( function ( require, exports, modules ) {
     /* 返回操作符对象 */
     function generateOperator () {
 
-        var textShape = new Text( this.funcName );
-
-        this.addOperatorShape( textShape );
-
-        textShape.addedCall();
-
-        return this.operatorShape;
+        return new Text( this.funcName, "KF AMS ROMAN" );
 
     }
 
-    function adjustmentPosition ( operatorShape, funcExp, supOperand, subOperand ) {
+    function adjustmentPosition ( operatorShape, sup, sub ) {
 
-        supOperand.setAnchor( 0, 0 ).scale( 0.7 );
-        subOperand.setAnchor( 0, 0 ).scale( 0.7 );
-
-        var opBox = operatorShape.getRenderBox(),
-            supBox = supOperand.getRenderBox(),
-            subBox = subOperand.getRenderBox(),
-            expBox = funcExp.getRenderBox(),
-            maxScriptHeight = Math.max( supBox.height, subBox.height ),
-            maxWidth = Math.max( opBox.width, subBox.width, supBox.width );
-
-        supOperand.translate( ( maxWidth - supBox.width ) / 2, maxScriptHeight - supBox.height );
-        operatorShape.translate( ( maxWidth - opBox.width ) / 2, maxScriptHeight );
-        subOperand.translate( ( maxWidth - subBox.width ) / 2, maxScriptHeight + opBox.height );
-
-        funcExp.translate( maxWidth + 5, ( maxScriptHeight * 2 + opBox.height - expBox.height ) / 2 );
+        new ScriptController( this, operatorShape, sup, sub, {
+            expand: {
+                width: 10,
+                height: 0
+            },
+            allOffset: {
+                x: 5,
+                y: 0
+            }
+        } ).applyUpDown();
 
     }
 

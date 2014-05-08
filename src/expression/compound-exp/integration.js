@@ -33,10 +33,12 @@ define( function ( require, exports, modules ) {
 
             setType: function ( type ) {
                 this.getOperator().setType( type );
+                return this;
             },
 
             resetType: function () {
                 this.getOperator().resetType();
+                return this;
             },
 
             setSuperscript: function ( sup ) {

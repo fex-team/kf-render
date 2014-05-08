@@ -74,7 +74,7 @@ define( function ( require, exports, module ) {
             },
 
             expand: function ( width, height ) {
-                var renderBox = this.getRenderBox();
+                var renderBox = this.getFixRenderBox();
                 this.setBoxSize( renderBox.width + width , renderBox.height + height );
             },
 
@@ -92,7 +92,7 @@ define( function ( require, exports, module ) {
 
             updateBoxSize: function () {
 
-                var renderBox = this.expContent.getRenderBox();
+                var renderBox = this.expContent.getFixRenderBox();
                 this.setBoxSize( renderBox.width, renderBox.height );
 
             },

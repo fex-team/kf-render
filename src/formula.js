@@ -49,7 +49,7 @@ define( function ( require, exports, module ) {
             resize: function () {
 
                 var padding = this.config.padding,
-                    expBox = this.exp.getRenderBox();
+                    expBox = this.exp.getFixRenderBox();
 
                 if ( padding.length === 1 ) {
                     padding[ 1 ] = padding[ 0 ];
@@ -110,7 +110,7 @@ define( function ( require, exports, module ) {
                 var expWrap = this.wrap( expression );
 
                 // clear zoom
-                this.container.resetTransform();
+                this.container.clearTransform();
 
                 this.expressions.splice( index, 0, expWrap.getWrapShape() );
 
@@ -133,7 +133,7 @@ define( function ( require, exports, module ) {
 
             resize: function () {
 
-                var renderBox = this.container.getRenderBox();
+                var renderBox = this.container.getFixRenderBox();
 
                 this.node.setAttribute( "width", renderBox.width );
                 this.node.setAttribute( "height", renderBox.height );
@@ -146,7 +146,6 @@ define( function ( require, exports, module ) {
 
                 if ( zoomLevel !== 0 ) {
 
-                    this.container.setAnchor( 0, 0 );
                     this.container.scale( zoomLevel );
 
                 }
@@ -214,8 +213,8 @@ define( function ( require, exports, module ) {
                 return;
             }
 
-            expr.setTransform( new kity.Matrix( 1, 0, 0, 1, 0, 0 ) );
-            box = expr.getRenderBox();
+            expr.setMatrix( new kity.Matrix( 1, 0, 0, 1, 0, 0 ) );
+            box = expr.getFixRenderBox();
             expr.translate( 0 - box.x, exprOffset );
 
             exprOffset += box.height + EXPRESSION_INTERVAL;

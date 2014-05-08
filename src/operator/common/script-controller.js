@@ -42,14 +42,14 @@ define( function ( require ) {
                 sub = this.sub,
                 options = this.options;
 
-            sup.setAnchor( 0, 0 ).scale( options.zoom );
-            sub.setAnchor( 0, 0 ).scale( options.zoom );
+            sup.scale( options.zoom );
+            sub.scale( options.zoom );
 
-            var targetBox = target.getRenderBox();
+            var targetBox = target.getFixRenderBox();
 
             // 基础空间大小
-            var supBox = sup.getRenderBox(),
-                subBox = sub.getRenderBox(),
+            var supBox = sup.getFixRenderBox(),
+                subBox = sub.getFixRenderBox(),
                 maxOffset = Math.max( supBox.height, subBox.height ),
                 space = {
                     width: Math.max( targetBox.width, supBox.width, subBox.width ),
@@ -67,6 +67,10 @@ define( function ( require ) {
             target.translate( ( space.width - targetBox.width ) / 2, maxOffset );
             sub.translate( ( space.width - subBox.width ) / 2, maxOffset + targetBox.height );
 
+            this.opObj.parentExpression.setBoxSize( space.width, space.height );
+            this.opObj.parentExpression.expand( options.expand.width, options.expand.height );
+            this.opObj.parentExpression.translateElement( options.allOffset.x, options.allOffset.y );
+
         },
 
         // 侧面标记
@@ -77,17 +81,17 @@ define( function ( require ) {
                 sub = this.sub,
                 options = this.options;
             
-            sup.setAnchor( 0, 0 ).scale( options.zoom );
-            sub.setAnchor( 0, 0 ).scale( options.zoom );
+            sup.scale( options.zoom );
+            sub.scale( options.zoom );
 
-            var targetBox = target.getRenderBox();
+            var targetBox = target.getFixRenderBox();
 
             // 默认字符高度
             targetBox.height = targetBox.height || 50;
 
             // 基础空间大小
-            var supBox = sup.getRenderBox(),
-                subBox = sub.getRenderBox(),
+            var supBox = sup.getFixRenderBox(),
+                subBox = sub.getFixRenderBox(),
                 maxOffset = Math.max( supBox.height, subBox.height ),
                 space = {
                     width: targetBox.width + Math.max( supBox.width + options.supOffset, subBox.width + options.subOffset ),

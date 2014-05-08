@@ -14,10 +14,10 @@ define( function ( require, exports, modules ) {
         applyOperand: function ( leftOperand, rightOperand ) {
 
             var operator = this,
-                operatorBox = operator.getRenderBox(),
+                operatorBox = operator.getFixRenderBox(),
                 // 操作数特殊处理
-                leftOperandBox = leftOperand.getRenderBox(),
-                rightOperandBox = rightOperand.getRenderBox(),
+                leftOperandBox = leftOperand.getFixRenderBox(),
+                rightOperandBox = rightOperand.getFixRenderBox(),
 
                 // 偏移量
                 offset = 0,

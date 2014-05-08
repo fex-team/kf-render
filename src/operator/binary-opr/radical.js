@@ -107,12 +107,12 @@ define( function ( require, exports, modules ) {
     // 合并根号的各个部分， 并返回根号的关键点位置数据
     function mergeShape ( decoration, vLine, hLine ) {
 
-        var decoBox = decoration.getRenderBox(),
-            vLineBox = vLine.getRenderBox();
+        var decoBox = decoration.getFixRenderBox(),
+            vLineBox = vLine.getFixRenderBox();
 
         vLine.translate( decoBox.width - sin20 * SHAPE_DATA_WIDTH * 3, 0 );
         decoration.translate( 0, vLineBox.height - decoBox.height );
-        vLineBox = vLine.getRenderBox();
+        vLineBox = vLine.getFixRenderBox();
 
         hLine.translate( vLineBox.x + vLineBox.width - SHAPE_DATA_WIDTH / cos20, 0 );
 
@@ -132,11 +132,10 @@ define( function ( require, exports, modules ) {
                 x: 0,
                 y: 0
             },
-            opBox = operator.getRenderBox();
+            opBox = operator.getFixRenderBox();
 
-        exponent.setAnchor( 0, 0 );
-        exponent.scale( 0.7 );
-        exponentBox = exponent.getRenderBox();
+        exponent.scale( 0.66 );
+        exponentBox = exponent.getFixRenderBox();
 
         if ( exponentBox.width > 0 && exponentBox.height > 0 ) {
 

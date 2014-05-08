@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>方根表达式</title>
+    <title>表达式 - 分数</title>
     <meta charset="utf-8">
-    <script src="../dev-lib/kitygraph.all.js"></script>
-    <script src="../dev-lib/dev-define.js"></script>
+    <script src="../../dev-lib/kitygraph.all.js"></script>
+    <script src="../../dev-lib/dev-define.js"></script>
     <script>
         inc.config({
-            base: '../src'
+            base: '../../src'
         });
     </script>
-    <script src="../dev-lib/exports.js"></script>
-    <script src="../dev-lib/dev-start.js"></script>
+    <script src="../../dev-lib/exports.js"></script>
+    <script src="../../dev-lib/dev-start.js"></script>
     <script>
         window.onload = function () {
 
@@ -19,8 +19,8 @@
                         autoresize: false
                     } ),
                 exps = [
-                    new kf.CombinationExpression( "2=", new kf.RadicalExpression( "4", "2" ) ),
-                    new kf.RadicalExpression( "a+b\\div\\c" )
+                        new kf.CombinationExpression( new kf.FractionExpression( "1", "2" ), "+\\cdots\\+", new kf.FractionExpression( "1", "10" ) ),
+                        new kf.FractionExpression( "a-b", "a+b" )
                 ];
 
 
@@ -33,7 +33,7 @@
     </script>
 </head>
 <body>
-    <h1>方根表达式</h1>
+    <h1>分数表达式</h1>
     <p>
         构造方法： new kf.Text( "\\\\to \\\\gets \\\\subseteq" );
     </p>

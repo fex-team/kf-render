@@ -30,7 +30,7 @@ define( function ( require, exports, module ) {
 
             addedCall: function () {
 
-                var box = this.textContent.getRenderBox();
+                var box = this.textContent.getFixRenderBox();
 
                 this.getChild( 1 ).setSize( box.width, box.height );
                 this.updateBoxSize();

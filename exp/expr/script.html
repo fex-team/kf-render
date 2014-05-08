@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>表达式 - 分数</title>
+    <title>上下标表达式</title>
     <meta charset="utf-8">
-    <script src="../dev-lib/kitygraph.all.js"></script>
-    <script src="../dev-lib/dev-define.js"></script>
+    <script src="../../dev-lib/kitygraph.all.js"></script>
+    <script src="../../dev-lib/dev-define.js"></script>
     <script>
         inc.config({
-            base: '../src'
+            base: '../../src'
         });
     </script>
-    <script src="../dev-lib/exports.js"></script>
-    <script src="../dev-lib/dev-start.js"></script>
+    <script src="../../dev-lib/exports.js"></script>
+    <script src="../../dev-lib/dev-start.js"></script>
     <script>
         window.onload = function () {
 
@@ -19,8 +19,9 @@
                         autoresize: false
                     } ),
                 exps = [
-                        new kf.CombinationExpression( new kf.FractionExpression( "1", "2" ), "+\\cdots\\+", new kf.FractionExpression( "1", "10" ) ),
-                        new kf.FractionExpression( "a-b", "a+b" )
+                    new kf.CombinationExpression( new kf.SuperscriptExpression( "a", "2" ), "+", new kf.SuperscriptExpression( "b", "2" ), "=", new kf.SuperscriptExpression( "c", "2" ) ),
+                    new kf.CombinationExpression( new kf.SubscriptExpression( "x", "1" ), "+", new kf.SubscriptExpression( "x", "2" ) ),
+                    new kf.CombinationExpression( new kf.ScriptExpression( null, "n", "1" ), "Y" )
                 ];
 
 
@@ -33,7 +34,7 @@
     </script>
 </head>
 <body>
-    <h1>分数表达式</h1>
+    <h1>上下标表达式</h1>
     <p>
         构造方法： new kf.Text( "\\\\to \\\\gets \\\\subseteq" );
     </p>
