@@ -67,7 +67,8 @@ define( function ( require, exports, module ) {
 
             var fontFamily = this.fontFamily;
 
-            return content.replace( /\\([a-zA-Z,]+)\\/g, function ( match, input ) {
+            debugger;
+            return content.replace( /\\([a-zA-Z,{}]+)\\/g, function ( match, input ) {
 
                 if ( input === "," ) {
                     return "\ufffc \ufffc";
