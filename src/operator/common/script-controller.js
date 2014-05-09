@@ -92,22 +92,28 @@ define( function ( require ) {
             sup.translate( targetBox.width + options.supOffset, 0 );
             sub.translate( targetBox.width + options.subOffset, 0 );
 
-            if ( supBox.height > targetHeight / 2 ) {
-                vOffset = supBox.height - targetHeight / 2;
-            }
-
-            target.translate( 0, vOffset );
-
-            if ( subBox.height > targetHeight / 2 ) {
-                sub.translate( 0, vOffset + targetHeight / 2 );
-            } else {
-                sub.translate( 0, vOffset + targetHeight - subBox.height );
-            }
-
-            if ( targetHeight < maxOffset * 2  ) {
-                space.height = maxOffset * 2;
-            } else {
+            if ( maxOffset * 2 < targetHeight ) {
+                sub.translate( 0, targetHeight - subBox.height );
                 space.height = targetHeight;
+            } else {
+
+                vOffset = maxOffset - targetHeight / 2;
+                target.translate( 0, vOffset );
+
+                if ( supBox.height < targetHeight / 2 ) {
+                    sup.translate( 0, vOffset );
+                } else {
+                    sup.translate( 0, maxOffset - supBox.height );
+                }
+
+                if ( subBox.height < targetHeight / 2 ) {
+                    sub.translate( 0, vOffset + targetHeight - subBox.height );
+                } else {
+                    sub.translate( 0, maxOffset * 2 - subBox.height );
+                }
+
+                space.height = maxOffset * 2;
+
             }
 
             return space;

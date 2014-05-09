@@ -19,16 +19,13 @@ define( function ( require, exports, module ) {
 
         applyOperand: function ( operand, sup, sub ) {
 
-            new ScriptController( this, operand, sup, sub, {
-                expand: {
-                    width: 0,
-                    height: 10
-                },
-                allOffset: {
-                    x: 0,
-                    y: 5
-                }
-            } ).applySide();
+            var opShape = this.getOperatorShape(),
+                padding = 5,
+                space = new ScriptController( this, operand, sup, sub ).applySide();
+
+            this.parentExpression.setBoxSize( space.width, space.height );
+            this.parentExpression.expand( 0, padding * 2 );
+            this.parentExpression.translateElement( 0, padding );
 
         }
 
