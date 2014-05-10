@@ -37,25 +37,6 @@ while ( tmp = pattern.exec( file ) ) {
 
     key = tmp[ 1 ];
 
-    if ( /^&#x/.test( key ) ) {
-        key = key.replace( /^&#x|;$/gi, "" );
-
-        switch ( key.length ) {
-            case 1:
-                key = "\\u000" + key;
-                break;
-            case 2:
-                key = "\\u00" + key;
-                break;
-            case 3:
-                key = "\\u0" + key;
-                break;
-            case 4:
-                key = "\\u" + key;
-                break;
-        }
-    }
-
     horiz = null;
     if ( tmp = /horiz-adv-x="([^"]*)"/i.exec( str ) ) {
         horiz = tmp[ 1 ];
