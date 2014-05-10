@@ -46,6 +46,8 @@ define( function ( require, exports, modules ) {
 
             } );
 
+            this.parentExpression.updateBoxSize();
+
         }
 
     } );
