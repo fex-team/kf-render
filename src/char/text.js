@@ -45,6 +45,11 @@ define( function ( require, exports, module ) {
 
         },
 
+        setFamily: function ( fontFamily ) {
+            this.fontFamily = fontFamily;
+            this.contentNode.setAttr( "font-family", fontFamily );
+        },
+
         getBaseHeight: function () {
 
             var chars = this.contentShape.getItems(),

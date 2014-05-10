@@ -28,6 +28,10 @@ define( function ( require, exports, module ) {
 
             },
 
+            setFamily: function ( fontFamily ) {
+                this.textContent.setFamily( fontFamily );
+            },
+
             addedCall: function () {
 
                 var box = this.textContent.getFixRenderBox();
