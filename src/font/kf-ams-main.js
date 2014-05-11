@@ -1959,6 +1959,7 @@ define( function ( require ) {
             "mho": "\u2127",
             "partial": "\u2202",
             "wp": "\u2118",
+            "Game": "\u2141",
             "Bbbk": "\u214c",
             "Finv": "\u2132",
             "Im": "\u2111",
