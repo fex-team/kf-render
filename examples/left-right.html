@@ -42,6 +42,20 @@
                 formula.appendExpression( exps[i] );
             }
 
+            // demo
+
+            var exp1 = new AdditionExpression( "a", "b" ),
+                exp2 = new AdditionExpression( exp1, "c" ),
+                exp3 = new AdditionExpression( exp2, "d" );
+
+            formula.appendExpression( exp3 );
+
+            
+
+            var exp = new AdditionExpression( "a", "b", "c", "d" );
+
+            formula.appendExpression( exp3 );
+
         } );
 
         seajs.use( "start" );
