@@ -1,5 +1,5 @@
 /*!
- * 书法字体
+ * 手写体
  */
 
 define( function ( require ) {
