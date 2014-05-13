@@ -72,7 +72,8 @@ define( function ( require, exports, module ) {
 
             var fontFamily = this.fontFamily;
 
-            return content.replace( /\\([a-zA-Z,{}]+)\\/g, function ( match, input ) {
+            // 首先特殊处理掉两个相连的"`"符号
+            return content.replace( /``/g, "\u201c" ).replace( /\\([a-zA-Z,{}]+)\\/g, function ( match, input ) {
 
                 if ( input === "," ) {
                     return "\ufffc \ufffc";
