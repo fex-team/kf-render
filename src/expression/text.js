@@ -32,6 +32,10 @@ define( function ( require, exports, module ) {
                 this.textContent.setFamily( fontFamily );
             },
 
+            setFontSize: function ( fontSize ) {
+                this.textContent.setFontSize( fontSize );
+            },
+
             addedCall: function () {
 
                 var box = this.textContent.getFixRenderBox();

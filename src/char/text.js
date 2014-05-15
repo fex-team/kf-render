@@ -16,6 +16,7 @@ define( function ( require, exports, module ) {
             this.callBase();
 
             this.fontFamily = fontFamily;
+            this.fontSize = 50;
             this.content = content || "";
 
             this.translationContent = this.translation( this.content );
@@ -48,6 +49,11 @@ define( function ( require, exports, module ) {
         setFamily: function ( fontFamily ) {
             this.fontFamily = fontFamily;
             this.contentNode.setAttr( "font-family", fontFamily );
+        },
+
+        setFamily: function ( fontSize ) {
+            this.fontSize = fontSize;
+            this.contentNode.setAttr( "font-size", fontSize + "px" );
         },
 
         getBaseHeight: function () {
