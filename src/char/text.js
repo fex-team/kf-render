@@ -51,7 +51,7 @@ define( function ( require, exports, module ) {
             this.contentNode.setAttr( "font-family", fontFamily );
         },
 
-        setFamily: function ( fontSize ) {
+        setFontSize: function ( fontSize ) {
             this.fontSize = fontSize;
             this.contentNode.setAttr( "font-size", fontSize + "px" );
         },
