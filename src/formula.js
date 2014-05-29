@@ -79,6 +79,12 @@ define( function ( require, exports, module ) {
 
             },
 
+            getContentContainer: function () {
+
+                return this.container;
+
+            },
+
             initEnvironment: function () {
 
                 this.zoom = ( this.config.fontsize ) / 50 ;
