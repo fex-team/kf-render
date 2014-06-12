@@ -5,6 +5,7 @@
 define( function ( require, exports, module ) {
 
     var kity = require( "kity" ),
+        FONT_CONF = require( "sysconf" ).font,
         FontManager = require( "font/manager" );
 
     return kity.createClass( 'Text', {
@@ -25,8 +26,6 @@ define( function ( require, exports, module ) {
             this.contentNode = this.createContent();
             this.contentShape.addShape( this.contentNode );
 
-            this.contentShape.translate( 0, 40 );
-
             this.addShape( this.contentShape );
 
         },
@@ -39,7 +38,7 @@ define( function ( require, exports, module ) {
                 "font-family": this.fontFamily,
                 "font-size": 50,
                 x: 0,
-                y: 0
+                y: FONT_CONF.offset
             } );
 
             return contentNode;
@@ -79,7 +78,7 @@ define( function ( require, exports, module ) {
             var fontFamily = this.fontFamily;
 
             // 首先特殊处理掉两个相连的"`"符号
-            return content.replace( /``/g, "\u201c" ).replace( /\\([a-zA-Z,{}]+)\\/g, function ( match, input ) {
+            return content.replace( /``/g, "\u201c" ).replace( /\\([a-zA-Z,]+)\\/g, function ( match, input ) {
 
                 if ( input === "," ) {
                     return "\ufffc \ufffc";
@@ -88,7 +87,8 @@ define( function ( require, exports, module ) {
                 var data = FontManager.getCharacterValue( input, fontFamily )
 
                 if ( !data ) {
-                    console.error( input+"丢失" )
+                    console.error( input+"丢失" );
+                    return '';
                 }
 
                 return data;

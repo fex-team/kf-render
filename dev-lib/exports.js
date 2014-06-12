@@ -17,7 +17,7 @@
         global.kf = {
 
             // base
-            Formula: require( "formula" ),
+            Factory: require( "factory" ),
             Operator: require( "operator/operator" ),
 
             // expression

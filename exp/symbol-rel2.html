@@ -3,6 +3,7 @@
 <head>
     <title>特殊符号（关系集合2）</title>
     <meta charset="utf-8">
+    <script src="../dev-lib/jquery-1.10.2.min.js"></script>
     <script src="../dev-lib/kitygraph.all.js"></script>
     <script src="../dev-lib/dev-define.js"></script>
     <script>
@@ -15,10 +16,13 @@
     <script>
         window.onload = function () {
 
-            var formula = new kf.Formula( document.getElementById( "container" ), {
-                        autoresize: false
-                    } ),
-                exps = [
+
+            var wrapper = kf.Factory.create( document.getElementById( "container" ) );
+
+            wrapper.ready( function ( formula ) {
+                // this 也指向 formula, 也就是 formula === this
+
+                var exps = [
                     new kf.TextExpression( "\\backepsilon\\\\because\\\\between\\\\blacktriangleleft\\\\blacktriangleright\\\\bowtie\\" ),
                     new kf.TextExpression( "\\dashv\\\\frown\\\\in\\\\mid\\\\models\\\\ni\\\\owns\\\\nmid\\\\notin\\\\nparallel\\" ),
                     new kf.TextExpression( "\\nshortmid\\\\nshortparallel\\\\nsubseteq\\\\nsubseteqq\\\\nsupseteq\\\\nsupseteqq\\" ),
@@ -31,9 +35,10 @@
                     new kf.TextExpression( "\\varsupsetneqq\\\\vartriangle\\\\vartriangleleft\\\\vartriangleright\\\\vdash\\\\Vdash\\\\vDash\\\\Vvdash\\" )
                 ];
 
+                kity.Utils.each( exps, function ( exp ) {
+                    formula.appendExpression( exp );
+                } );
 
-            kity.Utils.each( exps, function ( exp ) {
-                formula.appendExpression( exp );
             } );
 
         };

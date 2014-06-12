@@ -9,6 +9,8 @@ define( function ( require, exports, module ) {
 
         GTYPE = require( "def/gtype" ),
 
+        FONT_CONF = require( "sysconf" ).font,
+
         // 打包函数列表
         WRAP_FN = [],
 
@@ -24,6 +26,12 @@ define( function ( require, exports, module ) {
                 this.callBase();
 
                 this.type = GTYPE.EXP;
+
+                // 表达式的上下偏移
+                this._offset = {
+                    top: 0,
+                    bottom: 0
+                };
 
                 this.children = [];
 
@@ -49,6 +57,31 @@ define( function ( require, exports, module ) {
 
             },
 
+            getTopOffset: function () {
+                return this._offset.top;
+            },
+
+            getBottomOffset: function () {
+                return this._offset.bottom;
+            },
+
+            getOffset: function () {
+                return this._offset;
+            },
+
+            setTopOffset: function ( val ) {
+                this._offset.top = val;
+            },
+
+            setBottomOffset: function ( val ) {
+                this._offset.bottom = val;
+            },
+
+            setOffset: function ( top, bottom ) {
+                this._offset.top = top;
+                this._offset.bottom = bottom;
+            },
+
             setFlag: function ( flag ) {
 
                 this.setAttr( "data-flag", flag || "Expression" );
@@ -65,6 +98,22 @@ define( function ( require, exports, module ) {
                 this.children[ index ] = exp;
                 this.expContent.addShape( exp );
 
+            },
+
+            getBaseline: function () {
+                return this.getFixRenderBox().height * FONT_CONF.baselinePosition;
+            },
+
+            getMeanline: function () {
+                return this.getFixRenderBox().height * FONT_CONF.meanlinePosition;
+            },
+
+            getAscenderline: function () {
+                return this.getFixRenderBox().height * FONT_CONF.ascenderPosition;
+            },
+
+            getDescenderline: function () {
+                return this.getFixRenderBox().height * FONT_CONF.descenderPosition;
             },
 
             translateElement: function ( x, y ) {

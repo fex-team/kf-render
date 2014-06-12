@@ -3,6 +3,7 @@
 <head>
     <title>特殊符号（简单）</title>
     <meta charset="utf-8">
+    <script src="../dev-lib/jquery-1.10.2.min.js"></script>
     <script src="../dev-lib/kitygraph.all.js"></script>
     <script src="../dev-lib/dev-define.js"></script>
     <script>
@@ -15,10 +16,12 @@
     <script>
         window.onload = function () {
 
-            var formula = new kf.Formula( document.getElementById( "container" ), {
-                        autoresize: false
-                    } ),
-                exps = [
+            var wrapper = kf.Factory.create( document.getElementById( "container" ) );
+
+            wrapper.ready( function ( formula ) {
+                // this 也指向 formula, 也就是 formula === this
+
+                var exps = [
                     new kf.TextExpression( "#\\angle\\\\backprime\\\\bigstar\\\\blacklozenge\\\\blacksquare\\\\blacktriangle\\" ),
                     new kf.TextExpression( "\\blacktriangledown\\\\bot\\\\clubsuit\\\\diagdown\\\\diagup\\\\diamondsuit\\\\emptyset\\" ),
                     new kf.TextExpression( "\\exists\\\\flat\\\\forall\\\\heartsuit\\\\infty\\\\lozenge\\\\measuredangle\\\\nabla\\" ),
@@ -26,9 +29,10 @@
                     new kf.TextExpression( "\\surd\\\\top\\\\triangle\\\\triangledown\\\\varnothing\\" )
                 ];
 
+                kity.Utils.each( exps, function ( exp ) {
+                    formula.appendExpression( exp );
+                } );
 
-            kity.Utils.each( exps, function ( exp ) {
-                formula.appendExpression( exp );
             } );
 
         };

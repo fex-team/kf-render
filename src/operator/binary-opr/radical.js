@@ -61,7 +61,7 @@ define( function ( require, exports, modules ) {
         var shape = new kity.Path(),
         // 命名为a以便于精简表达式
             a = SHAPE_DATA_WIDTH,
-            h = radicand.getHeight() / 3,
+            h = ( radicand.getHeight() - 13 ) / 3,
             drawer = shape.getDrawer();
 
         // 根号尾部左上角开始
@@ -81,7 +81,7 @@ define( function ( require, exports, modules ) {
     function generateVLine ( operand ) {
 
         var shape = new kity.Path(),
-            h = operand.getHeight(),
+            h = operand.getHeight() - 13,
             drawer = shape.getDrawer();
 
         drawer.moveTo( tan20 * h, 0 );

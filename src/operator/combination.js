@@ -25,13 +25,18 @@ define( function ( require, exports, modules ) {
                 operands = arguments,
                 // 操作对象最大高度
                 maxHeight = 0,
-                cached = [];
+                cached = [],
+                // 偏移集合
+                offsets = [];
 
             kity.Utils.each( operands, function ( operand ) {
 
-                var box = operand.getFixRenderBox();
+                var box = operand.getFixRenderBox(),
+                    offset = operand.getOffset();
 
+                box.height += offset.top + offset.bottom;
                 cached.push( box );
+                offsets.push( offset );
                 maxHeight = Math.max( box.height, maxHeight );
 
             } );
@@ -40,7 +45,7 @@ define( function ( require, exports, modules ) {
 
                 var box = cached[ index ];
 
-                operand.translate( offset - box.x, ( maxHeight - ( box.y + box.height ) ) / 2 );
+                operand.translate( offset - box.x, ( maxHeight - ( box.y + box.height ) ) / 2 + offsets[ index ].top );
 
                 offset += box.width;
 

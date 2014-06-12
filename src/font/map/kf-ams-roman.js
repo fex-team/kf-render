@@ -7,9 +7,7 @@ define( function ( require ) {
     return {
         meta: {
             fontFamily: "KF AMS ROMAN",
-            x: 50,
-            "units-per-em": 1000,
-            attr: ''
+            src: 'KF_AMS_ROMAN.woff'
         },
         data: {
             "A": {

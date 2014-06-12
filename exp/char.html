@@ -3,6 +3,7 @@
 <head>
     <title>基础文本字符</title>
     <meta charset="utf-8">
+    <script src="../dev-lib/jquery-1.10.2.min.js"></script>
     <script src="../dev-lib/kitygraph.all.js"></script>
     <script src="../dev-lib/dev-define.js"></script>
     <script>
@@ -15,10 +16,12 @@
     <script>
         window.onload = function () {
 
-            var formula = new kf.Formula( document.getElementById( "container" ), {
-                        autoresize: false
-                    } ),
-                exps = [
+            var wrapper = kf.Factory.create( document.getElementById( "container" ) );
+
+            wrapper.ready( function ( formula ) {
+                // this 也指向 formula, 也就是 formula === this
+
+                var exps = [
                     new kf.TextExpression( "abcdefghijklmnopqrstuvwxyz" ),
                     new kf.TextExpression( "ABCDEFGHIJKLMNOPQRSTUVWXYZ" ),
                     new kf.TextExpression( "0123456789" ),
@@ -26,9 +29,13 @@
                     new kf.TextExpression( "\\imath\\\\jmath\\" )
                 ];
 
+                kity.Utils.each( exps, function ( exp ) {
+                    formula.appendExpression( exp );
+//                    exp.box.fill( "red" )
+//                    console.log(exp.textContent.contentNode.node.getBBox().height)
+//                    console.log(exp.getFixRenderBox().height)
+                } );
 
-            kity.Utils.each( exps, function ( exp ) {
-                formula.appendExpression( exp );
             } );
 
         };

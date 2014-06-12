@@ -7,9 +7,7 @@ define( function ( require ) {
     return {
         meta: {
             fontFamily: "KF AMS MAIN",
-            x: 911,
-            "units-per-em": 1000,
-            attr: 'panose-1="2 0 6 3 0 0 0 0 0 0" ascent="800" descent="-200" x-height="441" cap-height="683" bbox="50 -463 1699 1003" underline-thickness="50" underline-position="-100" unicode-range="U+0021-3009"'
+            src: "KF_AMS_MAIN.woff",
         },
         data: {
             "0": {

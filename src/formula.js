@@ -6,7 +6,6 @@ define( function ( require, exports, module ) {
 
     var kity = require( 'kity' ),
         GTYPE = require( "def/gtype" ),
-        CONF = require( "conf" ),
         FontManager = require( "font/manager" ),
         FontInstaller = require( "font/installer" ),
         DEFAULT_OPTIONS = {
@@ -75,7 +74,6 @@ define( function ( require, exports, module ) {
                 this.config = kity.Utils.extend( {}, DEFAULT_OPTIONS, config );
 
                 this.initEnvironment();
-                this.initFont();
 
             },
 
@@ -98,16 +96,6 @@ define( function ( require, exports, module ) {
                 }
 
                 this.node.setAttribute( "font-size", DEFAULT_OPTIONS.fontsize );
-
-            },
-
-            initFont: function () {
-
-                var fontInstaller = this.fontInstaller;
-
-                kity.Utils.each( FontManager.getFontList(), function ( fontData ) {
-                    fontInstaller.mount( fontData );
-                } );
 
             },
 
@@ -194,17 +182,6 @@ define( function ( require, exports, module ) {
         }
 
     } );
-
-    // 自运行， 注册配置好的字体
-    ( function () {
-
-        kity.Utils.each( CONF.font.list, function ( fontData ) {
-
-            Formula.registerFont( fontData );
-
-        } );
-
-    } )();
 
     // 调整表达式之间的偏移
     function correctOffset () {

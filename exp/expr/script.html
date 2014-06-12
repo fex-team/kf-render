@@ -3,6 +3,7 @@
 <head>
     <title>上下标表达式</title>
     <meta charset="utf-8">
+    <script src="../../dev-lib/jquery-1.10.2.min.js"></script>
     <script src="../../dev-lib/kitygraph.all.js"></script>
     <script src="../../dev-lib/dev-define.js"></script>
     <script>
@@ -15,19 +16,31 @@
     <script>
         window.onload = function () {
 
-            var formula = new kf.Formula( document.getElementById( "container" ), {
-                        autoresize: false
-                    } ),
-                exps = [
+            var wrapper = kf.Factory.create( document.getElementById( "container" ), {
+                resource: '../../src/resource/'
+            } );
+
+            wrapper.ready( function ( formula ) {
+                // this 也指向 formula, 也就是 formula === this
+
+                var exps = [
                     new kf.CombinationExpression( "a", new kf.ScriptExpression( "a", "2" ), "+", new kf.SuperscriptExpression( "b", "2" ), "=", new kf.SuperscriptExpression( "c", "2" ) ),
-                    new kf.CombinationExpression( new kf.SubscriptExpression( "x", "1" ), "+", new kf.SubscriptExpression( "x", "2" ) ),
-                    new kf.CombinationExpression( "a", new kf.SubscriptExpression( "x", "a" ), "c" ),
-                    new kf.CombinationExpression( new kf.ScriptExpression( null, "n", "1" ), "Y" )
+                    new kf.CombinationExpression( "x", new kf.SubscriptExpression( "x", "1" ), "+", new kf.SubscriptExpression( "x", "2" ) ),
+//                    new kf.CombinationExpression( "a", new kf.SubscriptExpression( "x", "a" ), "c" ),
+//                    new kf.CombinationExpression( new kf.ScriptExpression( null, "n", "1" ), "Y" ),
+//                    new kf.ScriptExpression( "x", "n" ),
+//                    new kf.SuperscriptExpression( "x", "a" ),
+//                    new kf.SubscriptExpression( "x", "a" ),
+//                    new kf.SubscriptExpression( "x", "b" ),
+//                    new kf.SubscriptExpression( "x", 2 ),
+//                    new kf.SubscriptExpression( "y", 2 ),
+//                    new kf.SuperscriptExpression( "y", 3 )
                 ];
 
+                kity.Utils.each( exps, function ( exp ) {
+                    formula.appendExpression( exp );
+                } );
 
-            kity.Utils.each( exps, function ( exp ) {
-                formula.appendExpression( exp );
             } );
 
         };

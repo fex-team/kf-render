@@ -21,11 +21,13 @@ define( function ( require, exports, module ) {
 
             var opShape = this.getOperatorShape(),
                 padding = 5,
+                parent = this.parentExpression,
                 space = new ScriptController( this, operand, sup, sub ).applySide();
 
-            this.parentExpression.setBoxSize( space.width, space.height );
-            this.parentExpression.expand( 0, padding * 2 );
-            this.parentExpression.translateElement( 0, padding );
+            space && parent.setOffset( space.top, space.bottom );
+//            this.parentExpression.setBoxSize( space.width, space.height );
+            parent.expand( 4, padding * 2 );
+            parent.translateElement( 2, padding );
 
         }
 

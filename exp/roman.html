@@ -3,6 +3,7 @@
 <head>
     <title>罗马字符</title>
     <meta charset="utf-8">
+    <script src="../dev-lib/jquery-1.10.2.min.js"></script>
     <script src="../dev-lib/kitygraph.all.js"></script>
     <script src="../dev-lib/dev-define.js"></script>
     <script>
@@ -15,17 +16,20 @@
     <script>
         window.onload = function () {
 
-            var formula = new kf.Formula( document.getElementById( "container" ), {
-                        autoresize: false
-                    } ),
-                exps = [
+            var wrapper = kf.Factory.create( document.getElementById( "container" ) );
+
+            wrapper.ready( function ( formula ) {
+                // this 也指向 formula, 也就是 formula === this
+
+                var exps = [
                     new kf.TextExpression( "abcdefghijklmnopqrstuvwxyz", "KF AMS ROMAN" ),
                     new kf.TextExpression( "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "KF AMS ROMAN" )
                 ];
 
+                kity.Utils.each( exps, function ( exp ) {
+                    formula.appendExpression( exp );
+                } );
 
-            kity.Utils.each( exps, function ( exp ) {
-                formula.appendExpression( exp );
             } );
 
         };

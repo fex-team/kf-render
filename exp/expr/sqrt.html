@@ -3,6 +3,7 @@
 <head>
     <title>方根表达式</title>
     <meta charset="utf-8">
+    <script src="../../dev-lib/jquery-1.10.2.min.js"></script>
     <script src="../../dev-lib/kitygraph.all.js"></script>
     <script src="../../dev-lib/dev-define.js"></script>
     <script>
@@ -15,21 +16,26 @@
     <script>
         window.onload = function () {
 
-            var formula = new kf.Formula( document.getElementById( "container" ), {
-                        autoresize: false
-                    } ),
-                sqrt1 = new kf.CombinationExpression( new kf.SuperscriptExpression( "q", 2 ), "+", new kf.SuperscriptExpression( "p", 3 ) ),
-                sqrt2 = new kf.CombinationExpression( new kf.RadicalExpression( sqrt1 ) ),
-                sqrt3 = new kf.CombinationExpression( "-q+", sqrt2 ),
-                exps = [
-                    new kf.CombinationExpression( "2=", new kf.RadicalExpression( "4", "2" ) ),
-                    new kf.RadicalExpression( "a+b\\div\\c" ),
-                    new kf.CombinationExpression( "u=", new kf.RadicalExpression( sqrt3, 3 ) )
-                ];
+            var wrapper = kf.Factory.create( document.getElementById( "container" ), {
+                resource: '../../src/resource/'
+            } );
 
+            wrapper.ready( function ( formula ) {
+                // this 也指向 formula, 也就是 formula === this
 
-            kity.Utils.each( exps, function ( exp ) {
-                formula.appendExpression( exp );
+                var sqrt1 = new kf.CombinationExpression( new kf.SuperscriptExpression( "q", 2 ), "+", new kf.SuperscriptExpression( "p", 3 ) ),
+                    sqrt2 = new kf.CombinationExpression( new kf.RadicalExpression( sqrt1 ) ),
+                    sqrt3 = new kf.CombinationExpression( "-q+", sqrt2 ),
+                    exps = [
+                        new kf.CombinationExpression( "2=", new kf.RadicalExpression( "4", "2" ) ),
+                        new kf.RadicalExpression( "a+b\\div\\c" ),
+                        new kf.CombinationExpression( "u=", new kf.RadicalExpression( sqrt3, 3 ) )
+                    ];
+
+                kity.Utils.each( exps, function ( exp ) {
+                    formula.appendExpression( exp );
+                } );
+
             } );
 
         };
