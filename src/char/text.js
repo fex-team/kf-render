@@ -20,6 +20,9 @@ define( function ( require, exports, module ) {
             this.fontSize = 50;
             this.content = content || "";
 
+            // 移除多余的节点
+            this.box.remove();
+
             this.translationContent = this.translation( this.content );
 
             this.contentShape = new kity.Group();

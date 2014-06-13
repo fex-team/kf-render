@@ -25,7 +25,6 @@ define( function ( require, exports, module ) {
                 space = new ScriptController( this, operand, sup, sub ).applySide();
 
             space && parent.setOffset( space.top, space.bottom );
-//            this.parentExpression.setBoxSize( space.width, space.height );
             parent.expand( 4, padding * 2 );
             parent.translateElement( 2, padding );
 

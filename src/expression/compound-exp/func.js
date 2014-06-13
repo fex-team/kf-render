@@ -5,6 +5,7 @@
 define( function ( require, exports, modules ) {
 
     var kity = require( "kity" ),
+        FUNC_CONF = require( "sysconf" ).func,
         FunctionOperator = require( "operator/func" );
 
     return kity.createClass( 'FunctionExpression', {
@@ -23,6 +24,7 @@ define( function ( require, exports, modules ) {
             this.callBase();
 
             this.setFlag( "Func" );
+            this.funcName = funcName;
 
             this.setOperator( new FunctionOperator( funcName ) );
 
@@ -30,6 +32,11 @@ define( function ( require, exports, modules ) {
             this.setSuperscript( sup );
             this.setSubscript( sub );
 
+        },
+
+        // 当前函数应用的script位置是否是在侧面
+        isSideScript: function () {
+            return !FUNC_CONF[ 'ud-script' ][ this.funcName ];
         },
 
         setExpr: function ( expr ) {

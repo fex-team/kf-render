@@ -3,6 +3,7 @@
 <head>
     <title>表达式 - 分数</title>
     <meta charset="utf-8">
+    <script src="../../dev-lib/jquery-1.10.2.min.js"></script>
     <script src="../../dev-lib/kitygraph.all.js"></script>
     <script src="../../dev-lib/dev-define.js"></script>
     <script>
@@ -15,17 +16,23 @@
     <script>
         window.onload = function () {
 
-            var formula = new kf.Formula( document.getElementById( "container" ), {
-                        autoresize: false
-                    } ),
-                exps = [
-                        new kf.CombinationExpression( new kf.FractionExpression( "1", "2" ), "+\\cdots\\+", new kf.FractionExpression( "1", "10" ) ),
-                        new kf.FractionExpression( "a-b", "a+b" )
+            var wrapper = kf.Factory.create( document.getElementById( "container" ), {
+                resource: '../../src/resource/'
+            } );
+
+            wrapper.ready( function ( formula ) {
+                // this 也指向 formula, 也就是 formula === this
+
+                var  exps = [
+                    new kf.CombinationExpression( new kf.FractionExpression( "1", "2" ), "+\\cdots\\+", new kf.FractionExpression( "1", "10" ) ),
+                    new kf.FractionExpression( "a-b", "a+b" ),
+                    new kf.CombinationExpression( "a+", new kf.FractionExpression( "a", "b" ) )
                 ];
 
+                kity.Utils.each( exps, function ( exp ) {
+                    formula.appendExpression( exp );
+                } );
 
-            kity.Utils.each( exps, function ( exp ) {
-                formula.appendExpression( exp );
             } );
 
         };

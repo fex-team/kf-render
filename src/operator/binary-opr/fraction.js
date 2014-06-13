@@ -25,34 +25,36 @@ define( function ( require, exports, modules ) {
                 downWidth = Math.ceil( downOperand.getWidth() ),
                 upHeight = Math.ceil( upOperand.getHeight() ),
                 downHeight = Math.ceil( downOperand.getHeight() ),
-                offset = 3,
+                // 分数线overflow值
+                overflow = 3,
                 // 整体padding
-                boxPadding = 5,
+                padding = 5,
                 maxWidth = Math.max( upWidth, downWidth ),
                 // 内部padding
                 padding = 3,
                 maxHeight = Math.max( upHeight, downHeight ),
-                operatorShape = generateOperator( maxWidth, offset );
+                operatorShape = generateOperator( maxWidth, overflow );
+
 
             this.addOperatorShape( operatorShape );
-            upOperand.translate( ( maxWidth - upWidth ) / 2 + offset, maxHeight - upHeight );
-            operatorShape.translate( 0, maxHeight + padding );
+            upOperand.translate( ( maxWidth - upWidth ) / 2 + overflow, 0 );
+            operatorShape.translate( 0, upHeight + 1 );
             // 下部不需要偏移
-            downOperand.translate( ( maxWidth - downWidth ) / 2 + offset, maxHeight + padding + operatorShape.getHeight() );
+            downOperand.translate( ( maxWidth - downWidth ) / 2 + overflow, upHeight + operatorShape.getHeight() + 1 * 2 );
 
-            this.parentExpression.setBoxSize( maxWidth + offset * 2, maxHeight * 2 + operatorShape.getHeight() + padding * 2 );
+            this.parentExpression.setOffset( maxHeight - upHeight, maxHeight - downHeight );
 
-            this.parentExpression.expand( boxPadding, boxPadding );
-            this.parentExpression.translateElement( boxPadding, boxPadding );
+            this.parentExpression.expand( padding * 2, padding * 2 );
+            this.parentExpression.translateElement( padding, padding );
 
         }
 
     } );
 
 
-    function generateOperator ( width, offset ) {
+    function generateOperator ( width, overflow ) {
 
-        return new kity.Rect( width + offset * 2, 1 ).fill( "black" );
+        return new kity.Rect( width + overflow * 2, 1 ).fill( "black" );
 
     }
 

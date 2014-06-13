@@ -19,6 +19,14 @@ define( function ( require ) {
                 require( "font/map/kf-ams-bb" ),
                 require( "font/map/kf-ams-roman" )
             ]
+        },
+
+        // 函数相关配置
+        func: {
+            // 上下标在函数名上下两侧的函数列表
+            "ud-script": {
+                "limit": true
+            }
         }
 
     };

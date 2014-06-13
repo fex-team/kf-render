@@ -30,12 +30,18 @@ define( function ( require, exports, modules ) {
 
 
             var opShape = generateOperator.call( this ),
-                padding = 5,
                 expBox = expr.getFixRenderBox(),
+                scriptHanlder = this.parentExpression.isSideScript() ? 'applySide' : 'applyUpDown',
                 space = new ScriptController( this, opShape, sup, sub, {
                     zoom: 0.5
-                } ).applyUpDown(),
-                diff = ( space.height - expBox.height ) / 2;
+                } )[ scriptHanlder ](),
+                padding = 5,
+                diff = ( space.height + space.top + space.bottom - expBox.height ) / 2;
+
+            // 应用偏移， 使图形在正确的位置上
+            opShape.translate( 0, space.top );
+            sup.translate( 0, space.top );
+            sub.translate( 0, space.top );
 
             if ( diff >= 0 ) {
                 expr.translate( space.width + padding, diff );
@@ -47,6 +53,7 @@ define( function ( require, exports, modules ) {
                 expr.translate( space.width + padding, 0 );
             }
 
+            // 只扩展左边， 不扩展右边， 所以padding不 *2
             this.parentExpression.expand( padding, padding * 2 );
             this.parentExpression.translateElement( padding, padding );
 

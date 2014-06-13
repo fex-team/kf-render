@@ -62,6 +62,14 @@ define( function ( require ) {
 
         },
 
+        /**
+         * 返回应用上下标后的空间占用情况，其中的key各自的意义是：
+         * top: 上空间偏移
+         * bottom: 下空间偏移
+         * width: 当前整个图形的实际占用空间的width
+         * height: 当前整个图形的实际占用空间的height
+         * @returns {*}
+         */
         applySide: function () {
 
             var target = this.target,
@@ -70,7 +78,13 @@ define( function ( require ) {
                 options = this.options;
 
             if ( EmptyExpression.isEmpty( sup ) && EmptyExpression.isEmpty( sub ) ) {
-                return null;
+                var targetRectBox = target.getFixRenderBox();
+                return {
+                    width: targetRectBox.width,
+                    height: targetRectBox.height,
+                    top: 0,
+                    bottom: 0
+                };
             } else {
 
                 // 下标处理
@@ -83,7 +97,6 @@ define( function ( require ) {
                 } else {
                     return this.applySideScript( target, sup, sub );
                 }
-
 
             }
 
@@ -102,7 +115,9 @@ define( function ( require ) {
                 diff = supBaseline - positionline,
                 space = {
                     top: 0,
-                    bottom: 0
+                    bottom: 0,
+                    width: targetRectBox.width + supRectBox.width,
+                    height: targetRectBox.height
                 };
 
             sup.translate( targetRectBox.width, 0 );
@@ -110,6 +125,7 @@ define( function ( require ) {
             if ( diff > 0 ) {
                 target.translate( 0, diff );
                 space.bottom = diff;
+                space.height += diff;
             } else {
                 sup.translate( 0, -diff );
             }
@@ -131,13 +147,16 @@ define( function ( require ) {
                 diff = targetRectBox.height - positionline - ( subRectBox.height - subMeanline ),
                 space = {
                     top: 0,
-                    bottom: 0
+                    bottom: 0,
+                    width: targetRectBox.width + subRectBox.width,
+                    height: targetRectBox.height
                 };
 
             sub.translate( targetRectBox.width, positionline - subMeanline );
 
             if ( diff < 0 ) {
                 space.top = -diff;
+                space.height -= diff;
             }
 
             return space;
@@ -163,7 +182,9 @@ define( function ( require ) {
                 bottomDiff = targetRectBox.height - subPosition - ( subRectBox.height - subAscenderline ),
                 space = {
                     top: 0,
-                    bottom: 0
+                    bottom: 0,
+                    width: targetRectBox.width + Math.max( subRectBox.width, supRectBox.width ),
+                    height: targetRectBox.height
                 };
 
             sup.translate( targetRectBox.width, topDiff );
@@ -173,6 +194,7 @@ define( function ( require ) {
             if ( topDiff > 0 ) {
 
                 if ( bottomDiff < 0 ) {
+                    targetRectBox.height -= bottomDiff;
                     space.top = -bottomDiff;
                 }
 
@@ -183,6 +205,7 @@ define( function ( require ) {
                 sub.translate( 0, -topDiff );
 
                 if ( bottomDiff > 0 ) {
+                    targetRectBox.height -= topDiff;
                     space.bottom = -topDiff;
                 } else {
 
@@ -191,8 +214,10 @@ define( function ( require ) {
                     bottomDiff = -bottomDiff;
 
                     if ( topDiff > bottomDiff ) {
+                        targetRectBox.height += topDiff - bottomDiff;
                         space.bottom = topDiff - bottomDiff;
                     } else {
+                        targetRectBox.height += bottomDiff - topDiff;
                         space.top = bottomDiff - topDiff;
                     }
 

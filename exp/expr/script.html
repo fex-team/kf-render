@@ -26,15 +26,17 @@
                 var exps = [
                     new kf.CombinationExpression( "a", new kf.ScriptExpression( "a", "2" ), "+", new kf.SuperscriptExpression( "b", "2" ), "=", new kf.SuperscriptExpression( "c", "2" ) ),
                     new kf.CombinationExpression( "x", new kf.SubscriptExpression( "x", "1" ), "+", new kf.SubscriptExpression( "x", "2" ) ),
-//                    new kf.CombinationExpression( "a", new kf.SubscriptExpression( "x", "a" ), "c" ),
-//                    new kf.CombinationExpression( new kf.ScriptExpression( null, "n", "1" ), "Y" ),
-//                    new kf.ScriptExpression( "x", "n" ),
-//                    new kf.SuperscriptExpression( "x", "a" ),
-//                    new kf.SubscriptExpression( "x", "a" ),
-//                    new kf.SubscriptExpression( "x", "b" ),
-//                    new kf.SubscriptExpression( "x", 2 ),
-//                    new kf.SubscriptExpression( "y", 2 ),
-//                    new kf.SuperscriptExpression( "y", 3 )
+                    new kf.CombinationExpression( "a", new kf.SubscriptExpression( "x", "a" ), "c" ),
+                    new kf.CombinationExpression( new kf.ScriptExpression( null, "n", "1" ), "Y" ),
+                    new kf.ScriptExpression( "x", "n" ),
+                    new kf.SuperscriptExpression( "x", "a" ),
+                    new kf.SubscriptExpression( "x", "a" ),
+                    new kf.SubscriptExpression( "x", "b" ),
+                    new kf.SubscriptExpression( "x", 2 ),
+                    new kf.SubscriptExpression( "y", 2 ),
+                    new kf.SuperscriptExpression( "x", new kf.SuperscriptExpression( "x", 3 ) ),
+                    new kf.SuperscriptExpression( "x", new kf.SubscriptExpression( "x", 3 ) ),
+                    new kf.SubscriptExpression( "x", new kf.SuperscriptExpression( "x", 3 ) )
                 ];
 
                 kity.Utils.each( exps, function ( exp ) {
@@ -47,7 +49,7 @@
 
     </script>
 </head>
-<body>
+<body style="lit">
     <h1>上下标表达式</h1>
     <p>
         构造方法： new kf.Text( "\\\\to \\\\gets \\\\subseteq" );
