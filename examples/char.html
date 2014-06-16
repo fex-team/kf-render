@@ -3,8 +3,8 @@
 <head>
     <title>基础文本字符</title>
     <meta charset="utf-8">
+    <script src="../dev-lib/jquery-1.10.2.min.js"></script>
     <script src="../dev-lib/kitygraph.all.js"></script>
-    <!--<script src="../dist/kity-formula.all.min.js"></script>-->
     <script src="../dev-lib/dev-define.js"></script>
     <script>
         inc.config({
@@ -16,21 +16,40 @@
     <script>
         window.onload = function () {
 
-            var formula = new kf.Formula( document.body ),
-                textExp1 = new kf.TextExpression( "abcdefghijklmnopqrstuvwxyz" ),
-                textExp2 = new kf.TextExpression( "ABCDEFGHIJKLMNOPQRSTUVWXYZ" ),
-                textExp3 = new kf.TextExpression( "0123456789" );
+            var wrapper = kf.Factory.create( document.getElementById( "container" ) );
 
+            wrapper.ready( function ( formula ) {
+                // this 也指向 formula, 也就是 formula === this
 
-            formula.appendExpression( textExp1 );
-            formula.appendExpression( textExp2 );
-            formula.appendExpression( textExp3 );
+                var exps = [
+                    new kf.TextExpression( "abcdefghijklmnopqrstuvwxyz" ),
+                    new kf.TextExpression( "ABCDEFGHIJKLMNOPQRSTUVWXYZ" ),
+                    new kf.TextExpression( "0123456789" ),
+                    new kf.TextExpression( "+ - = < > ' `` ^ a_b \" | [ ] ( ) , : #" ),
+                    new kf.TextExpression( "\\imath\\\\jmath\\" )
+                ];
+
+                kity.Utils.each( exps, function ( exp ) {
+                    formula.appendExpression( exp );
+//                    exp.box.fill( "red" )
+//                    console.log(exp.textContent.contentNode.node.getBBox().height)
+//                    console.log(exp.getFixRenderBox().height)
+                } );
+
+            } );
 
         };
 
     </script>
 </head>
 <body>
-
+    <h1>基本字符集</h1>
+    <p>
+        构造方法： new kf.Text( "abc" );
+    </p>
+    <p>
+        基本字符集包含了0-9，a-z，A-Z，+，-，=，<，>，'，|，[，]，(，) 等字符， 这些字符可以不经转义直接输入。
+    </p>
+    <div id="container"></div>
 </body>
 </html>

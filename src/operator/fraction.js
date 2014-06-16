@@ -8,7 +8,7 @@ define( function ( require, exports, modules ) {
 
     return kity.createClass( 'FractionOperator', {
 
-        base: require( "operator/binary-opr/up-down" ),
+        base: require( "operator/operator" ),
 
         constructor: function () {
 

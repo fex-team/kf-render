@@ -5,7 +5,7 @@
 define( function ( require, exports, modules ) {
 
     var kity = require( "kity" ),
-        RadicalOperator = require( "operator/binary-opr/radical" );
+        RadicalOperator = require( "operator/radical" );
 
     return kity.createClass( 'RadicalExpression', {
 

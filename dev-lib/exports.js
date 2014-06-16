@@ -32,9 +32,9 @@
             CombinationExpression: require( "expression/compound-exp/combination" ),
             FunctionExpression: require( "expression/compound-exp/func" ),
 
-            FractionExpression: require( "expression/compound-exp/binary-exp/fraction" ),
+            FractionExpression: require( "expression/compound-exp/fraction" ),
             IntegrationExpression: require( "expression/compound-exp/integration" ),
-            RadicalExpression: require( "expression/compound-exp/binary-exp/radical" ),
+            RadicalExpression: require( "expression/compound-exp/radical" ),
             ScriptExpression: require( "expression/compound-exp/script" ),
             SuperscriptExpression: require( "expression/compound-exp/binary-exp/superscript" ),
             SubscriptExpression: require( "expression/compound-exp/binary-exp/subscript" ),

@@ -5,11 +5,11 @@
 define( function ( require, exports, modules ) {
 
     var kity = require( "kity" ),
-        FractionOperator = require( "operator/binary-opr/fraction" );
+        FractionOperator = require( "operator/fraction" );
 
     return kity.createClass( 'FractionExpression', {
 
-        base: require( "expression/compound-exp/binary-exp/up-down" ),
+        base: require( "expression/compound-exp/binary" ),
 
         constructor: function ( upOperand, downOperand ) {
 

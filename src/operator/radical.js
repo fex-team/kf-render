@@ -18,7 +18,7 @@ define( function ( require, exports, modules ) {
 
     return kity.createClass( 'RadicalOperator', {
 
-        base: require( "operator/binary" ),
+        base: require( "operator/operator" ),
 
         constructor: function () {
 

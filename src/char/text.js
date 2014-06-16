@@ -56,6 +56,7 @@ define( function ( require, exports, module ) {
         setFontSize: function ( fontSize ) {
             this.fontSize = fontSize;
             this.contentNode.setAttr( "font-size", fontSize + "px" );
+            this.contentNode.setAttr( "y", fontSize / 50 * FONT_CONF.offset );
         },
 
         getBaseHeight: function () {
