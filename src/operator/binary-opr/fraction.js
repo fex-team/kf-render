@@ -28,10 +28,8 @@ define( function ( require, exports, modules ) {
                 // 分数线overflow值
                 overflow = 3,
                 // 整体padding
-                padding = 5,
+                padding = 1,
                 maxWidth = Math.max( upWidth, downWidth ),
-                // 内部padding
-                padding = 3,
                 maxHeight = Math.max( upHeight, downHeight ),
                 operatorShape = generateOperator( maxWidth, overflow );
 

@@ -9,7 +9,7 @@ define( function ( require ) {
 
         font: {
             meanline: Math.round( 380 / 1000 * 50 ),
-            baseline: Math.round( 800 / 1000 * 50 ),
+            baseline: Math.round( ( 800 ) / 1000 * 50 ),
             baseHeight: 50,
             // 系统字体列表
             list: [

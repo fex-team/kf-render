@@ -12,10 +12,9 @@ define( function ( require, exports, modules ) {
 
         // 计算公式
         radians = 2 * Math.PI / 360,
-        sin20 = Math.sin( 20 * radians ),
-        cos20 = Math.cos( 20 * radians ),
-        tan20 = Math.tan( 20 * radians ),
-        atan20 = Math.atan( 20 * radians );
+        sin15 = Math.sin( 15 * radians ),
+        cos15 = Math.cos( 15 * radians ),
+        tan15 = Math.tan( 15 * radians );
 
     return kity.createClass( 'RadicalOperator', {
 
@@ -42,6 +41,7 @@ define( function ( require, exports, modules ) {
 
         var decoration = generateDecoration( radicand ),
             vLine = generateVLine( radicand ),
+            padding = 5,
             hLine = generateHLine( radicand );
 
         this.addOperatorShape( decoration );
@@ -50,8 +50,8 @@ define( function ( require, exports, modules ) {
 
         adjustmentPosition.call( this, mergeShape( decoration, vLine, hLine ), this.operatorShape, radicand, exponent );
 
-        this.parentExpression.expand( 0, 10 );
-        this.parentExpression.translateElement( 0, 5 );
+        this.parentExpression.expand( 0, padding * 2 );
+        this.parentExpression.translateElement( 0, padding );
 
     }
 
@@ -59,18 +59,18 @@ define( function ( require, exports, modules ) {
     function generateDecoration ( radicand ) {
 
         var shape = new kity.Path(),
-        // 命名为a以便于精简表达式
+            // 命名为a以便于精简表达式
             a = SHAPE_DATA_WIDTH,
-            h = ( radicand.getHeight() - 13 ) / 3,
+            h = ( radicand.getHeight() ) / 3,
             drawer = shape.getDrawer();
 
         // 根号尾部左上角开始
-        drawer.moveTo( 0, cos20 * a * 6 );
-        drawer.lineBy( sin20 * a , cos20 * a );
-        drawer.lineBy( cos20 * a * 3, -sin20 * a * 3 );
-        drawer.lineBy( tan20 * h, h );
-        drawer.lineBy( sin20 * a * 3, -cos20 * a * 3 );
-        drawer.lineBy( -sin20 * h, - h );
+        drawer.moveTo( 0, cos15 * a * 6 );
+        drawer.lineBy( sin15 * a , cos15 * a );
+        drawer.lineBy( cos15 * a * 3, -sin15 * a * 3 );
+        drawer.lineBy( tan15 * h, h );
+        drawer.lineBy( sin15 * a * 3, -cos15 * a * 3 );
+        drawer.lineBy( -sin15 * h, - h );
         drawer.close();
 
         return shape.fill( "black" );
@@ -81,13 +81,14 @@ define( function ( require, exports, modules ) {
     function generateVLine ( operand ) {
 
         var shape = new kity.Path(),
-            h = operand.getHeight() - 13,
+            // * 0.9 是为了在视觉上使斜线部分不至于太高
+            h = operand.getHeight() * 0.9,
             drawer = shape.getDrawer();
 
-        drawer.moveTo( tan20 * h, 0 );
+        drawer.moveTo( tan15 * h, 0 );
         drawer.lineTo( 0, h );
-        drawer.lineBy( sin20 * SHAPE_DATA_WIDTH * 3, cos20 * SHAPE_DATA_WIDTH * 3 );
-        drawer.lineBy( tan20 * h + sin20 * SHAPE_DATA_WIDTH * 3, -( h + 3 * SHAPE_DATA_WIDTH * cos20 ) );
+        drawer.lineBy( sin15 * SHAPE_DATA_WIDTH * 3, cos15 * SHAPE_DATA_WIDTH * 3 );
+        drawer.lineBy( tan15 * h + sin15 * SHAPE_DATA_WIDTH * 3, -( h + 3 * SHAPE_DATA_WIDTH * cos15 ) );
         drawer.close();
 
         return shape.fill( "black" );
@@ -110,15 +111,15 @@ define( function ( require, exports, modules ) {
         var decoBox = decoration.getFixRenderBox(),
             vLineBox = vLine.getFixRenderBox();
 
-        vLine.translate( decoBox.width - sin20 * SHAPE_DATA_WIDTH * 3, 0 );
+        vLine.translate( decoBox.width - sin15 * SHAPE_DATA_WIDTH * 3, 0 );
         decoration.translate( 0, vLineBox.height - decoBox.height );
         vLineBox = vLine.getFixRenderBox();
 
-        hLine.translate( vLineBox.x + vLineBox.width - SHAPE_DATA_WIDTH / cos20, 0 );
+        hLine.translate( vLineBox.x + vLineBox.width - SHAPE_DATA_WIDTH / cos15, 0 );
 
         // 返回关键点数据
         return {
-            x: vLineBox.x + vLineBox.width - SHAPE_DATA_WIDTH / cos20,
+            x: vLineBox.x + vLineBox.width - SHAPE_DATA_WIDTH / cos15,
             y: 0
         };
 
@@ -147,7 +148,7 @@ define( function ( require, exports, modules ) {
                 opOffset.y = 0;
             }
 
-            opOffset.x = exponentBox.width + ( opBox.height / 2 ) * tan20 - position.x;
+            opOffset.x = exponentBox.width + ( opBox.height / 2 ) * tan15 - position.x;
         }
 
         operator.translate( opOffset.x, opOffset.y );

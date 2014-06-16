@@ -20,11 +20,15 @@ define( function ( require, exports, modules ) {
         applyOperand: function () {
 
                 // 偏移量
-            var offset = 0,
+            var offsetX = 0,
+                offsetY = 0,
                 // 操作数
                 operands = arguments,
                 // 操作对象最大高度
                 maxHeight = 0,
+                // 垂直距离最大偏移
+                maxOffsetTop = 0,
+                maxOffsetBottom = 0,
                 cached = [],
                 // 偏移集合
                 offsets = [];
@@ -32,11 +36,13 @@ define( function ( require, exports, modules ) {
             kity.Utils.each( operands, function ( operand ) {
 
                 var box = operand.getFixRenderBox(),
-                    offset = operand.getOffset();
+                    offsetY = operand.getOffset();
 
-                box.height += offset.top + offset.bottom;
+                box.height -= offsetY.top + offsetY.bottom;
                 cached.push( box );
-                offsets.push( offset );
+                offsets.push( offsetY );
+                maxOffsetTop = Math.max( offsetY.top, maxOffsetTop );
+                maxOffsetBottom = Math.max( offsetY.bottom, maxOffsetBottom );
                 maxHeight = Math.max( box.height, maxHeight );
 
             } );
@@ -45,12 +51,13 @@ define( function ( require, exports, modules ) {
 
                 var box = cached[ index ];
 
-                operand.translate( offset - box.x, ( maxHeight - ( box.y + box.height ) ) / 2 + offsets[ index ].top );
+                operand.translate( offsetX - box.x, ( maxHeight - ( box.y + box.height ) ) / 2 + maxOffsetBottom - offsets[ index ].bottom );
 
-                offset += box.width;
+                offsetX += box.width;
 
             } );
 
+            this.parentExpression.setOffset( maxOffsetTop, maxOffsetBottom );
             this.parentExpression.updateBoxSize();
 
         }

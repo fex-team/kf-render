@@ -38,25 +38,34 @@ define( function ( require ) {
 
             var targetBox = target.getFixRenderBox();
 
-            // 基础空间大小
-            var supBox = sup.getFixRenderBox(),
-                subBox = sub.getFixRenderBox(),
-                maxOffset = Math.max( supBox.height, subBox.height ),
-                space = {
-                    width: Math.max( targetBox.width, supBox.width, subBox.width ),
-                    height: maxOffset * 2 + targetBox.height
-                },
-                targetHeight = targetBox.height,
-                vOffset = 0;
+            if ( EmptyExpression.isEmpty( sup ) && EmptyExpression.isEmpty( sub ) ) {
+                return {
+                    width: targetBox.width,
+                    height: targetBox.height,
+                    top: 0,
+                    bottom: 0
+                };
+            } else {
 
-            if ( supBox.height < maxOffset ) {
-                vOffset = maxOffset - supBox.height;
+                // 上标
+                if ( !EmptyExpression.isEmpty( sup ) && EmptyExpression.isEmpty( sub ) ) {
+                    return this.applyUp( target, sup );
+                } else if ( EmptyExpression.isEmpty( sup ) && !EmptyExpression.isEmpty( sub ) ) {
+                    return this.applyDown( target, sub );
+                } else {
+                    return this.applyUpDownScript( target, sup, sub );
+                }
+
             }
 
-            // 位置调整
-            sup.translate( ( space.width - supBox.width ) / 2, vOffset );
-            target.translate( ( space.width - targetBox.width ) / 2, maxOffset );
-            sub.translate( ( space.width - subBox.width ) / 2, maxOffset + targetBox.height );
+            target.translate( ( space.width - targetBox.width ) / 2, supBox.height );
+            sub.translate( ( space.width - subBox.width ) / 2, supBox.height + targetBox.height );
+
+            if ( diff > 0 ) {
+                space.bottom = diff;
+            } else {
+                space.top = -diff;
+            }
 
             return space;
 
@@ -122,6 +131,10 @@ define( function ( require ) {
 
             sup.translate( targetRectBox.width, 0 );
 
+            if ( this.options.supOffset ) {
+                sup.translate( this.options.supOffset, 0 );
+            }
+
             if ( diff > 0 ) {
                 target.translate( 0, diff );
                 space.bottom = diff;
@@ -140,11 +153,11 @@ define( function ( require ) {
 
             var targetRectBox = target.getFixRenderBox(),
                 subRectBox = sub.getFixRenderBox(),
-                targetMeanline = target.getMeanline(),
+                subOffset = sub.getOffset(),
                 targetBaseline = target.getBaseline(),
-                positionline = targetMeanline + ( targetBaseline - targetMeanline ) * 2 / 3,
-                subMeanline = sub.getMeanline(),
-                diff = targetRectBox.height - positionline - ( subRectBox.height - subMeanline ),
+                // 下标定位线
+                subPosition = ( subRectBox.height + subOffset.top + subOffset.bottom ) / 2,
+                diff = targetRectBox.height - targetBaseline - subPosition,
                 space = {
                     top: 0,
                     bottom: 0,
@@ -152,7 +165,12 @@ define( function ( require ) {
                     height: targetRectBox.height
                 };
 
-            sub.translate( targetRectBox.width, positionline - subMeanline );
+            // 定位下标位置
+            sub.translate( targetRectBox.width, subOffset.top + targetBaseline - subPosition );
+
+            if ( this.options.subOffset ) {
+                sub.translate( this.options.subOffset, 0 );
+            }
 
             if ( diff < 0 ) {
                 space.top = -diff;
@@ -190,6 +208,14 @@ define( function ( require ) {
             sup.translate( targetRectBox.width, topDiff );
             sub.translate( targetRectBox.width, subPosition - subAscenderline );
 
+            if ( this.options.supOffset ) {
+                sup.translate( this.options.supOffset, 0 );
+            }
+
+            if ( this.options.subOffset ) {
+                sub.translate( this.options.subOffset, 0 );
+            }
+
             // 定位纠正
             if ( topDiff > 0 ) {
 
@@ -204,26 +230,63 @@ define( function ( require ) {
                 sup.translate( 0, -topDiff );
                 sub.translate( 0, -topDiff );
 
+                space.height -= topDiff;
+
                 if ( bottomDiff > 0 ) {
-                    targetRectBox.height -= topDiff;
                     space.bottom = -topDiff;
                 } else {
+
+                    space.height -= bottomDiff;
 
                     // 比较上下偏移， 获取正确的偏移值
                     topDiff = -topDiff;
                     bottomDiff = -bottomDiff;
 
                     if ( topDiff > bottomDiff ) {
-                        targetRectBox.height += topDiff - bottomDiff;
                         space.bottom = topDiff - bottomDiff;
                     } else {
-                        targetRectBox.height += bottomDiff - topDiff;
                         space.top = bottomDiff - topDiff;
                     }
 
                 }
 
             }
+
+            return space;
+
+        },
+
+        applyUp: function ( target, sup ) {
+
+            var supBox = sup.getFixRenderBox(),
+                targetBox = target.getFixRenderBox(),
+                space = {
+                    width: Math.max( targetBox.width, supBox.width ),
+                    height: supBox.height + targetBox.height,
+                    top: 0,
+                    bottom: supBox.height
+                };
+
+            sup.translate( ( space.width - supBox.width ) / 2, 0 );
+            target.translate( ( space.width - targetBox.width ) / 2, supBox.height );
+
+            return space;
+
+        },
+
+        applyDown: function ( target, sub ) {
+
+            var subBox = sub.getFixRenderBox(),
+                targetBox = target.getFixRenderBox(),
+                space = {
+                    width: Math.max( targetBox.width, subBox.width ),
+                    height: subBox.height + targetBox.height,
+                    top: subBox.height,
+                    bottom: 0
+                };
+
+            sub.translate( ( space.width - subBox.width ) / 2, targetBox.height );
+            target.translate( ( space.width - targetBox.width ) / 2, 0 );
 
             return space;
 

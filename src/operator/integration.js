@@ -32,12 +32,17 @@ define( function ( require, exports, modules ) {
         applyOperand: function ( exp, sup, sub ) {
 
             var opShape = this.getOperatorShape(),
-                padding = 5,
+                padding = 3,
                 expBox = exp.getFixRenderBox(),
                 space = new ScriptController( this, opShape, sup, sub, {
+                    supOffset: 3,
                     subOffset: -15
                 } ).applySide(),
-                diff = ( space.height - expBox.height ) / 2;
+                diff = ( space.height + space.top - expBox.height ) / 2;
+
+            opShape.translate( 0, space.top );
+            sup.translate( 0, space.top );
+            sub.translate( 0, space.top );
 
             if ( diff >= 0 ) {
                 exp.translate( space.width + padding, diff );
@@ -68,21 +73,25 @@ define( function ( require, exports, modules ) {
             group.addShape( opBox );
             group.addShape( opGroup );
 
+            this.addOperatorShape( group );
+
             for ( var i = 1; i < this.opType; i++ ) {
-                tmpShape = new kity.Use( opShape ).translate( opShape.getWidth() /2 * i, 0 );
-                tmpShape.translate( 10 * i, 0 );
+                tmpShape = new kity.Use( opShape ).translate( opShape.getWidth() / 2 * i, 0 );
                 opGroup.addShape( tmpShape );
             }
 
-            tmpShape = null;
-
             opGroup.scale( 1.6 );
 
-            this.addOperatorShape( group );
+            tmpShape = null;
 
-            opGroup.translate( 2, 15 );
+            // 为操作符图形创建baseline和meanline方法
+            group.getBaseline = function () {
+                return opGroup.getFixRenderBox().height;
+            };
 
-            opBox.setSize( opGroup.getFixRenderBox().width + 4, opGroup.getFixRenderBox().height + 25 );
+            group.getMeanline = function () {
+                return 10;
+            }
 
             return group;
 

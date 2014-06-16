@@ -23,20 +23,21 @@ define( function ( require, exports, modules ) {
 
             var opShape = this.getOperatorShape(),
                 expBox = expr.getFixRenderBox(),
-                padding = 5,
+                padding = 0,
                 space = new ScriptController( this, opShape, sup, sub ).applyUpDown(),
-                diff = ( space.height - expBox.height ) / 2;
+                diff = ( space.height - space.top - space.bottom - expBox.height ) / 2;
 
             if ( diff >= 0 ) {
-                expr.translate( space.width + padding, diff );
+                expr.translate( space.width + padding, diff + space.bottom );
             } else {
                 diff = -diff;
                 opShape.translate( 0, diff );
                 sup.translate( 0, diff );
                 sub.translate( 0, diff );
-                expr.translate( space.width + padding, 0 );
+                expr.translate( space.width + padding, space.bottom );
             }
 
+            this.parentExpression.setOffset( space.top, space.bottom );
             this.parentExpression.expand( padding, padding * 2 );
             this.parentExpression.translateElement( padding, padding );
 

@@ -26,7 +26,8 @@
                 var  exps = [
                     new kf.CombinationExpression( new kf.FractionExpression( "1", "2" ), "+\\cdots\\+", new kf.FractionExpression( "1", "10" ) ),
                     new kf.FractionExpression( "a-b", "a+b" ),
-                    new kf.CombinationExpression( "a+", new kf.FractionExpression( "a", "b" ) )
+                    new kf.CombinationExpression( "a+", new kf.FractionExpression( "a", "b" ) ),
+                    new kf.FractionExpression( "x", "y" )
                 ];
 
                 kity.Utils.each( exps, function ( exp ) {

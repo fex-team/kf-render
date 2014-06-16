@@ -101,11 +101,13 @@ define( function ( require, exports, module ) {
             },
 
             getBaseline: function () {
-                return this.getFixRenderBox().height * FONT_CONF.baselinePosition;
+                // 上偏移3px
+                return this.getFixRenderBox().height * FONT_CONF.baselinePosition - 3;
             },
 
             getMeanline: function () {
-                return this.getFixRenderBox().height * FONT_CONF.meanlinePosition;
+                // 上偏移1px
+                return this.getFixRenderBox().height * FONT_CONF.meanlinePosition - 1;
             },
 
             getAscenderline: function () {

@@ -36,7 +36,15 @@
                     new kf.SubscriptExpression( "y", 2 ),
                     new kf.SuperscriptExpression( "x", new kf.SuperscriptExpression( "x", 3 ) ),
                     new kf.SuperscriptExpression( "x", new kf.SubscriptExpression( "x", 3 ) ),
-                    new kf.SubscriptExpression( "x", new kf.SuperscriptExpression( "x", 3 ) )
+                    new kf.SubscriptExpression( "x", new kf.SuperscriptExpression( "x", 3 ) ),
+                    new kf.SubscriptExpression( "x", "a" ),
+                    new kf.SubscriptExpression( "x", "b" ),
+                    new kf.SubscriptExpression( "a", new kf.FractionExpression( "x", "y" ) ),
+                    new kf.SuperscriptExpression( "a", new kf.FractionExpression( "x", "y" ) ),
+                    new kf.ScriptExpression( "a", "x", "y" ),
+                    new kf.ScriptExpression( new kf.FractionExpression( "x", "y" ), "a" ),
+                    new kf.SubscriptExpression( new kf.FractionExpression( "x", "y" ), "a" ),
+                    new kf.SubscriptExpression( new kf.FractionExpression( "x", "x" ), "a" )
                 ];
 
                 kity.Utils.each( exps, function ( exp ) {

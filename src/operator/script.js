@@ -20,7 +20,7 @@ define( function ( require, exports, module ) {
         applyOperand: function ( operand, sup, sub ) {
 
             var opShape = this.getOperatorShape(),
-                padding = 5,
+                padding = 1,
                 parent = this.parentExpression,
                 space = new ScriptController( this, operand, sup, sub ).applySide();
 

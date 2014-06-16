@@ -9,6 +9,10 @@
     kity.extendClass(kity.Shape, {
         getFixRenderBox: function () {
             return this.getRenderBox( this.container.container );
+        },
+
+        getTranslate: function () {
+            return this.transform.translate;
         }
     });
 

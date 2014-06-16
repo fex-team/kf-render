@@ -4,6 +4,7 @@
     <title>方根表达式</title>
     <meta charset="utf-8">
     <script src="../../dev-lib/jquery-1.10.2.min.js"></script>
+    <script src="../../dev-lib/jquery-1.10.2.min.js"></script>
     <script src="../../dev-lib/kitygraph.all.js"></script>
     <script src="../../dev-lib/dev-define.js"></script>
     <script>
@@ -29,7 +30,8 @@
                     exps = [
                         new kf.CombinationExpression( "2=", new kf.RadicalExpression( "4", "2" ) ),
                         new kf.RadicalExpression( "a+b\\div\\c" ),
-                        new kf.CombinationExpression( "u=", new kf.RadicalExpression( sqrt3, 3 ) )
+                        new kf.CombinationExpression( "u=", new kf.RadicalExpression( sqrt3, 3 ) ),
+                        new kf.CombinationExpression( "a+", new kf.RadicalExpression( new kf.FractionExpression( "a", "b" ) ) )
                     ];
 
                 kity.Utils.each( exps, function ( exp ) {
