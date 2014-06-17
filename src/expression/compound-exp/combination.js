@@ -62,7 +62,7 @@ define( function ( require, exports, modules ) {
 
         getMeanline: function ( refer ) {
 
-            var minMeanline = 0,
+            var minMeanline = 10000000,
                 operands = this.getOperands();
 
             if ( operands.length === 0 ) {

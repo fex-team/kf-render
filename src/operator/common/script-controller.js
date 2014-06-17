@@ -72,11 +72,10 @@ define( function ( require ) {
 
             var target = this.target,
                 sup = this.sup,
-                sub = this.sub,
-                options = this.options;
+                sub = this.sub;
 
             if ( EmptyExpression.isEmpty( sup ) && EmptyExpression.isEmpty( sub ) ) {
-                var targetRectBox = target.getFixRenderBox();
+                var targetRectBox = target.getRenderBox( this.observer );
                 return {
                     width: targetRectBox.width,
                     height: targetRectBox.height,
@@ -104,7 +103,7 @@ define( function ( require ) {
 
             sup.scale( this.options.zoom );
 
-            var targetRectBox = target.getFixRenderBox(),
+            var targetRectBox = target.getRenderBox( this.observer ),
                 supRectBox = sup.getRenderBox( this.observer ),
                 targetMeanline = target.getMeanline( this.observer ),
                 supBaseline = sup.getBaseline( this.observer ),
