@@ -26,6 +26,36 @@ define( function ( require, exports, modules ) {
 
             }, this );
 
+        },
+
+        getBaseline: function () {
+
+            var maxBaseline = 0,
+                operands = this.getOperands();
+
+            kity.Utils.each( operands, function ( operand ) {
+
+                maxBaseline = Math.max( operand.getBaseline(), maxBaseline )
+
+            } );
+
+            return maxBaseline;
+
+        },
+
+        getMeanline: function () {
+
+            var minMeanline = 0,
+                operands = this.getOperands();
+
+            kity.Utils.each( operands, function ( operand ) {
+
+                minMeanline = Math.min( operand.getMeanline(), minMeanline )
+
+            } );
+
+            return minMeanline;
+
         }
 
     } );

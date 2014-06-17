@@ -100,6 +100,14 @@ define( function ( require, exports, module ) {
 
             },
 
+            getBaselineProportion: function () {
+                return FONT_CONF.baselinePosition;
+            },
+
+            getMeanlineProportion: function () {
+                return FONT_CONF.meanlinePosition;
+            },
+
             getBaseline: function () {
                 // 上偏移3px
                 return this.getFixRenderBox().height * FONT_CONF.baselinePosition - 3;

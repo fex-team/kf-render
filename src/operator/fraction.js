@@ -4,7 +4,8 @@
 
 define( function ( require, exports, modules ) {
 
-    var kity = require( "kity" );
+    var kity = require( "kity" ),
+        ZOOM = require( "sysconf" ).zoom;
 
     return kity.createClass( 'FractionOperator', {
 
@@ -18,8 +19,8 @@ define( function ( require, exports, modules ) {
 
         applyOperand: function ( upOperand, downOperand ) {
 
-            upOperand.scale( 0.66 );
-            downOperand.scale( 0.66 );
+            upOperand.scale( ZOOM );
+            downOperand.scale( ZOOM );
 
             var upWidth = Math.ceil( upOperand.getWidth() ),
                 downWidth = Math.ceil( downOperand.getWidth() ),

@@ -118,7 +118,6 @@ define( function ( require ) {
             var targetRectBox = target.getFixRenderBox(),
                 supRectBox = sup.getFixRenderBox(),
                 targetMeanline = target.getMeanline(),
-                targetBaseline = target.getBaseline(),
                 supBaseline = sup.getBaseline(),
                 positionline = targetMeanline,
                 diff = supBaseline - positionline,

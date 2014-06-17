@@ -21,14 +21,17 @@ define( function ( require, exports, modules ) {
 
         },
 
+        /*------- 重写分数结构的baseline和mealine计算方式 */
         getBaseline: function () {
             var downOperand = this.getOperand( 1 ),
-                rectBox = downOperand.getFixRenderBox();
-            return rectBox.y + this.getOperand( 1 ).getBaseline();
+                rectBox = downOperand.getRenderBox("paper");
+            return rectBox.y + downOperand.getBaselineProportion() * rectBox.height;
         },
 
         getMeanline: function () {
-            return this.getOperand( 0 ).getMeanline();
+            var upOperand = this.getOperand( 0 ),
+                rectBox = upOperand.getRenderBox( "paper" );
+            return upOperand.getMeanlineProportion() * rectBox.height;
         }
 
     } );
