@@ -1,5 +1,5 @@
 /*!
- * 系统项目配置文件.
+ * 绯荤粺椤圭洰閰嶇疆鏂囦欢.
  */
 
 define( function ( require ) {
@@ -11,7 +11,7 @@ define( function ( require ) {
             meanline: Math.round( 380 / 1000 * 50 ),
             baseline: Math.round( ( 800 ) / 1000 * 50 ),
             baseHeight: 50,
-            // 系统字体列表
+            // 绯荤粺瀛椾綋鍒楄〃
             list: [
                 require( "font/map/kf-ams-main" ),
                 require( "font/map/kf-ams-cal" ),
@@ -21,9 +21,14 @@ define( function ( require ) {
             ]
         },
 
-        // 函数相关配置
+        /*------------------------- 璧勬簮閰嶇疆*/
+        resource: {
+            path: 'src/resource/'
+        },
+
+        // 鍑芥暟鐩稿叧閰嶇疆
         func: {
-            // 上下标在函数名上下两侧的函数列表
+            // 涓婁笅鏍囧湪鍑芥暟鍚嶄笂涓嬩袱渚х殑鍑芥暟鍒楄〃
             "ud-script": {
                 "limit": true
             }

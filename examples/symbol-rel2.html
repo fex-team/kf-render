@@ -16,11 +16,9 @@
     <script>
         window.onload = function () {
 
+            kf.ResourceManager.ready( function ( Formula ) {
 
-            var wrapper = kf.Factory.create( document.getElementById( "container" ) );
-
-            wrapper.ready( function ( formula ) {
-                // this 也指向 formula, 也就是 formula === this
+                var formula = new Formula( document.getElementById( "container" ) );
 
                 var exps = [
                     new kf.TextExpression( "\\backepsilon\\\\because\\\\between\\\\blacktriangleleft\\\\blacktriangleright\\\\bowtie\\" ),
@@ -39,6 +37,8 @@
                     formula.appendExpression( exp );
                 } );
 
+            }, {
+                path: '../src/resource/'
             } );
 
         };

@@ -21,7 +21,7 @@
         global.kf = {
 
             // base
-            Factory: require( "factory" ),
+            ResourceManager: require( "resource-manager" ),
             Operator: require( "operator/operator" ),
 
             // expression

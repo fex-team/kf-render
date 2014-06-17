@@ -16,14 +16,11 @@
     <script>
         window.onload = function () {
 
-            var wrapper = kf.Factory.create( document.getElementById( "container" ), {
-                resource: '../../src/resource/'
-            } );
+            kf.ResourceManager.ready( function ( Formula ) {
 
-            wrapper.ready( function ( formula ) {
-                // this 也指向 formula, 也就是 formula === this
+                var formula = new Formula( document.getElementById( "container" ) );
 
-                var  exps = [
+                var exps = [
                     new kf.CombinationExpression( new kf.FractionExpression( "1", "2" ), "+\\cdots\\+", new kf.FractionExpression( "1", "10" ) ),
                     new kf.FractionExpression( "a-b", "a+b" ),
                     new kf.CombinationExpression( "a+", new kf.FractionExpression( "a", "b" ) ),
@@ -34,6 +31,8 @@
                     formula.appendExpression( exp );
                 } );
 
+            }, {
+                path: '../../src/resource/'
             } );
 
         };

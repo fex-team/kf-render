@@ -16,10 +16,9 @@
     <script>
         window.onload = function () {
 
-            var wrapper = kf.Factory.create( document.getElementById( "container" ) );
+            kf.ResourceManager.ready( function ( Formula ) {
 
-            wrapper.ready( function ( formula ) {
-                // this 也指向 formula, 也就是 formula === this
+                var formula = new Formula( document.getElementById( "container" ) );
 
                 var exps = [
                     new kf.TextExpression( "\\circlearrowleft\\\\circlearrowright\\\\curvearrowleft\\\\curvearrowright\\\\downdownarrows\\" ),
@@ -41,6 +40,8 @@
                     formula.appendExpression( exp );
                 } );
 
+            }, {
+                path: '../src/resource/'
             } );
 
         };

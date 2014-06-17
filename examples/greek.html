@@ -18,10 +18,9 @@
 
         window.onload = function () {
 
-            var wrapper = kf.Factory.create( document.getElementById( "container" ) );
+            kf.ResourceManager.ready( function ( Formula ) {
 
-            wrapper.ready( function ( formula ) {
-                // this 也指向 formula, 也就是 formula === this
+                var formula = new Formula( document.getElementById( "container" ) );
 
                 var exps = [
                     new kf.TextExpression( "\\alpha\\\\beta\\\\gamma\\\\delta\\\\epsilon\\\\zeta\\\\eta\\\\theta\\\\iota\\\\kappa\\\\lambda\\\\mu\\\\nu\\\\xi\\\\omicron\\\\pi\\\\rho\\\\sigma\\\\tau\\\\upsilon\\\\phi\\\\chi\\\\psi\\\\omega\\" ),
@@ -33,6 +32,8 @@
                     formula.appendExpression( exp );
                 } );
 
+            }, {
+                path: '../src/resource/'
             } );
 
         };

@@ -12,11 +12,10 @@ define( function ( require ) {
 
     return kity.createClass( "FontInstaller", {
 
-        constructor: function ( container, resource ) {
+        constructor: function ( doc, resource ) {
             this.callBase();
-            this.container = container;
             this.resource = resource || "../src/resource/";
-            this.doc = container.ownerDocument;
+            this.doc = doc;
         },
 
         // 挂载字体

@@ -16,23 +16,20 @@
     <script>
         window.onload = function () {
 
-            var wrapper = kf.Factory.create( document.getElementById( "container" ), {
-                resource: '../../src/resource/'
-            } );
+            kf.ResourceManager.ready( function ( Formula ) {
 
-            wrapper.ready( function ( formula ) {
-                // this 也指向 formula, 也就是 formula === this
+                var formula = new Formula( document.getElementById( "container" ) );
 
-//                var brackets1 = new kf.BracketsExpression( "(", ")", new kf.CombinationExpression( "1+", new kf.FractionExpression("1", "n") ) ),
-                var  exps = [
+                var exps = [
                     new kf.CombinationExpression( "ea", new kf.FunctionExpression( "sin", 30 ), "add" )
-//                    new kf.CombinationExpression( "e=", new kf.FunctionExpression( "lim", new kf.SuperscriptExpression( brackets1, 3 ), null, "x\\to\\\\infty\\" ) )
-                ]
+                ];
 
                 kity.Utils.each( exps, function ( exp ) {
                     formula.appendExpression( exp );
                 } );
 
+            }, {
+                path: '../../src/resource/'
             } );
 
         };

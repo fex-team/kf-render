@@ -16,10 +16,9 @@
     <script>
         window.onload = function () {
 
-            var wrapper = kf.Factory.create( document.getElementById( "container" ) );
+            kf.ResourceManager.ready( function ( Formula ) {
 
-            wrapper.ready( function ( formula ) {
-                // this 也指向 formula, 也就是 formula === this
+                var formula = new Formula( document.getElementById( "container" ) );
 
                 var exps = [
                     new kf.TextExpression( "abcdefghijklmnopqrstuvwxyz", "KF AMS ROMAN" ),
@@ -30,6 +29,8 @@
                     formula.appendExpression( exp );
                 } );
 
+            }, {
+                path: '../src/resource/'
             } );
 
         };
@@ -38,9 +39,6 @@
 </head>
 <body>
     <h1>罗马字符</h1>
-    <p style="font-family: 'KF AMS ROMAN'; font-size: 50px; line-height: 1em;">
-        abcdef
-    </p>
     <p>
         构造方法： new kf.Text( "abc", "KF AMS ROMAN" );
     </p>
