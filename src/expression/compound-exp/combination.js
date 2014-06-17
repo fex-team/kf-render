@@ -53,7 +53,6 @@ define( function ( require, exports, modules ) {
             kity.Utils.each( operands, function ( operand ) {
 
                 maxBaseline = Math.max( operand.getBaseline(), maxBaseline )
-                console.log(maxBaseline)
 
             } );
 
