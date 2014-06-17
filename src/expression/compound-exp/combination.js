@@ -41,18 +41,18 @@ define( function ( require, exports, modules ) {
 
         },
 
-        getBaseline: function () {
+        getBaseline: function ( refer ) {
 
             var maxBaseline = 0,
                 operands = this.getOperands();
 
             if ( operands.length === 0 ) {
-                return this.callBase();
+                return this.callBase( refer );
             }
 
             kity.Utils.each( operands, function ( operand ) {
 
-                maxBaseline = Math.max( operand.getBaseline(), maxBaseline )
+                maxBaseline = Math.max( operand.getBaseline( refer ), maxBaseline )
 
             } );
 
@@ -60,18 +60,18 @@ define( function ( require, exports, modules ) {
 
         },
 
-        getMeanline: function () {
+        getMeanline: function ( refer ) {
 
             var minMeanline = 0,
                 operands = this.getOperands();
 
             if ( operands.length === 0 ) {
-                return this.callBase();
+                return this.callBase( refer );
             }
 
             kity.Utils.each( operands, function ( operand ) {
 
-                minMeanline = Math.min( operand.getMeanline(), minMeanline )
+                minMeanline = Math.min( operand.getMeanline( refer ), minMeanline )
 
             } );
 

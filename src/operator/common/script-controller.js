@@ -17,7 +17,7 @@ define( function ( require ) {
 
         constructor: function ( opObj, target, sup, sub, options ) {
 
-            this.opObj = opObj;
+            this.observer = opObj.getParentExpression();
             this.target = target;
             this.sup = sup;
             this.sub = sub;
@@ -57,17 +57,6 @@ define( function ( require ) {
                 }
 
             }
-
-            target.translate( ( space.width - targetBox.width ) / 2, supBox.height );
-            sub.translate( ( space.width - subBox.width ) / 2, supBox.height + targetBox.height );
-
-            if ( diff > 0 ) {
-                space.bottom = diff;
-            } else {
-                space.top = -diff;
-            }
-
-            return space;
 
         },
 
@@ -116,9 +105,9 @@ define( function ( require ) {
             sup.scale( this.options.zoom );
 
             var targetRectBox = target.getFixRenderBox(),
-                supRectBox = sup.getFixRenderBox(),
-                targetMeanline = target.getMeanline(),
-                supBaseline = sup.getBaseline(),
+                supRectBox = sup.getRenderBox( this.observer ),
+                targetMeanline = target.getMeanline( this.observer ),
+                supBaseline = sup.getBaseline( this.observer ),
                 positionline = targetMeanline,
                 diff = supBaseline - positionline,
                 space = {
@@ -150,10 +139,10 @@ define( function ( require ) {
 
             sub.scale( this.options.zoom );
 
-            var targetRectBox = target.getFixRenderBox(),
-                subRectBox = sub.getFixRenderBox(),
+            var targetRectBox = target.getRenderBox( this.observer ),
+                subRectBox = sub.getRenderBox( this.observer ),
                 subOffset = sub.getOffset(),
-                targetBaseline = target.getBaseline(),
+                targetBaseline = target.getBaseline( this.observer ),
                 // 下标定位线
                 subPosition = ( subRectBox.height + subOffset.top + subOffset.bottom ) / 2,
                 diff = targetRectBox.height - targetBaseline - subPosition,
@@ -185,14 +174,14 @@ define( function ( require ) {
             sup.scale( this.options.zoom );
             sub.scale( this.options.zoom );
 
-            var targetRectBox = target.getFixRenderBox(),
-                subRectBox = sub.getFixRenderBox(),
-                supRectBox = sup.getFixRenderBox(),
-                targetMeanline = target.getMeanline(),
-                targetBaseline = target.getBaseline(),
-                supBaseline = sup.getBaseline(),
+            var targetRectBox = target.getRenderBox( this.observer ),
+                subRectBox = sub.getRenderBox( this.observer ),
+                supRectBox = sup.getRenderBox( this.observer ),
+                targetMeanline = target.getMeanline( this.observer ),
+                targetBaseline = target.getBaseline( this.observer ),
+                supBaseline = sup.getBaseline( this.observer ),
                 // 上下标都存在时， 下标的定位以上伸线为准
-                subAscenderline = sub.getAscenderline(),
+                subAscenderline = sub.getAscenderline( this.observer ),
                 supPosition = targetMeanline,
                 subPosition = targetMeanline + ( targetBaseline - targetMeanline ) * 2 / 3,
                 topDiff = supPosition - supBaseline,

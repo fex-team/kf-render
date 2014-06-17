@@ -108,14 +108,14 @@ define( function ( require, exports, module ) {
                 return FONT_CONF.meanlinePosition;
             },
 
-            getBaseline: function () {
+            getBaseline: function ( refer ) {
                 // 上偏移3px
-                return this.getFixRenderBox().height * FONT_CONF.baselinePosition - 3;
+                return this.getRenderBox( refer ).height * FONT_CONF.baselinePosition - 3;
             },
 
-            getMeanline: function () {
+            getMeanline: function ( refer ) {
                 // 上偏移1px
-                return this.getFixRenderBox().height * FONT_CONF.meanlinePosition - 1;
+                return this.getRenderBox( refer ).height * FONT_CONF.meanlinePosition - 1;
             },
 
             getAscenderline: function () {

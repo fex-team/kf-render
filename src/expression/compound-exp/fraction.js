@@ -22,15 +22,15 @@ define( function ( require, exports, modules ) {
         },
 
         /*------- 重写分数结构的baseline和mealine计算方式 */
-        getBaseline: function () {
+        getBaseline: function ( refer ) {
             var downOperand = this.getOperand( 1 ),
-                rectBox = downOperand.getRenderBox("paper");
+                rectBox = downOperand.getRenderBox( refer );
             return rectBox.y + downOperand.getBaselineProportion() * rectBox.height;
         },
 
-        getMeanline: function () {
+        getMeanline: function ( refer ) {
             var upOperand = this.getOperand( 0 ),
-                rectBox = upOperand.getRenderBox( "paper" );
+                rectBox = upOperand.getRenderBox( refer );
             return upOperand.getMeanlineProportion() * rectBox.height;
         }
 
