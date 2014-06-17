@@ -6,13 +6,14 @@
 define( function ( require, exports, modules ) {
 
     var kity = require( "kity"),
+        FONT_CONF = require( "sysconf" ).font,
         CombinationOperator = require( "operator/combination" );
 
     return kity.createClass( 'CombinationExpression', {
 
         base: require( "expression/compound" ),
 
-        constructor: function () {
+        constructor: function ( abc ) {
 
             this.callBase();
 
@@ -28,14 +29,31 @@ define( function ( require, exports, modules ) {
 
         },
 
+        getRenderBox: function ( refer ) {
+
+            var rectBox = this.callBase( refer );
+
+            if ( this.getOperands().length === 0 ) {
+                rectBox.height = FONT_CONF.spaceHeight;
+            }
+
+            return rectBox;
+
+        },
+
         getBaseline: function () {
 
             var maxBaseline = 0,
                 operands = this.getOperands();
 
+            if ( operands.length === 0 ) {
+                return this.callBase();
+            }
+
             kity.Utils.each( operands, function ( operand ) {
 
                 maxBaseline = Math.max( operand.getBaseline(), maxBaseline )
+                console.log(maxBaseline)
 
             } );
 
@@ -47,6 +65,10 @@ define( function ( require, exports, modules ) {
 
             var minMeanline = 0,
                 operands = this.getOperands();
+
+            if ( operands.length === 0 ) {
+                return this.callBase();
+            }
 
             kity.Utils.each( operands, function ( operand ) {
 
