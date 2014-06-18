@@ -85,7 +85,7 @@ define( function ( require, exports, module ) {
             return content.replace( /``/g, "\u201c" ).replace( /\\([a-zA-Z,]+)\\/g, function ( match, input ) {
 
                 if ( input === "," ) {
-                    return "\ufffc \ufffc";
+                    return " ";
                 }
 
                 var data = FontManager.getCharacterValue( input, fontFamily )
