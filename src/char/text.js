@@ -6,7 +6,8 @@ define( function ( require, exports, module ) {
 
     var kity = require( "kity" ),
         FONT_CONF = require( "sysconf" ).font,
-        FontManager = require( "font/manager" );
+        FontManager = require( "font/manager" ),
+        TextFactory = require( "char/text-factory" );
 
     return kity.createClass( 'Text', {
 
@@ -35,7 +36,7 @@ define( function ( require, exports, module ) {
 
         createContent: function () {
 
-            var contentNode = new kity.Text( this.translationContent );
+            var contentNode = TextFactory.create( this.translationContent );
 
             contentNode.setAttr( {
                 "font-family": this.fontFamily,
