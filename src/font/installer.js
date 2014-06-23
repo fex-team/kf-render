@@ -8,6 +8,7 @@ define( function ( require ) {
         FontManager = require( "font/manager" ),
         $ = require( "jquery" ),
         FONT_CONF = require( "sysconf" ).font,
+        CHAR_LIST = require( "char/char-list" ),
         NODE_LIST = [];
 
     return kity.createClass( "FontInstaller", {
@@ -90,19 +91,12 @@ define( function ( require ) {
     function applyFonts ( doc, fontInfo ) {
 
         var node = document.createElement( "div"),
-            fontFamily = fontInfo.meta.fontFamily,
-            strs = [];
+            fontFamily = fontInfo.meta.fontFamily;
 
-        node.style.cssText = 'position: absolute; top: 0; left: -100000px;';
-
-        kity.Utils.each( fontInfo.data, function ( v, key ) {
-
-            strs.push( key );
-
-        } );
+        node.style.cssText = 'position: absolute; top: -10000px; left: -100000px;';
 
         node.style.fontFamily = fontFamily;
-        node.innerHTML = strs.join( "" );
+        node.innerHTML = CHAR_LIST.join( "" );
 
         doc.body.appendChild( node );
         NODE_LIST.push( node );

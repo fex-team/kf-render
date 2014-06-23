@@ -44,6 +44,10 @@ define( function ( require ) {
 
         var options = kity.Utils.extend( {}, RES_CONF, options );
 
+        if ( !/^(https?:)?\/\//.test( options.path ) ) {
+            options.path = getFullPath( options.path );
+        }
+
         new FontInstall( document, options.path ).mount( complete );
 
     }
@@ -55,6 +59,26 @@ define( function ( require ) {
             cb( Formula );
 
         } );
+
+    }
+
+    function getFullPath ( path ) {
+
+        var pathname = location.pathname.split( "/" ),
+            pathPart;
+
+        pathname.length -= 1;
+        pathname = pathname.join( "/" ) + "/";
+
+        pathPart = [
+            location.protocol,
+            '//',
+            location.host,
+            pathname,
+            path.replace( /^\//, '' )
+        ];
+
+        return pathPart.join( "" );
 
     }
 
