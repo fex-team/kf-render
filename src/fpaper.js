@@ -14,6 +14,7 @@ define( function ( require, exports, module ) {
 
             this.callBase( container );
 
+            this.doc = container.ownerDocument;
             this.container = new kity.Group();
             this.container.setAttr( "data-type", "kf-container" );
 

@@ -16,9 +16,11 @@
     <script>
         window.onload = function () {
 
+            var formula = null;
+
             kf.ResourceManager.ready( function ( Formula ) {
 
-                var formula = new Formula( document.getElementById( "container" ) );
+                formula = new Formula( document.getElementById( "container" ) );
 
                 var exps = [
                     new kf.TextExpression( "abcdefghijklmnopqrstuvwxyz" ),
@@ -33,8 +35,30 @@
                 } );
 
             }, {
-                path: '../src/resource/'
+                path: 'http://172.22.65.30/kityformula/src/resource/'
             } );
+
+            document.onkeydown = function ( e ) {
+
+                if ( ( e.ctrlKey || e.metaKey ) && e.keyCode === 83 ) {
+
+                    e.preventDefault();
+
+                    formula.toPNG( function ( url ) {
+
+                        var image = new Image();
+
+                        image.src = url;
+
+                        image.style.border = "1px solid black";
+
+                        document.body.appendChild( image );
+
+                    } );
+
+                }
+
+            };
 
         };
 

@@ -13,6 +13,7 @@ define( function ( require, exports, module ) {
             autoresize: true,
             padding: [ 0 ]
         },
+        Output = require( "base/output" ),
         EXPRESSION_INTERVAL = 10,
 
         ExpressionWrap = kity.createClass( 'ExpressionWrap', {
@@ -75,6 +76,8 @@ define( function ( require, exports, module ) {
 
                 this.initEnvironment();
 
+                this.initInnerFont();
+
             },
 
             getContentContainer: function () {
@@ -96,6 +99,30 @@ define( function ( require, exports, module ) {
                 }
 
                 this.node.setAttribute( "font-size", DEFAULT_OPTIONS.fontsize );
+
+            },
+
+            initInnerFont: function () {
+
+                var fontList = FontManager.getFontList(),
+                    _self = this;
+
+                kity.Utils.each( fontList, function ( fontInfo ) {
+                    createFontStyle( fontInfo );
+                } );
+
+                function createFontStyle ( fontInfo ) {
+
+                    var stylesheet = _self.doc.createElement( "style" ),
+                        tpl = '@font-face{font-family: "${fontFamily}";font-style: normal;src: url("${src}") format("woff");}';
+
+                    stylesheet.setAttribute( "type", "text/css" );
+                    stylesheet.innerHTML = tpl.replace( '${fontFamily}', fontInfo.meta.fontFamily )
+                        .replace( '${src}', fontInfo.meta.src );
+
+                    _self.resourceNode.appendChild( stylesheet );
+
+                }
 
             },
 
@@ -169,6 +196,14 @@ define( function ( require, exports, module ) {
 
                 this.expressions = [];
 
+            },
+
+            toJPG: function ( cb ) {
+                new Output( this ).toJPG( cb );
+            },
+
+            toPNG: function ( cb ) {
+                new Output( this ).toPNG( cb );
             }
 
         } );

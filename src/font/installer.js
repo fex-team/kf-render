@@ -60,7 +60,6 @@ define( function ( require ) {
 
         }
 
-
     } );
 
 
