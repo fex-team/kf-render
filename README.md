@@ -1,5 +1,4 @@
 # Kity Formula Render
->HTML(SVG) 公式呈现引擎
 
 Kity Formula Render（KFR） 是一个基于SVG的公式渲染引擎，用以降低在web上呈现数学公式的复杂度。KFR是一个纯浏览器端解决方案，以**完全脱离服务器**的方式渲染公式，最终产生的公式可以是栅格化的图片，也可以是矢量化的图形。
 
@@ -16,7 +15,7 @@ Kity Formula Render（KFR） 是一个基于SVG的公式渲染引擎，用以降
 你可以在[issues](https://github.com/fex-team/kityformula/issues)中向我们提出在使用过程中遇到的BUG以及功能性建议。
 
 ## 兼容性列表
-KFR支持以下浏览器：
+Kity Formula Render 支持以下浏览器：
 
 ![Browser](http://fex-team.github.io/kityformula/assets/images/browser.png) 
 
