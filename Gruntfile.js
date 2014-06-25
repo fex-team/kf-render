@@ -1,21 +1,15 @@
 /*global module:false*/
 module.exports = function (grunt) {
 
-    // Project configuration.
+    var JSHint = require( "jshint" );
+
     grunt.initConfig({
 
         // Metadata.
         pkg: grunt.file.readJSON('package.json'),
 
+        // 最终代码合并
         concat: {
-
-            options: {
-
-                paths: [ 'src' ],
-                include: 'all',
-                noncmd: true
-
-            },
 
             full: {
 
@@ -45,6 +39,7 @@ module.exports = function (grunt) {
 
         },
 
+        // 压缩
         uglify: {
 
             options: {
@@ -94,14 +89,16 @@ module.exports = function (grunt) {
             }
         },
 
+        // hint检查
         jshint: {
             options: {
                 ignores: [ 'src/base/canvg.js' ],
                 jshintrc: '.jshintrc'
             },
-            all: [ 'src/**/*.js' ]
+            source: [ 'src/**/*.js' ]
         },
 
+        // 临时目录清理
         clean: {
             files: [ '.tmp_build' ]
         }
@@ -109,15 +106,14 @@ module.exports = function (grunt) {
     });
 
     // These plugins provide necessary tasks.
-    grunt.loadNpmTasks('grunt-cmd-concat');
+    grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-module-dependence');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-module-dependence');
 
-    // Default task.
-    grunt.registerTask( 'default', [ 'dependence:replace', 'concat:full', 'uglify:minimize', 'clean' ] );
-    grunt.registerTask( 'hint', [ 'jshint:all' ] );
-    grunt.registerTask( 'commit', [] );
+    // task list.
+    grunt.registerTask( 'default', [ 'jshint' ] );
+    grunt.registerTask( 'build', [ 'jshint', 'dependence:replace', 'concat:full', 'uglify:minimize', 'clean' ] );
 
 };
