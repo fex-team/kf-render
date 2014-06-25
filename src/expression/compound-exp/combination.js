@@ -3,7 +3,7 @@
  * 可以组合多个表达式
  */
 
-define( function ( require, exports, modules ) {
+define( function ( require ) {
 
     var kity = require( "kity"),
         FONT_CONF = require( "sysconf" ).font,
@@ -13,7 +13,7 @@ define( function ( require, exports, modules ) {
 
         base: require( "expression/compound" ),
 
-        constructor: function ( abc ) {
+        constructor: function () {
 
             this.callBase();
 
@@ -52,7 +52,7 @@ define( function ( require, exports, modules ) {
 
             kity.Utils.each( operands, function ( operand ) {
 
-                maxBaseline = Math.max( operand.getBaseline( refer ), maxBaseline )
+                maxBaseline = Math.max( operand.getBaseline( refer ), maxBaseline );
 
             } );
 
@@ -71,7 +71,7 @@ define( function ( require, exports, modules ) {
 
             kity.Utils.each( operands, function ( operand ) {
 
-                minMeanline = Math.min( operand.getMeanline( refer ), minMeanline )
+                minMeanline = Math.min( operand.getMeanline( refer ), minMeanline );
 
             } );
 

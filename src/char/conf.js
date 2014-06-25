@@ -2,7 +2,7 @@
  * 字符配置
  */
 
-define( function ( require ) {
+define( function () {
 
     return {
         // 默认字体

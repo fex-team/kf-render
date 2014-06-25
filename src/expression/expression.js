@@ -3,7 +3,7 @@
  * @abstract
  */
 
-define( function ( require, exports, module ) {
+define( function ( require ) {
 
     var kity = require( "kity"),
 
@@ -191,7 +191,7 @@ define( function ( require, exports, module ) {
         // 打包函数
         wrap: function ( operand ) {
 
-            var result = undefined;
+            var result;
 
             kity.Utils.each( WRAP_FN, function ( fn ) {
 

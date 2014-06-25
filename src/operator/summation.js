@@ -2,7 +2,7 @@
  * 求和操作符：∑
  */
 
-define( function ( require, exports, modules ) {
+define( function ( require ) {
 
     var kity = require( "kity" ),
         ScriptController = require( "operator/common/script-controller" );

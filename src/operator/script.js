@@ -2,7 +2,7 @@
  * 上下标操作符
  */
 
-define( function ( require, exports, module ) {
+define( function ( require ) {
 
     var kity = require( 'kity' ),
         ScriptController = require( "operator/common/script-controller" );
@@ -19,10 +19,11 @@ define( function ( require, exports, module ) {
 
         applyOperand: function ( operand, sup, sub ) {
 
-            var opShape = this.getOperatorShape(),
-                padding = 1,
+            var padding = 1,
                 parent = this.parentExpression,
                 space = new ScriptController( this, operand, sup, sub ).applySide();
+
+            this.getOperatorShape();
 
             space && parent.setOffset( space.top, space.bottom );
             parent.expand( 4, padding * 2 );

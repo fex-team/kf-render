@@ -94,6 +94,14 @@ module.exports = function (grunt) {
             }
         },
 
+        jshint: {
+            options: {
+                ignores: [ 'src/base/canvg.js' ],
+                jshintrc: '.jshintrc'
+            },
+            all: [ 'src/**/*.js' ]
+        },
+
         clean: {
             files: [ '.tmp_build' ]
         }
@@ -105,9 +113,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-module-dependence');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
 
     // Default task.
     grunt.registerTask( 'default', [ 'dependence:replace', 'concat:full', 'uglify:minimize', 'clean' ] );
-
+    grunt.registerTask( 'hint', [ 'jshint:all' ] );
+    grunt.registerTask( 'commit', [] );
 
 };

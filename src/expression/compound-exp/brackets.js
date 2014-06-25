@@ -2,7 +2,7 @@
  * 自动增长括号表达式
  */
 
-define( function ( require, exports, modules ) {
+define( function ( require ) {
 
     var kity = require( "kity" ),
         BracketsOperator = require( "operator/brackets" );

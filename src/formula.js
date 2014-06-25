@@ -2,7 +2,7 @@
  * 公式对象，表达式容器
  */
 
-define( function ( require, exports, module ) {
+define( function ( require ) {
 
     var kity = require( 'kity' ),
         GTYPE = require( "def/gtype" ),
@@ -188,7 +188,7 @@ define( function ( require, exports, module ) {
 
             clearExpressions: function () {
 
-                kity.Utils.each( this.expressions, function ( exp, i ) {
+                kity.Utils.each( this.expressions, function ( exp ) {
 
                     exp.remove();
 
@@ -246,8 +246,7 @@ define( function ( require, exports, module ) {
     // 通知表达式已接入到paper
     function notifyExpression ( expression ) {
 
-        var len = 0,
-            childGroup = null;
+        var len = 0;
 
         if ( !expression ) {
             return;

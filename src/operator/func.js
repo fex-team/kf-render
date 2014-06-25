@@ -2,7 +2,7 @@
  * 函数操作符
  */
 
-define( function ( require, exports, modules ) {
+define( function ( require ) {
 
     var kity = require( "kity" ),
         Text = require( "char/text" ),
@@ -65,7 +65,7 @@ define( function ( require, exports, modules ) {
     function generateOperator () {
 
         var opShape = new Text( this.funcName, "KF AMS ROMAN" );
-        this.addOperatorShape( opShape )
+        this.addOperatorShape( opShape );
 
         return opShape;
 

@@ -2,7 +2,7 @@
  * 分数操作符
  */
 
-define( function ( require, exports, modules ) {
+define( function ( require ) {
 
     var kity = require( "kity" ),
         ZOOM = require( "sysconf" ).zoom;

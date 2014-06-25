@@ -2,7 +2,7 @@
  * 文本
  */
 
-define( function ( require, exports, module ) {
+define( function ( require ) {
 
     var kity = require( "kity" ),
         FONT_CONF = require( "sysconf" ).font,
@@ -89,10 +89,10 @@ define( function ( require, exports, module ) {
                     return " ";
                 }
 
-                var data = FontManager.getCharacterValue( input, fontFamily )
+                var data = FontManager.getCharacterValue( input, fontFamily );
 
                 if ( !data ) {
-                    console.error( input+"丢失" );
+                    console.error( "missing code: " + input );
                     return '';
                 }
 

@@ -2,11 +2,10 @@
  * 小括号操作符：()
  */
 
-define( function ( require, exports, modules ) {
+define( function ( require ) {
 
     var kity = require( "kity" ),
-        Text = require( "char/text" ),
-        FontManager = require( "font/manager" );
+        Text = require( "char/text" );
 
     return kity.createClass( 'BracketsOperator', {
 

@@ -3,7 +3,7 @@
  * 该表达式主要用途是用于站位
  */
 
-define( function ( require, exports, module ) {
+define( function ( require ) {
 
     var kity = require( "kity" ) ,
 
@@ -29,7 +29,7 @@ define( function ( require, exports, module ) {
                     height: FONT_CONF.spaceHeight,
                     x: 0,
                     y: 0
-                }
+                };
             }
 
         } );

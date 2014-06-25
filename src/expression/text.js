@@ -2,7 +2,7 @@
  * Text表达式
  */
 
-define( function ( require, exports, module ) {
+define( function ( require ) {
 
     var Text = require( "char/text" ),
         kity = require( "kity" ),

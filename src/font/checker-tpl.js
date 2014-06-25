@@ -1,8 +1,8 @@
 /*!
- * ×ÖÌåĞÅÏ¢¼ì²âÄ£°å£¬ÓÃÓÚ¼ì²âä¯ÀÀÆ÷µÄ×ÖÌåĞÅÏ¢
+ * å­—ä½“ä¿¡æ¯æ£€æµ‹æ¨¡æ¿ï¼Œç”¨äºæ£€æµ‹æµè§ˆå™¨çš„å­—ä½“ä¿¡æ¯
  */
 
-define( function ( require ) {
+define( function () {
 
     return [
         '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">',

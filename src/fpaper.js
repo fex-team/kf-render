@@ -2,7 +2,7 @@
  * 公式专用paper
  */
 
-define( function ( require, exports, module ) {
+define( function ( require ) {
 
     var kity = require( 'kity' );
 

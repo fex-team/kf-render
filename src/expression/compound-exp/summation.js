@@ -1,9 +1,8 @@
 /**
  * 求和表达式
- * @abstract
  */
 
-define( function ( require, exports, modules ) {
+define( function ( require ) {
 
     var kity = require( "kity" ),
         SummationOperator = require( "operator/summation" );

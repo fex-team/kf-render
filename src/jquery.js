@@ -2,7 +2,7 @@
  * jquery
  */
 
-define( function ( require, exports, module ) {
+define( function () {
 
     if ( !window.jQuery ) {
         throw new Error( 'Missing jQuery' );

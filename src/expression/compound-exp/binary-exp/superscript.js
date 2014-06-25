@@ -2,7 +2,7 @@
  * 上标表达式
  */
 
-define( function ( require, exports, modules ) {
+define( function ( require ) {
 
     var kity = require( "kity" );
 

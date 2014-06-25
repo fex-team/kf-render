@@ -1,8 +1,9 @@
-/**
- * Created by hn on 13-12-3.
+/*!
+ * 所有符号的基类
+ * @abstract
  */
 
-define( function ( require, exports, module ) {
+define( function ( require ) {
 
     var kity = require( 'kity' ),
         GTYPE = require( 'def/gtype' );

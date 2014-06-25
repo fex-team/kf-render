@@ -2,7 +2,7 @@
  * 积分操作符：∫
  */
 
-define( function ( require, exports, modules ) {
+define( function ( require ) {
 
     var kity = require( "kity" ),
         ScriptController = require( "operator/common/script-controller" );
@@ -91,7 +91,7 @@ define( function ( require, exports, modules ) {
 
             group.getMeanline = function () {
                 return 10;
-            }
+            };
 
             return group;
 

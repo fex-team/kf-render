@@ -3,7 +3,7 @@
  * 操作多个表达式组合在一起
  */
 
-define( function ( require, exports, modules ) {
+define( function ( require ) {
 
     var kity = require( "kity" );
 
@@ -21,7 +21,6 @@ define( function ( require, exports, modules ) {
 
                 // 偏移量
             var offsetX = 0,
-                offsetY = 0,
                 // 操作数
                 operands = arguments,
                 // 操作对象最大高度

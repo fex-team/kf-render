@@ -3,7 +3,7 @@
  * @abstract
  */
 
-define( function ( require, exports, modules ) {
+define( function ( require ) {
 
     var kity = require( "kity" ),
         GTYPE = require( "def/gtype" );

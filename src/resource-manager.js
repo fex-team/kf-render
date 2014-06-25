@@ -42,7 +42,7 @@ define( function ( require ) {
      */
     function init ( options ) {
 
-        var options = kity.Utils.extend( {}, RES_CONF, options );
+        options = kity.Utils.extend( {}, RES_CONF, options );
 
         if ( !/^(https?:)?\/\//.test( options.path ) ) {
             options.path = getFullPath( options.path );
