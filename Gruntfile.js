@@ -7,35 +7,6 @@ module.exports = function (grunt) {
         // Metadata.
         pkg: grunt.file.readJSON('package.json'),
 
-        // Task configuration.
-        "transport": {
-
-            options: {
-
-                // module path
-                paths: [ 'src' ],
-                debug: false,
-                uglify: {
-                    beautify: true,
-                    ascii_only: true
-                }
-
-            },
-
-            cmd: {
-
-                files: [ {
-
-                    cwd: 'src',
-                    src: '**/*.js',
-                    dest: '.build_tmp'
-
-                } ]
-
-            }
-
-        },
-
         concat: {
 
             options: {
@@ -43,14 +14,6 @@ module.exports = function (grunt) {
                 paths: [ 'src' ],
                 include: 'all',
                 noncmd: true
-
-            },
-
-            cmd: {
-
-                files: {
-                    '.build_tmp/kity-formula-o.js': '.build_tmp/**/*.js'
-                }
 
             },
 
@@ -75,7 +38,7 @@ module.exports = function (grunt) {
                 },
 
                 files: {
-                    'dist/kity-formula.all.js': [ 'dev-lib/cmd-define.js', '.build_tmp/kity-formula-o.js', 'dev-lib/exports.js' ]
+                    'dist/kity-formula.all.js': [ '.tmp_build/kf.tmp.js', 'dev-lib/exports.js' ]
                 }
 
             }
@@ -113,21 +76,38 @@ module.exports = function (grunt) {
 
         },
 
+        // 模块依赖合并
+        dependence: {
+
+            replace: {
+
+                options: {
+                    base: 'src',
+                    entrance: 'kf.start'
+                },
+
+                files: [ {
+                    src: [ 'src/**/*.js', 'dev-lib/start.js' ],
+                    dest: '.tmp_build/kf.tmp.js'
+                } ]
+
+            }
+        },
+
         clean: {
-
-            tmp: [ '.build_tmp' ]
-
+            files: [ '.tmp_build' ]
         }
 
     });
 
     // These plugins provide necessary tasks.
-    grunt.loadNpmTasks( 'grunt-cmd-transport' );
-    grunt.loadNpmTasks( 'grunt-cmd-concat' );
+    grunt.loadNpmTasks('grunt-cmd-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-module-dependence');
 
     // Default task.
-    grunt.registerTask( 'default', [ 'transport:cmd', 'concat:cmd', 'concat:full', 'uglify:minimize', 'clean:tmp' ] );
+    grunt.registerTask( 'default', [ 'dependence:replace', 'concat:full', 'uglify:minimize', 'clean' ] );
+
 
 };
