@@ -29,7 +29,7 @@
     "laxcomma": false,
     "loopfunc": true,
     "onevar": false,
-    "unused": true,
+    "unused": "vars",
     "maxdepth": 3,
     "maxstatements": 40,
 //    "maxlen": 80,
