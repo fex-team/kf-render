@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>书法（手写体）字符</title>
+    <meta charset="utf-8">
+    <script src="../dev-lib/jquery-1.10.2.min.js"></script>
+    <script src="../dev-lib/kitygraph.all.js"></script>
+    <script src="../dev-lib/dev-define.js"></script>
+    <script>
+        inc.config({
+            base: '../src'
+        });
+    </script>
+    <script src="../dev-lib/exports.js"></script>
+    <script src="../dev-lib/dev-start.js"></script>
+    <script>
+        window.onload = function () {
+
+            kf.ResourceManager.ready( function ( Formula ) {
+
+                var formula = new Formula( document.getElementById( "container" ) );
+
+                var exps = [
+                    new kf.TextExpression( "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "KF AMS CAL" )
+                ];
+
+                kity.Utils.each( exps, function ( exp ) {
+                    formula.appendExpression( exp );
+                } );
+
+            }, {
+                path: '../src/resource/'
+            } );
+
+        };
+
+    </script>
+</head>
+<body>
+    <h1>书法（手写体）字符</h1>
+    <p>
+        构造方法： new kf.Text( "abc", "KF AMS CAL" );
+    </p>
+    <p>
+        基本字符集包含了0-9，a-z，A-Z，+，-，=，<，>，'，|，[，]，(，) 等字符， 这些字符可以不经转义直接输入。
+    </p>
+    <div id="container"></div>
+</body>
+</html>

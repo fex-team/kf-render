@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>上下标表达式</title>
+    <meta charset="utf-8">
+    <script src="../../dev-lib/jquery-1.10.2.min.js"></script>
+    <script src="../../dev-lib/kitygraph.all.js"></script>
+    <script src="../../dev-lib/dev-define.js"></script>
+    <script>
+        inc.config({
+            base: '../../src'
+        });
+    </script>
+    <script src="../../dev-lib/exports.js"></script>
+    <script src="../../dev-lib/dev-start.js"></script>
+    <script>
+        window.onload = function () {
+
+            kf.ResourceManager.ready( function ( Formula ) {
+
+                var formula = new Formula( document.getElementById( "container" ) );
+
+                var exps = [
+                    new kf.CombinationExpression( "a", new kf.ScriptExpression( "a", "2" ), "+", new kf.SuperscriptExpression( "b", "2" ), "=", new kf.SuperscriptExpression( "c", "2" ) ),
+                    new kf.CombinationExpression( "x", new kf.SubscriptExpression( "x", "1" ), "+", new kf.SubscriptExpression( "x", "2" ) ),
+                    new kf.CombinationExpression( "a", new kf.SubscriptExpression( "x", "a" ), "c" ),
+                    new kf.CombinationExpression( new kf.ScriptExpression( null, "n", "1" ), "Y" ),
+                    new kf.ScriptExpression( "x", "n" ),
+                    new kf.SuperscriptExpression( "x", "a" ),
+                    new kf.SubscriptExpression( "x", "a" ),
+                    new kf.SubscriptExpression( "x", "b" ),
+                    new kf.SubscriptExpression( "x", 2 ),
+                    new kf.ScriptExpression( "x", 2, 2 ),
+                    new kf.SubscriptExpression( "y", 2 ),
+                    new kf.SuperscriptExpression( "x", new kf.SuperscriptExpression( "x", 3 ) ),
+                    new kf.SuperscriptExpression( "x", new kf.SubscriptExpression( "x", 3 ) ),
+                    new kf.SubscriptExpression( "x", new kf.SuperscriptExpression( "x", 3 ) ),
+                    new kf.SubscriptExpression( "x", "a" ),
+                    new kf.SubscriptExpression( "x", "b" ),
+                    new kf.SubscriptExpression( "a", new kf.FractionExpression( "x", "y" ) ),
+                    new kf.SuperscriptExpression( "a", new kf.FractionExpression( "x", "y" ) ),
+                    new kf.ScriptExpression( "a", "x", "y" ),
+                    new kf.ScriptExpression( new kf.FractionExpression( "x", "y" ), "a" ),
+                    new kf.SubscriptExpression( new kf.FractionExpression( "x", "y" ), "a" ),
+                    new kf.SubscriptExpression( new kf.FractionExpression( "x", "x" ), "a" )
+                ];
+
+                kity.Utils.each( exps, function ( exp ) {
+                    formula.appendExpression( exp );
+                } );
+
+            }, {
+                path: '../../src/resource/'
+            } );
+
+        };
+
+    </script>
+</head>
+<body style="lit">
+    <h1>上下标表达式</h1>
+    <p>
+        构造方法： new kf.Text( "\\\\to \\\\gets \\\\subseteq" );
+    </p>
+    <p>
+        特殊符号其本质仍然是一个文本序列，不同于基本字符的是这些符号需要通过转义之后才能输入。注：希腊字符也是特殊符号的一类。
+    </p>
+    <div id="container"></div>
+</body>
+</html>

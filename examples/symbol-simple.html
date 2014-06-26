@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>特殊符号（简单）</title>
+    <meta charset="utf-8">
+    <script src="../dev-lib/jquery-1.10.2.min.js"></script>
+    <script src="../dev-lib/kitygraph.all.js"></script>
+    <script src="../dev-lib/dev-define.js"></script>
+    <script>
+        inc.config({
+            base: '../src'
+        });
+    </script>
+    <script src="../dev-lib/exports.js"></script>
+    <script src="../dev-lib/dev-start.js"></script>
+    <script>
+        window.onload = function () {
+
+            kf.ResourceManager.ready( function ( Formula ) {
+
+                var formula = new Formula( document.getElementById( "container" ) );
+
+                var exps = [
+                    new kf.TextExpression( "#\\angle\\\\backprime\\\\bigstar\\\\blacklozenge\\\\blacksquare\\\\blacktriangle\\" ),
+                    new kf.TextExpression( "\\blacktriangledown\\\\bot\\\\clubsuit\\\\diagdown\\\\diagup\\\\diamondsuit\\\\emptyset\\" ),
+                    new kf.TextExpression( "\\exists\\\\flat\\\\forall\\\\heartsuit\\\\infty\\\\lozenge\\\\measuredangle\\\\nabla\\" ),
+                    new kf.TextExpression( "\\natural\\\\neg\\\\lnot\\\\nexists\\\\prime\\\\sharp\\\\spadesuit\\\\sphericalangle\\" ),
+                    new kf.TextExpression( "\\surd\\\\top\\\\triangle\\\\triangledown\\\\varnothing\\" )
+                ];
+
+                kity.Utils.each( exps, function ( exp ) {
+                    formula.appendExpression( exp );
+                } );
+
+            }, {
+                path: '../src/resource/'
+            } );
+
+        };
+
+    </script>
+</head>
+<body>
+    <h1>特殊符号（简单）</h1>
+    <p>
+        构造方法： new kf.Text( "\\\\to \\\\gets \\\\subseteq" );
+    </p>
+    <p>
+        特殊符号其本质仍然是一个文本序列，不同于基本字符的是这些符号需要通过转义之后才能输入。注：希腊字符也是特殊符号的一类。
+    </p>
+    <div id="container"></div>
+</body>
+</html>

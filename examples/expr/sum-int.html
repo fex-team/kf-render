@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>表达式 - 求和与积分</title>
+    <meta charset="utf-8">
+    <script src="../../dev-lib/jquery-1.10.2.min.js"></script>
+    <script src="../../dev-lib/kitygraph.all.js"></script>
+    <script src="../../dev-lib/dev-define.js"></script>
+    <script>
+        inc.config({
+            base: '../../src'
+        });
+    </script>
+    <script src="../../dev-lib/exports.js"></script>
+    <script src="../../dev-lib/dev-start.js"></script>
+    <script>
+        window.onload = function () {
+
+            kf.ResourceManager.ready( function ( Formula ) {
+
+                var formula = new Formula( document.getElementById( "container" ) );
+
+                var exps = [
+                    new kf.CombinationExpression( "a=", new kf.IntegrationExpression( "a+b" ), "+b" ),
+                    new kf.CombinationExpression( "a", new kf.IntegrationExpression( "f(x)a", null, new kf.FractionExpression( "a", "b" ) ), "a" ),
+                    new kf.CombinationExpression( "a", new kf.IntegrationExpression( "f(x)", "a" ).setType( 2 ), "a" ),
+                    new kf.CombinationExpression( "x\\cdot\\", new kf.IntegrationExpression( "f(x)", "a", "b" ).setType( 3 ) ),
+                    new kf.CombinationExpression( "x=", new kf.SummationExpression( "a+b" ), "adsad" ),
+                    new kf.CombinationExpression( "a*", new kf.CombinationExpression( "x=", new kf.SummationExpression( "a+b", "a" ), "adsad" ) ),
+                    new kf.CombinationExpression( "c\\div\\", new kf.CombinationExpression( "x=", new kf.SummationExpression( "a+b", null, "n=1" ), "adsad" ) ),
+                    new kf.CombinationExpression( "c*", new kf.CombinationExpression( "a+", new kf.SummationExpression( "a+b", "x" ), new kf.SummationExpression( "a-b", null, "y" ), "dbc" ), "-def" )
+                ];
+
+                kity.Utils.each( exps, function ( exp ) {
+                    formula.appendExpression( exp );
+                } );
+
+            }, {
+                path: '../../src/resource/'
+            } );
+
+        };
+
+    </script>
+</head>
+<body>
+    <h1>分数表达式</h1>
+    <p>
+        构造方法： new kf.Text( "\\\\to \\\\gets \\\\subseteq" );
+    </p>
+    <p>
+        特殊符号其本质仍然是一个文本序列，不同于基本字符的是这些符号需要通过转义之后才能输入。注：希腊字符也是特殊符号的一类。
+    </p>
+    <div id="container"></div>
+</body>
+</html>

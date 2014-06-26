@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>特殊符号（关系集合2）</title>
+    <meta charset="utf-8">
+    <script src="../dev-lib/jquery-1.10.2.min.js"></script>
+    <script src="../dev-lib/kitygraph.all.js"></script>
+    <script src="../dev-lib/dev-define.js"></script>
+    <script>
+        inc.config({
+            base: '../src'
+        });
+    </script>
+    <script src="../dev-lib/exports.js"></script>
+    <script src="../dev-lib/dev-start.js"></script>
+    <script>
+        window.onload = function () {
+
+            kf.ResourceManager.ready( function ( Formula ) {
+
+                var formula = new Formula( document.getElementById( "container" ) );
+
+                var exps = [
+                    new kf.TextExpression( "\\backepsilon\\\\because\\\\between\\\\blacktriangleleft\\\\blacktriangleright\\\\bowtie\\" ),
+                    new kf.TextExpression( "\\dashv\\\\frown\\\\in\\\\mid\\\\models\\\\ni\\\\owns\\\\nmid\\\\notin\\\\nparallel\\" ),
+                    new kf.TextExpression( "\\nshortmid\\\\nshortparallel\\\\nsubseteq\\\\nsubseteqq\\\\nsupseteq\\\\nsupseteqq\\" ),
+                    new kf.TextExpression( "\\ntriangleleft\\\\ntrianglelefteq\\\\ntriangleright\\\\ntrianglerighteq\\\\nvdash\\" ),
+                    new kf.TextExpression( "\\nVdash\\\\nvDash\\\\nVDash\\\\parallel\\\\perp\\\\pitchfork\\\\propto\\\\shortmid\\" ),
+                    new kf.TextExpression( "\\shortparallel\\\\smallfrown\\\\smallsmile\\\\smile\\\\sqsubset\\\\sqsubseteq\\\\sqsupset\\" ),
+                    new kf.TextExpression( "\\sqsupseteq\\\\subset\\\\Subset\\\\subseteq\\\\subseteqq\\\\subsetneq\\\\subsetneqq\\\\supset\\" ),
+                    new kf.TextExpression( "\\Supset\\\\supseteq\\\\supseteqq\\\\supsetneq\\\\supsetneqq\\\\therefore\\\\trianglelefteq\\" ),
+                    new kf.TextExpression( "\\trianglerighteq\\\\varpropto\\\\varsubsetneq\\\\varsubsetneqq\\\\varsupsetneq\\" ),
+                    new kf.TextExpression( "\\varsupsetneqq\\\\vartriangle\\\\vartriangleleft\\\\vartriangleright\\\\vdash\\\\Vdash\\\\vDash\\\\Vvdash\\" )
+                ];
+
+                kity.Utils.each( exps, function ( exp ) {
+                    formula.appendExpression( exp );
+                } );
+
+            }, {
+                path: '../src/resource/'
+            } );
+
+        };
+
+    </script>
+</head>
+<body>
+    <h1>特殊符号（关系符号）</h1>
+    <p>
+        构造方法： new kf.Text( "\\\\to \\\\gets \\\\subseteq" );
+    </p>
+    <p>
+        特殊符号其本质仍然是一个文本序列，不同于基本字符的是这些符号需要通过转义之后才能输入。注：希腊字符也是特殊符号的一类。
+    </p>
+    <div id="container" style="height: 1500px;"></div>
+</body>
+</html>

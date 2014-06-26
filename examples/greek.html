@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>希腊字符集</title>
+    <meta charset="utf-8">
+    <script src="../dev-lib/jquery-1.10.2.min.js"></script>
+    <script src="../dev-lib/kitygraph.all.js"></script>
+    <!--<script src="../dist/kity-formula.all.min.js"></script>-->
+    <script src="../dev-lib/dev-define.js"></script>
+    <script>
+        inc.config({
+            base: '../src'
+        });
+    </script>
+    <script src="../dev-lib/exports.js"></script>
+    <script src="../dev-lib/dev-start.js"></script>
+    <script>
+
+        window.onload = function () {
+
+            kf.ResourceManager.ready( function ( Formula ) {
+
+                var formula = new Formula( document.getElementById( "container" ) );
+
+                var exps = [
+                    new kf.TextExpression( "\\alpha\\\\beta\\\\gamma\\\\delta\\\\epsilon\\\\zeta\\\\eta\\\\theta\\\\iota\\\\kappa\\\\lambda\\\\mu\\\\nu\\\\xi\\\\omicron\\\\pi\\\\rho\\\\sigma\\\\tau\\\\upsilon\\\\phi\\\\chi\\\\psi\\\\omega\\" ),
+                    new kf.TextExpression( "\\Alpha\\\\Beta\\\\Gamma\\\\Delta\\\\Epsilon\\\\Zeta\\\\Eta\\\\Theta\\\\Iota\\\\Kappa\\\\Lambda\\\\Mu\\\\Nu\\\\Xi\\\\Omicron\\\\Pi\\\\Rho\\\\Sigma\\\\Tau\\\\Upsilon\\\\Phi\\\\Chi\\\\Psi\\\\Omega\\" ),
+                    new kf.TextExpression( "\\digamma\\\\varepsilon\\\\varkappa\\\\varphi\\\\varpi\\\\varrho\\\\varsigma\\\\vartheta\\" )
+                ];
+
+                kity.Utils.each( exps, function ( exp ) {
+                    formula.appendExpression( exp );
+                } );
+
+            }, {
+                path: '../src/resource/'
+            } );
+
+        };
+
+    </script>
+</head>
+<body>
+<h1>希腊字符集</h1>
+<p>
+    构造方法： new kf.Text( "\\alpha \\beta \\Alpha \\Beta" );
+</p>
+<div id="container"></div>
+</body>
+</html>

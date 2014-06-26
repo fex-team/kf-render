@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>特殊符号（箭头）</title>
+    <meta charset="utf-8">
+    <script src="../dev-lib/jquery-1.10.2.min.js"></script>
+    <script src="../dev-lib/kitygraph.all.js"></script>
+    <script src="../dev-lib/dev-define.js"></script>
+    <script>
+        inc.config({
+            base: '../src'
+        });
+    </script>
+    <script src="../dev-lib/exports.js"></script>
+    <script src="../dev-lib/dev-start.js"></script>
+    <script>
+        window.onload = function () {
+
+            kf.ResourceManager.ready( function ( Formula ) {
+
+                var formula = new Formula( document.getElementById( "container" ) );
+
+                var exps = [
+                    new kf.TextExpression( "\\circlearrowleft\\\\circlearrowright\\\\curvearrowleft\\\\curvearrowright\\\\downdownarrows\\" ),
+                    new kf.TextExpression( "\\downharpoonleft\\\\downharpoonright\\\\hookleftarrow\\\\hookrightarrow\\\\leftarrow\\\\gets\\" ),
+                    new kf.TextExpression( "\\Leftarrow\\\\leftarrowtail\\\\leftharpoondown\\\\leftharpoonup\\\\leftleftarrows\\" ),
+                    new kf.TextExpression( "\\leftrightarrow\\\\Leftrightarrow\\\\leftrightarrows\\\\leftrightharpoons\\" ),
+                    new kf.TextExpression( "\\leftrightsquigarrow\\\\Lleftarrow\\\\longleftarrow\\\\Longleftarrow\\" ),
+                    new kf.TextExpression( "\\longleftrightarrow\\\\Longleftrightarrow\\\\longmapsto\\\\longrightarrow\\" ),
+                    new kf.TextExpression( "\\Longrightarrow\\\\implies\\\\looparrowleft\\\\looparrowright\\\\Lsh\\\\mapsto\\" ),
+                    new kf.TextExpression( "\\multimap\\\\nLeftarrow\\\\nLeftrightarrow\\\\nRightarrow\\\\nearrow\\\\nleftarrow\\" ),
+                    new kf.TextExpression( "\\nleftrightarrow\\\\nrightarrow\\\\nwarrow\\\\rightarrow\\\\to\\\\Rightarrow\\" ),
+                    new kf.TextExpression( "\\rightarrowtail\\\\rightharpoondown\\\\rightharpoonup\\\\rightleftarrows\\\\rightleftharpoons\\" ),
+                    new kf.TextExpression( "\\rightrightarrows\\\\rightsquigarrow\\\\Rrightarrow\\\\Rsh\\\\searrow\\\\swarrow\\" ),
+                    new kf.TextExpression( "\\twoheadleftarrow\\\\twoheadrightarrow\\\\upharpoonleft\\\\upharpoonright\\\\restriction\\\\upuparrows\\" ),
+                    new kf.TextExpression( "\\uparrow\\ \\Uparrow\\ \\downarrow\\ \\Downarrow\\ \\updownarrow\\ \\Updownarrow\\" )
+                ];
+
+                kity.Utils.each( exps, function ( exp ) {
+                    formula.appendExpression( exp );
+                } );
+
+            }, {
+                path: '../src/resource/'
+            } );
+
+        };
+
+    </script>
+</head>
+<body>
+    <h1>特殊符号（箭头）</h1>
+    <p>
+        构造方法： new kf.Text( "\\\\to \\\\gets \\\\subseteq" );
+    </p>
+    <p>
+        特殊符号其本质仍然是一个文本序列，不同于基本字符的是这些符号需要通过转义之后才能输入。注：希腊字符也是特殊符号的一类。
+    </p>
+    <div id="container" style="height: 1500px;"></div>
+</body>
+</html>

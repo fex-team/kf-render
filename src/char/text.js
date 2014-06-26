@@ -1,35 +1,63 @@
 /**
- * Created by hn on 13-12-3.
+ * 文本
  */
 
-define( function ( require, exports, module ) {
+define( function ( require ) {
 
     var kity = require( "kity" ),
-        Char = require( "char/char" );
-
+        FONT_CONF = require( "sysconf" ).font,
+        FontManager = require( "font/manager" ),
+        TextFactory = require( "char/text-factory" );
 
     return kity.createClass( 'Text', {
 
         base: require( "signgroup" ),
 
-        constructor: function ( content ) {
+        constructor: function ( content, fontFamily ) {
 
             this.callBase();
 
-            this.contentText = content || "";
+            this.fontFamily = fontFamily;
+            this.fontSize = 50;
+            this.content = content || "";
+
+            // 移除多余的节点
+            this.box.remove();
+
+            this.translationContent = this.translation( this.content );
 
             this.contentShape = new kity.Group();
-
-            initContentShape.call( this );
+            this.contentNode = this.createContent();
+            this.contentShape.addShape( this.contentNode );
 
             this.addShape( this.contentShape );
 
         },
 
-        getBaseWidth: function () {
+        createContent: function () {
 
-            return this.getWidth();
+            var contentNode = TextFactory.create( this.translationContent );
 
+            contentNode.setAttr( {
+                "font-family": this.fontFamily,
+                "font-size": 50,
+                x: 0,
+                y: FONT_CONF.offset
+            } );
+
+            return contentNode;
+
+        },
+
+        setFamily: function ( fontFamily ) {
+            this.fontFamily = fontFamily;
+            this.contentNode.setAttr( "font-family", fontFamily );
+        },
+
+        setFontSize: function ( fontSize ) {
+            this.fontSize = fontSize;
+            this.contentNode.setAttr( "font-size", fontSize + "px" );
+            this.contentNode.setAttr( "y", fontSize / 50 * FONT_CONF.offset );
         },
 
         getBaseHeight: function () {
@@ -41,7 +69,7 @@ define( function ( require, exports, module ) {
 
             while ( currentChar = chars[ index ] ) {
 
-                height = Math.max( height, currentChar.getBaseHeight() );
+                height = Math.max( height, currentChar.getHeight() );
                 index++;
 
             }
@@ -50,35 +78,30 @@ define( function ( require, exports, module ) {
 
         },
 
-        addedCall: function () {
+        translation: function ( content ) {
 
-            var offset = 0;
+            var fontFamily = this.fontFamily;
 
-            kity.Utils.each( this.contentText.split( "" ), function ( charData, index ) {
+            // 首先特殊处理掉两个相连的"`"符号
+            return content.replace( /``/g, "\u201c" ).replace( /\\([a-zA-Z,]+)\\/g, function ( match, input ) {
 
-                var charShape = this.contentShape.getItem( index );
+                if ( input === "," ) {
+                    return " ";
+                }
 
-                charShape.translate( offset, 0 );
+                var data = FontManager.getCharacterValue( input, fontFamily );
 
-                offset += charShape.getBoxWidth();
+                if ( !data ) {
+                    console.error( "missing code: " + input );
+                    return '';
+                }
 
-            }, this );
+                return data;
+
+            } );
 
         }
 
     } );
-
-
-    function initContentShape () {
-
-        kity.Utils.each( this.contentText.split( "" ), function ( charData, index ) {
-
-            var charShape = new Char( charData );
-
-            this.contentShape.addShape( charShape );
-
-        }, this );
-
-    }
 
 } );

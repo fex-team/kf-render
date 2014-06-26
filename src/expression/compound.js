@@ -1,11 +1,15 @@
 /**
  * 复合表达式
+ * @abstract
  */
 
-define( function ( require, exports, modules ) {
+define( function ( require ) {
 
     var kity = require( "kity" ),
-        TextExpression = require( "expression/text" );
+
+        GTYPE = require( "def/gtype" ),
+
+        Expression = require( "expression/expression" );
 
     return kity.createClass( 'CompoundExpression', {
 
@@ -15,8 +19,19 @@ define( function ( require, exports, modules ) {
 
             this.callBase();
 
+            this.type = GTYPE.COMPOUND_EXP;
+
             this.operands = [];
             this.operator = null;
+
+            this.operatorBox = new kity.Group();
+            this.operatorBox.setAttr( "data-type", "kf-editor-exp-op-box" );
+
+            this.operandBox = new kity.Group();
+            this.operandBox.setAttr( "data-type", "kf-editor-exp-operand-box" );
+
+            this.setChildren( 0, this.operatorBox );
+            this.setChildren( 1, this.operandBox );
 
         },
 
@@ -31,8 +46,14 @@ define( function ( require, exports, modules ) {
                 this.operator.remove();
             }
 
+            this.operatorBox.addShape( operator );
+
             this.operator = operator;
-            this.setChildren( 0, this.operator );
+
+            this.operator.setParentExpression( this );
+
+            // 表达式关联到操作符
+            operator.expression = this;
 
             return this;
 
@@ -45,20 +66,23 @@ define( function ( require, exports, modules ) {
         },
 
         // 操作数存储位置是从1开始
-        setOperand: function ( operand, index ) {
+        setOperand: function ( operand, index, isWrap ) {
 
-            if ( operand === undefined ) {
+            // 不包装操作数
+            if ( isWrap === false ) {
+                this.operands[ index ] = operand;
                 return this;
             }
 
-            operand = TextExpression.wrap( operand );
+            operand = Expression.wrap( operand );
 
             if ( this.operands[ index ] ) {
                 this.operands[ index ].remove();
             }
 
             this.operands[ index ] = operand;
-            this.setChildren( index+1, operand );
+
+            this.operandBox.addShape( operand );
 
             return this;
 
@@ -66,14 +90,19 @@ define( function ( require, exports, modules ) {
 
         getOperand: function ( index ) {
 
-            return this.getChild( index + 1 );
+            return this.operands[ index ];
+
+        },
+
+        getOperands: function () {
+
+            return this.operands;
 
         },
 
         addedCall: function () {
 
             this.operator.applyOperand.apply( this.operator, this.operands );
-
             return this;
 
         }

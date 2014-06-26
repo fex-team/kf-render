@@ -3,9 +3,10 @@
  * @abstract
  */
 
-define( function ( require, exports, modules ) {
+define( function ( require ) {
 
-    var kity = require( "kity" );
+    var kity = require( "kity" ),
+        GTYPE = require( "def/gtype" );
 
     return kity.createClass( 'Operator', {
 
@@ -15,36 +16,47 @@ define( function ( require, exports, modules ) {
 
             this.callBase();
 
+            this.type = GTYPE.OP;
+
+            // 该操作符所属的表达式
+            this.parentExpression = null;
+
             // 操作符名称
             this.operatorName = operatorName;
 
             // 操作符图形
             this.operatorShape = new kity.Group();
 
-            // 操作符边框, 根据具体的操作符， 可调用setBoxSize接口自定义大小
-            this.box = new kity.Rect( 0, 0, 0, 0 ).fill( "transparent" );
-
-            this.addShape( this.box );
             this.addShape( this.operatorShape );
 
         },
 
         applyOperand: function () {
-
             throw new Error( 'applyOperand is abstract' );
-
         },
 
-        setBoxSize: function ( w, h ) {
+        setParentExpression: function ( exp ) {
+            this.parentExpression = exp;
+        },
 
-            this.box.setSize( w, h );
+        getParentExpression: function () {
+            return this.parentExpression;
+        },
 
+        clearParentExpression: function () {
+            this.parentExpression = null;
         },
 
         // 提供给具体实现类附加其绘制的操作符图形的接口
         addOperatorShape: function ( shpae ) {
 
-            this.operatorShape.addShape( shpae );
+            return this.operatorShape.addShape( shpae );
+
+        },
+
+        getOperatorShape: function () {
+
+            return this.operatorShape;
 
         }
 

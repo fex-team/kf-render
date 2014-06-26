@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>特殊符号（关系集合1）</title>
+    <meta charset="utf-8">
+    <script src="../dev-lib/jquery-1.10.2.min.js"></script>
+    <script src="../dev-lib/kitygraph.all.js"></script>
+    <script src="../dev-lib/dev-define.js"></script>
+    <script>
+        inc.config({
+            base: '../src'
+        });
+    </script>
+    <script src="../dev-lib/exports.js"></script>
+    <script src="../dev-lib/dev-start.js"></script>
+    <script>
+        window.onload = function () {
+
+            kf.ResourceManager.ready( function ( Formula ) {
+
+                var formula = new Formula( document.getElementById( "container" ) );
+
+                var sqrt1 = new kf.CombinationExpression( new kf.SuperscriptExpression( "q", 2 ), "+", new kf.SuperscriptExpression( "p", 3 ) ),
+                        sqrt2 = new kf.CombinationExpression( new kf.RadicalExpression( sqrt1 ) ),
+                        sqrt3 = new kf.CombinationExpression( "-q+", sqrt2 ),
+                        exps = [
+                            new kf.TextExpression( "<=>\\approx\\\\approxeq\\\\asymp\\\\backsim\\\\backsimeq\\" ),
+                            new kf.TextExpression( "\\bumpeq\\\\Bumpeq\\\\circeq\\\\cong\\\\curlyeqprec\\\\curlyeqsucc\\" ),
+                            new kf.TextExpression( "\\doteq\\\\doteqdot\\\\Doteq\\\\eqcirc\\\\eqsim\\\\eqslantgtr\\\\eqslantless\\" ),
+                            new kf.TextExpression( "\\equiv\\\\fallingdotseq\\\\geq\\\\ge\\\\geqq\\\\geqslant\\\\gg\\\\ggg\\" ),
+                            new kf.TextExpression( "\\gggtr\\\\gnapprox\\\\gneq\\\\gneqq\\\\gnsim\\\\gtrapprox\\\\gtreqless\\" ),
+                            new kf.TextExpression( "\\gtreqqless\\\\gtrless\\\\gtrsim\\\\gvertneqq\\\\leq\\\\le\\\\leqq\\" ),
+                            new kf.TextExpression( "\\leqslant\\\\lessapprox\\\\lesseqgtr\\\\lesseqqgtr\\\\lessgtr\\\\lesssim\\" ),
+                            new kf.TextExpression( "\\ll\\\\lll\\\\llless\\\\lnapprox\\\\lneq\\\\lneqq\\\\lnsim\\\\lvertneqq\\" ),
+                            new kf.TextExpression( "\\ncong\\\\neq\\\\ne\\\\nequiv\\\\ngeq\\\\ngeqq\\\\ngeqslant\\\\ngtr\\\\nleq\\\\nleqq\\" ),
+                            new kf.TextExpression( "\\nleqslant\\\\nless\\\\nprec\\\\npreceq\\\\nsim\\\\nsucc\\\\nsucceq\\\\prec\\" ),
+                            new kf.TextExpression( "\\precapprox\\\\preccurlyeq\\\\preceq\\\\precnapprox\\\\precneqq\\\\precnsim\\" ),
+                            new kf.TextExpression( "\\precsim\\\\risingdotseq\\\\sim\\\\simeq\\\\succ\\\\succapprox\\\\succcurlyeq\\" ),
+                            new kf.TextExpression( "\\succeq\\\\succnapprox\\\\succneqq\\\\succnsim\\\\succsim\\\\thickapprox\\" ),
+                            new kf.TextExpression( "\\thicksim\\\\triangleq\\" )
+                        ];
+
+                kity.Utils.each( exps, function ( exp ) {
+                    formula.appendExpression( exp );
+                } );
+
+            }, {
+                path: '../src/resource/'
+            } );
+
+        };
+
+    </script>
+</head>
+<body>
+    <h1>特殊符号（关系符号）</h1>
+    <p>
+        构造方法： new kf.Text( "\\\\to \\\\gets \\\\subseteq" );
+    </p>
+    <p>
+        特殊符号其本质仍然是一个文本序列，不同于基本字符的是这些符号需要通过转义之后才能输入。注：希腊字符也是特殊符号的一类。
+    </p>
+    <div id="container" style="height: 1500px;"></div>
+</body>
+</html>

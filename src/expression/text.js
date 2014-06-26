@@ -1,44 +1,65 @@
 /**
- * Created by hn on 13-12-3.
+ * Text表达式
  */
 
-define( function ( require, exports, module ) {
+define( function ( require ) {
 
     var Text = require( "char/text" ),
         kity = require( "kity" ),
-
+        FONT_CONF = require( "char/conf" ),
+        Expression = require( "expression/expression" ),
         TextExpression = kity.createClass( 'TextExpression', {
 
             base: require( "expression/expression" ),
 
-            constructor: function ( content ) {
+            constructor: function ( content, fontFamily ) {
 
                 this.callBase();
 
+                this.fontFamily = fontFamily || FONT_CONF.defaultFont;
+                this.setFlag( "Text" );
+
                 this.content = content + '';
 
-                this.setChildren( 0, new Text( this.content ) );
+                this.textContent = new Text( this.content, this.fontFamily );
+
+                this.setChildren( 0, this.textContent );
+                this.setChildren( 1, new kity.Rect( 0, 0, 0, 0 ).fill( "transparent" ) );
+
+            },
+
+            setFamily: function ( fontFamily ) {
+                this.textContent.setFamily( fontFamily );
+            },
+
+            setFontSize: function ( fontSize ) {
+                this.textContent.setFontSize( fontSize );
+            },
+
+            addedCall: function () {
+
+                var box = this.textContent.getFixRenderBox();
+
+                this.getChild( 1 ).setSize( box.width, box.height );
+                this.updateBoxSize();
+                return this;
 
             }
 
         } );
 
-    // 自动打包
-    kity.Utils.extend( TextExpression, {
+    // 注册文本表达式的打包函数
+    Expression.registerWrap( 'text', function ( operand ) {
 
-        wrap: function ( operand ) {
+        var operandType = typeof operand;
 
-            var operandType = typeof operand;
+        if ( operandType === 'number' || operandType === 'string' ) {
 
-            if ( operandType === 'number' || operandType === 'string' ) {
-
-                operand = new TextExpression( operand );
-
-            }
-
-            return operand;
+            operand = new TextExpression( operand );
 
         }
+
+        return operand;
 
     } );
 
