@@ -42,4 +42,4 @@ Kity Formula Render 提供了一个非常灵活的公式呈现和存储方案，
 Kity Formula Render 渲染出来的公式效果接近于纸质出版物的效果，可以使你的应用表现得更专业。
 
 ## 版权与许可
-Kity Formula 相关的代码和文档版权属于百度，代码发布在[MIT](https://github.com/fex-team/kityformula/blob/master/LICENSE.md)许可下。
+Kity Formula 相关的代码和文档版权属于百度，代码发布在 BSD 许可下。
